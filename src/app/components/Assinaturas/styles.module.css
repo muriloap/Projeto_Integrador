@@ -1,66 +1,15 @@
-.h1 {
-    padding: 100px;
-    justify-content: center;
+.container {
     display: flex;
-    font-size: 55px;
-}
-
-.tabelaFree {
-    padding: 10px;
-    justify-content: center;
-    font-size: 30px;
-    border-radius: 15px;
-    border: 2px solid gray;
-    width: 400px;
-}
-
-.free {
-    padding: 10px;
-    justify-content: center;
-    font-size: 30px;
-    align-items: center;
-    display: flex;
-}
-
-.premium {
-    padding: 10px;
-    justify-content: center;
-    font-size: 30px;
-    align-items: center;
-    display: flex;
-}
-
-.tabelaPremium {
-    padding: 10px;
-    justify-content: center;
-    font-size: 30px;
-    border-radius: 15px;
-    border: 2px solid gray;
-    width: 400px;
-}
-
-.corpo {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
-.listaFree {
-    padding: 5px;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    list-style: none;
-    font-size: 20px;
-}
-
-.listaPremium {
-    padding: 5px;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    list-style: none;
-    font-size: 20px;
-}
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 32px;
+  }
+  
+  .titulo {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2rem;
+    margin-bottom: 32px;
+    color: white;
+  }
+  

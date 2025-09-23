@@ -1,0 +1,63 @@
+.card {
+    background-color: #000;
+    color: white;
+    border: 1px solid gray;
+    border-radius: 20px;
+    width: 350px;
+    min-height: 400px;
+    text-align: center;
+    padding: 32px 24px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  
+    /* TRANSITION e TRANSFORM */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-10px) scale(1.05); /* sobe e aumenta levemente */
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
+  }
+  
+  .tituloPlano {
+    font-weight: bold;
+    font-size: 1.75rem;
+    margin-bottom: 12px;
+  }
+  
+  .valor {
+    color: lightgreen;
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+  }
+  
+  .lista {
+    list-style: none; /* remove bolinhas do ul */
+    padding: 0;
+    margin: 0 0 24px 0;
+  }
+  
+  .listaItem {
+    margin-bottom: 12px;
+  }
+  
+  .botao {
+    margin-top: auto;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .botao:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+  }
+  
