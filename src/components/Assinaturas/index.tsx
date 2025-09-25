@@ -5,11 +5,9 @@ import styles from './styles.module.css';
 export default function Assinaturas() {
   return (
     <>
-      <Typography className={styles.titulo} variant="h3">
-        ASSINATURAS
-      </Typography>
+      <h2 className={styles.h2} >ASSINATURAS</h2>
 
-      <div className={styles.container}>
+      <div id="assinatura" className={styles.container}>
         <Plano
           plano="Free"
           valor={0}
