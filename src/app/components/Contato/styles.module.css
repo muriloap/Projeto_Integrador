@@ -1,7 +1,28 @@
-.h2 {
+.contato {
     text-align: center;
     color: white;
     font-size: 40px;
     margin-top: 10rem;
     background-color: #1f4d5c;
+}
+
+.divFaleConosco {
+    color: #ffffff;
+    font-size: 1.2rem; /* tamanho agradável */
+    line-height: 1.9; /* espaçamento entre linhas */
+    text-align: justify; /* texto alinhado dos dois lados */
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 350px;
+    margin: 15px;
+    text-align: center;
+}
+
+.faleConosco {
+    font-size: 30px;
+}
+
+.p {
+    padding: 5px;
+    margin-top: 5px;
 }
