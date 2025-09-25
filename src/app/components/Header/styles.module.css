@@ -5,9 +5,10 @@
     flex-direction: row;
     align-items: center;
     padding: 10px;
-    border-bottom: 2px solid rgb(255, 0, 0);
+    border-bottom: 2px solid rgb(255, 255, 255);
     justify-content: space-between;
     border-bottom-right-radius: 15px;
+    margin-bottom: 50px;
 }
 
 .h1 {
