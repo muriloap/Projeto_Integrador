@@ -1,0 +1,31 @@
+.btn {
+  padding: 12px 40px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Botão preenchido */
+.btn-primary {
+  background-color: #1a33ff;
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0d1aff;
+}
+
+/* Botão contornado */
+.btn-outline {
+  background-color: white;
+  color: #1a33ff;
+  border: 2px solid #1a33ff;
+}
+
+.btn-outline:hover {
+  background-color: #1a33ff;
+  color: white;
+}
