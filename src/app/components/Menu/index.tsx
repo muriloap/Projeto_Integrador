@@ -8,7 +8,7 @@ export default function Menu() {
                 <a className={styles.link} href="">Sobre nós</a>
                 <a className={styles.link} href="#assinatura">Assinaturas</a>
                 <a className={styles.link} href="#contato">Contato</a>
-                <a className={styles.button} href="">Cadastrar/Entrar</a>
+                <a className={styles.button} href="http://localhost:3000/login">Cadastrar/Entrar</a>
             </div>
         </nav>
     )
