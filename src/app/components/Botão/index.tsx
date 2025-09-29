@@ -3,12 +3,14 @@ import styles from "./styles.module.css"
 
 type Props = {
   label: string;
-  variant?: "primary" | "outline"; // define o estilo do botão
-  onClick?: () => void;           // função opcional
+  variant?: "primary" | "outline"; 
+  onClick(): void;           
 };
 
 export default function Button(props: Props) {
   const cls = `${styles.btn} ${props.variant === "outline" ? styles["btn-outline"] : styles["btn-primary"]}`;
+
+  
 
   return (
     <button
