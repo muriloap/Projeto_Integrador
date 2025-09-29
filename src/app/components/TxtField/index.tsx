@@ -12,7 +12,7 @@ type Props={
 }
 
 
-export default function TextField(props: Props) {
+export default function TxtField(props: Props) {
 
     const [texto, setTexto] = useState(props.textStart)
     const [showPassword, setShowPassword] = useState(false);

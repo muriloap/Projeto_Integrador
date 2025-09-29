@@ -5,7 +5,7 @@ import TxtField from '../components/TxtField';
 import { useState } from 'react';
 import { Login } from '@mui/icons-material';
 import axios from 'axios';
-import styles from "./page.module.css"
+import styles from "./styles.module.css"
 import Botão from '../components/Botão';
 import { useRouter } from "next/navigation";
 

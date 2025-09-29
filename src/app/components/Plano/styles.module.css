@@ -1,68 +1,67 @@
 .card {
-    background-color: #1d4f6b;
-    color: white;
-    border: 1px solid gray;
-    border-radius: 20px;
-    width: 350px;
-    min-height: 400px;
-    text-align: center;
-    padding: 32px 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  background-color: #1d4f6b;
+  color: white;
+  border: 1px solid gray;
+  border-radius: 20px;
+  width: 350px;
+  min-height: 400px;
+  text-align: center;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
   
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
+.card:hover {
+  transform: translateY(-10px) scale(1.05); /* sobe e aumenta levemente */
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
   
-  .card:hover {
-    transform: translateY(-10px) scale(1.05); /* sobe e aumenta levemente */
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
-    
-  }
+}
+
+.tituloPlano {
+  font-weight: bold;
+  font-size: 1.75rem;
+  margin-bottom: 12px;
+  background-color: #1d4f6b;
+}
+
+.valor {
+  color: lightgreen;
+  font-size: 1.5rem;
+  margin-bottom: 24px;
+  background-color: #002236;
+  border-radius: 15px;
   
-  .tituloPlano {
-    font-weight: bold;
-    font-size: 1.75rem;
-    margin-bottom: 12px;
-    background-color: #1d4f6b;
-  }
-  
-  .valor {
-    color: lightgreen;
-    font-size: 1.5rem;
-    margin-bottom: 24px;
-    background-color: #002236;
-    border-radius: 15px;
-    
-  }
-  
-  .lista {
-    list-style: none; /* remove bolinhas do ul */
-    padding: 0;
-    margin: 0 0 24px 0;
-    background-color: #1d4f6b;
-  }
-  
-  .listaItem {
-    margin-bottom: 12px;
-    background-color: #1d4f6b;
-  }
-  
-  .botao {
-    margin-top: auto;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    padding: 14px 28px;
-    border-radius: 12px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-  }
-  
-  .botao:hover {
-    background-color: #45a049;
-    transform: scale(1.05);
-  }
-  
+}
+
+.lista {
+  list-style: none; /* remove bolinhas do ul */
+  padding: 0;
+  margin: 0 0 24px 0;
+  background-color: #1d4f6b;
+}
+
+.listaItem {
+  margin-bottom: 12px;
+  background-color: #1d4f6b;
+}
+
+.botao {
+  margin-top: auto;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.botao:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
