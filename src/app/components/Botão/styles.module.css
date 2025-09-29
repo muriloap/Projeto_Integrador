@@ -7,7 +7,7 @@
   transition: 0.3s;
 }
 
-/* Botão preenchido */
+
 .btn-primary {
   background-color: #1a33ff;
   color: rgb(0, 0, 0);
@@ -18,7 +18,7 @@
   background-color: #0d1aff;
 }
 
-/* Botão contornado */
+
 .btn-outline {
   background-color: white;
   color: #1a33ff;

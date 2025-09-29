@@ -15,11 +15,13 @@ export default function Home() {
   const router = useRouter();
 
   const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
+  const [password, setPassword] = useState('');
 
 
   function login() {
     axios.get("https://localhost:3000/users")
+
+    
   }
 
   function cadastrese() {
@@ -32,12 +34,13 @@ export default function Home() {
       <Box display="flex" flexDirection="column" alignItems="center" gap={20} mt={4}>
 
         <AccountCircleIcon sx={{ fontSize: 100, color: 'Black' }} />
+        {/* <a>Seja Bem - Vindo ao nosso sistema de Ordem de serviço, Faça Login ou Cadastre - Se para continuar</a> */}
 
         <Container maxWidth="sm">
           <Box display="flex" flexDirection="column" alignItems="center" gap={3} mt={4}>
 
             <TxtField label="Email" type="email" onChange={setEmail} />
-            <TxtField label="Senha" type="password" onChange={setSenha} />
+            <TxtField label="Senha" type="password" onChange={setPassword} />
             <Botão variant="primary" onClick={login} label="LOGIN" />
             <Botão variant="outline" onClick={cadastrese} label="CADASTRE - SE" />
 
