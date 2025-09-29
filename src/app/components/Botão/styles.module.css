@@ -10,7 +10,7 @@
 /* Botão preenchido */
 .btn-primary {
   background-color: #1a33ff;
-  color: white;
+  color: rgb(0, 0, 0);
   border: none;
 }
 
