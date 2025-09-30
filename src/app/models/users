@@ -1,0 +1,21 @@
+type User = {
+    name,
+    lastName,
+    email,
+    password,
+    companyName,
+    corporateReason,
+    document,
+    stateRegistration,
+    cep,
+    address,
+    number,
+    neighborhood,
+    state,
+    city,
+    phone,
+    site,
+    birth
+}
+
+export default User;
