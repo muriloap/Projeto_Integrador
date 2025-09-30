@@ -48,67 +48,72 @@ export default function Home() {
 
     return (
 
+        <>
 
-        <Container maxWidth="sm">
-            <Box display="flex" flexDirection="column" alignItems="center" gap={3} mt={4}>
-                <Box display="flex" flexDirection="row" alignItems="center" gap={0} mt={4}>
-                    <Container maxWidth="sm">
-                        <Selection variant="PF" selected={selection === "PF"} onClick={pfClick} label="Pessoa Física" />
-                        <Selection variant="PF" selected={selection === "PJ"} onClick={pjClick} label="Pessoa Juridica" />
-                        <Box display="flex" flexDirection="column" alignItems="center" gap={3} mt={4}>
-                            <Container maxWidth="sm">
+            <div className={styles.sel}>
 
-                                {selection === "PF" ?
-                                    (<>
-                                        <Box display="flex" flexDirection="column" alignItems="center" gap={3} mt={4} marginBottom={10}>
-                                            <TxtField label="Nome" type="text" onChange={setNome} />
-                                            <TxtField label="Sobrenome" type="text" onChange={setLastName} />
-                                            <TxtField label="CPF" type="text" onChange={setDocument} />
-                                            <TxtField label="Nome da Empresa" type="text" onChange={setCompanyName} />
-                                            <TxtField label="CEP" type="text" onChange={setCep} />
-                                            <TxtField label="Endereço" type="text" onChange={setAddress} />
-                                            <TxtField label="Número" type="text" onChange={setNumber} />
-                                            <TxtField label="Bairro" type="text" onChange={setNeighborhood} />
-                                            <TxtField label="Estado" type="text" onChange={setState} />
-                                            <TxtField label="Cidade" type="text" onChange={setCity} />
-                                            <TxtField label="Telefone" type="text" onChange={setPhone} />
-                                            <TxtField label="Site" type="text" onChange={setSite} />
-                                            <TxtField label="Email" type="text" onChange={setEmail} />
-                                            <TxtField label="Senha" type="password" onChange={setPassword} />
-                                            <TxtField label="Confirmar senha" type="password" onChange={setEmail} />
-                                            <Botão variant="outline" onClick={cadastro} label="Concluir" />
-                                        </Box>
+                <Selection variant="PF" selected={selection === "PF"} onClick={pfClick} label="Pessoa Física" />
+                <Selection variant="PF" selected={selection === "PJ"} onClick={pjClick} label="Pessoa Juridica" />
 
-                                    </>) :
-                                    (<>
-                                        <Box display="flex" flexDirection="column" alignItems="center" gap={3} mt={4} marginBottom={10}>
-                                            <TxtField label="Nome" type="text" onChange={setNome} />
-                                            <TxtField label="Sobrenome" type="text" onChange={setLastName} />
-                                            <TxtField label="CNPJ" type="text" onChange={setDocument} />
-                                            <TxtField label="Incrisção Estadual" type="text" onChange={setStateRegistrion} />
-                                            <TxtField label="Nome da Empresa" type="text" onChange={setCompanyName} />
-                                            <TxtField label="CEP" type="text" onChange={setCep} />
-                                            <TxtField label="Endereço" type="text" onChange={setAddress} />
-                                            <TxtField label="Número" type="text" onChange={setNumber} />
-                                            <TxtField label="Bairro" type="text" onChange={setNeighborhood} />
-                                            <TxtField label="Estado" type="text" onChange={setState} />
-                                            <TxtField label="Cidade" type="text" onChange={setCity} />
-                                            <TxtField label="Telefone" type="text" onChange={setPhone} />
-                                            <TxtField label="Site" type="text" onChange={setSite} />
-                                            <TxtField label="Email" type="text" onChange={setEmail} />
-                                            <TxtField label="Senha" type="password" onChange={setPassword} />
-                                            <TxtField label="Confirmar senha" type="password" onChange={setEmail} />
-                                            <Botão variant="outline" onClick={cadastro} label="Concluir" />
-                                        </Box>
-                                    </>)}
+            </div>
 
-                            </Container>
-                        </Box>
+            <div className={styles.containerp}>
 
-                    </Container>
-                </Box>
-            </Box>
-        </Container>
+
+
+                {
+                    selection === "PF" ?
+                        (<>
+                            <div className={styles.dadosp}>
+
+                            <TxtField label="Nome" type="text" onChange={setNome} />
+                            <TxtField label="Sobrenome" type="text" onChange={setLastName} />
+                            <TxtField label="CPF" type="text" onChange={setDocument} />
+                            <TxtField label="Nome da Empresa" type="text" onChange={setCompanyName} />
+                            
+                            </div>
+                            <TxtField label="CEP" type="text" onChange={setCep} />
+                            <TxtField label="Endereço" type="text" onChange={setAddress} />
+                            <TxtField label="Número" type="text" onChange={setNumber} />
+                            <TxtField label="Bairro" type="text" onChange={setNeighborhood} />
+                            <TxtField label="Estado" type="text" onChange={setState} />
+                            <TxtField label="Cidade" type="text" onChange={setCity} />
+                            <TxtField label="Telefone" type="text" onChange={setPhone} />
+                            <TxtField label="Site" type="text" onChange={setSite} />
+                            <TxtField label="Email" type="text" onChange={setEmail} />
+                            <TxtField label="Senha" type="password" onChange={setPassword} />
+                            <TxtField label="Confirmar senha" type="password" onChange={setEmail} />
+
+
+                            <Botão variant="outline" onClick={cadastro} label="Concluir" />
+
+                        </>) :
+                        (<>
+
+                            <TxtField label="Nome" type="text" onChange={setNome} />
+                            <TxtField label="Sobrenome" type="text" onChange={setLastName} />
+                            <TxtField label="CNPJ" type="text" onChange={setDocument} />
+                            <TxtField label="Incrisção Estadual" type="text" onChange={setStateRegistrion} />
+                            <TxtField label="Nome da Empresa" type="text" onChange={setCompanyName} />
+                            <TxtField label="CEP" type="text" onChange={setCep} />
+                            <TxtField label="Endereço" type="text" onChange={setAddress} />
+                            <TxtField label="Número" type="text" onChange={setNumber} />
+                            <TxtField label="Bairro" type="text" onChange={setNeighborhood} />
+                            <TxtField label="Estado" type="text" onChange={setState} />
+                            <TxtField label="Cidade" type="text" onChange={setCity} />
+                            <TxtField label="Telefone" type="text" onChange={setPhone} />
+                            <TxtField label="Site" type="text" onChange={setSite} />
+                            <TxtField label="Email" type="text" onChange={setEmail} />
+                            <TxtField label="Senha" type="password" onChange={setPassword} />
+                            <TxtField label="Confirmar senha" type="password" onChange={setEmail} />
+                            <Botão variant="outline" onClick={cadastro} label="Concluir" />
+
+                        </>)
+                }
+
+
+            </div>
+        </>
     )
 }
 
