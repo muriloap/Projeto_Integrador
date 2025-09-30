@@ -1,13 +1,13 @@
 'use client'
 import { Box, Container, rgbToHex } from '@mui/material';
 import TxtField from '../components/TxtField';
-import Botão from '../components/Botao';
 import { useState } from 'react';
 import axios from 'axios';
 import Selection from "../components/Selection"
 import styles from "./styles.module.css"
 import { green } from '@mui/material/colors';
-import Divisao from '../components/Divisão';
+import Divisao from '../components/Divisao';
+import Btn from '../components/Btn';
 
 
 
@@ -42,94 +42,119 @@ export default function Home() {
     }
 
 
-
     function cadastro() {
 
     }
 
     return (
-
         <>
             <div className={styles.containerp}>
 
-            <div className={styles.sel}>
+                <div className={styles.sel}>
 
-                <Selection variant="PF" selected={selection === "PF"} onClick={pfClick} label="Pessoa Física" />
-                <Selection variant="PF" selected={selection === "PJ"} onClick={pjClick} label="Pessoa Juridica" />
+                    <Selection variant="PF" selected={selection === "PF"} onClick={pfClick} label="Pessoa Física" />
+                    <Selection variant="PF" selected={selection === "PJ"} onClick={pjClick} label="Pessoa Juridica" />
 
-            </div>
+                </div>
 
-           
+                <div className={styles.containers}>
 
-            <div className={styles.containers}>
+                    {
+                        selection === "PF" ?
+                            (<>
+                                <div className={styles.dadosp}>
+                                    <Divisao title="Dados Pessoais" />
+                                    <TxtField label="Nome" type="text" onChange={setNome} />
+                                    <TxtField label="Sobrenome" type="text" onChange={setLastName} />
+                                    <TxtField label="CPF" type="text" onChange={setDocument} />
+                                    <TxtField label="Nome da Empresa" type="text" onChange={setCompanyName} />
 
+                                </div>
 
+                                <div className={styles.end}>
 
-                {
-                    selection === "PF" ?
-                    (<>
-                            <div className={styles.dadosp}>
-                            <Divisao title="Dados Pessoais"/>
-                            <TxtField label="Nome" type="text" onChange={setNome} />
-                            <TxtField label="Sobrenome" type="text" onChange={setLastName} />
-                            <TxtField label="CPF" type="text" onChange={setDocument} />
-                            <TxtField label="Nome da Empresa" type="text" onChange={setCompanyName} />
-                            
-                            </div>
+                                    <Divisao title="Endereço" />
+                                    <TxtField label="CEP" type="text" onChange={setCep} />
+                                    <TxtField label="Endereço" type="text" onChange={setAddress} />
+                                    <TxtField label="Número" type="text" onChange={setNumber} />
+                                    <TxtField label="Bairro" type="text" onChange={setNeighborhood} />
+                                    <TxtField label="Estado" type="text" onChange={setState} />
+                                    <TxtField label="Cidade" type="text" onChange={setCity} />
 
-                            <div className={styles.end}>
+                                </div>
 
-                            <Divisao title="Endereço"/>
-                            <TxtField label="CEP" type="text" onChange={setCep} />
-                            <TxtField label="Endereço" type="text" onChange={setAddress} />
-                            <TxtField label="Número" type="text" onChange={setNumber} />
-                            <TxtField label="Bairro" type="text" onChange={setNeighborhood} />
-                            <TxtField label="Estado" type="text" onChange={setState} />
-                            <TxtField label="Cidade" type="text" onChange={setCity} />
+                                <div className={styles.contato}>
 
-                            </div>
+                                    <Divisao title="Contato" />
+                                    <TxtField label="Telefone" type="text" onChange={setPhone} />
+                                    <TxtField label="Site" type="text" onChange={setSite} />
+                                    <TxtField label="Email" type="text" onChange={setEmail} />
+                                </div>
 
-                            <div className={styles.contato}>
+                                <div className={styles.cadastro}>
 
-                            <Divisao title="Contato"/>
-                            <TxtField label="Telefone" type="text" onChange={setPhone} />
-                            <TxtField label="Site" type="text" onChange={setSite} />
+                                    <Divisao title="Cadastro " />
+                                    <TxtField label="Email" type="text" onChange={setEmail} />
+                                    <TxtField label="Senha" type="password" onChange={setPassword} />
+                                    <TxtField label="Confirmar senha" type="password" onChange={setEmail} />
 
-                            </div>
+                                </div>
 
-                            <TxtField label="Email" type="text" onChange={setEmail} />
-                            <TxtField label="Senha" type="password" onChange={setPassword} />
-                            <TxtField label="Confirmar senha" type="password" onChange={setEmail} />
+                                <div className={styles.btn}>
+                                    <Btn variant="outline" onClick={cadastro} label="Concluir" />
+                                </div>
 
+                            </>) :
+                            (<>
 
-                            <Botão variant="outline" onClick={cadastro} label="Concluir" />
+                                <div className={styles.dadosp}>
+                                    <Divisao title="Dados Pessoais" />
+                                    <TxtField label="Nome" type="text" onChange={setNome} />
+                                    <TxtField label="Sobrenome" type="text" onChange={setLastName} />
+                                    <TxtField label="Nome da Empresa" type="text" onChange={setCompanyName} />
+                                    <TxtField label="Razão Social" type="text" onChange={setCompanyName} />
+                                    <TxtField label="CNPJ" type="text" onChange={setDocument} />
+                                    <TxtField label="Incrisção Estadual" type="text" onChange={setStateRegistrion} />
 
-                        </>) :
-                        (<>
+                                </div>
 
-                            <TxtField label="Nome" type="text" onChange={setNome} />
-                            <TxtField label="Sobrenome" type="text" onChange={setLastName} />
-                            <TxtField label="CNPJ" type="text" onChange={setDocument} />
-                            <TxtField label="Incrisção Estadual" type="text" onChange={setStateRegistrion} />
-                            <TxtField label="Nome da Empresa" type="text" onChange={setCompanyName} />
-                            <TxtField label="CEP" type="text" onChange={setCep} />
-                            <TxtField label="Endereço" type="text" onChange={setAddress} />
-                            <TxtField label="Número" type="text" onChange={setNumber} />
-                            <TxtField label="Bairro" type="text" onChange={setNeighborhood} />
-                            <TxtField label="Estado" type="text" onChange={setState} />
-                            <TxtField label="Cidade" type="text" onChange={setCity} />
-                            <TxtField label="Telefone" type="text" onChange={setPhone} />
-                            <TxtField label="Site" type="text" onChange={setSite} />
-                            <TxtField label="Email" type="text" onChange={setEmail} />
-                            <TxtField label="Senha" type="password" onChange={setPassword} />
-                            <TxtField label="Confirmar senha" type="password" onChange={setEmail} />
-                            <Botão variant="outline" onClick={cadastro} label="Concluir" />
+                                <div className={styles.end}>
 
-                        </>)
-                }
+                                    <Divisao title="Endereço" />
+                                    <TxtField label="CEP" type="text" onChange={setCep} />
+                                    <TxtField label="Número" type="text" onChange={setNumber} />
+                                    <TxtField label="Endereço" type="text" onChange={setAddress} />
+                                    <TxtField label="Bairro" type="text" onChange={setNeighborhood} />
+                                    <TxtField label="Estado" type="text" onChange={setState} />
+                                    <TxtField label="Cidade" type="text" onChange={setCity} />
 
+                                </div>
 
-                        </div>
+                                <div className={styles.contato}>
+
+                                    <Divisao title="Contato" />
+                                    <TxtField label="Telefone" type="text" onChange={setPhone} />
+                                    <TxtField label="Site" type="text" onChange={setSite} />
+                                    <TxtField label="Email" type="text" onChange={setEmail} />
+                                </div>
+
+                                <div className={styles.cadastro}>
+
+                                    <Divisao title="Cadastro " />
+                                    <TxtField label="Email" type="text" onChange={setEmail} />
+                                    <TxtField label="Senha" type="password" onChange={setPassword} />
+                                    <TxtField label="Confirmar senha" type="password" onChange={setEmail} />
+
+                                </div>
+
+                                <div className={styles.btn}>
+                                    <Btn variant="outline" onClick={cadastro} label="Concluir" />
+                                </div>
+
+                            </>)
+                    }
+
+                </div>
             </div>
         </>
     )

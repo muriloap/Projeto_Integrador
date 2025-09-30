@@ -7,7 +7,7 @@ type Props = {
   onClick(): void;           
 };
 
-export default function Button(props: Props) {
+export default function Btn(props: Props) {
   const cls = `${styles.btn} ${props.variant === "outline" ? styles["btn-outline"] : styles["btn-primary"]}`;
 
   
