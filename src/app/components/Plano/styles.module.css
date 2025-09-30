@@ -17,7 +17,6 @@
 .card:hover {
   transform: translateY(-10px) scale(1.05); /* sobe e aumenta levemente */
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
-  
 }
 
 .tituloPlano {

@@ -1,0 +1,66 @@
+.featuresSection {
+    padding: 80px 0;
+    background: white;
+}
+
+.featuresGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.featureCard {
+    text-align: center;
+    padding: 2rem;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e2e8f0;
+}
+
+.featureCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.featureIcon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.featureCard h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #1e293b;
+}
+
+.featureCard p {
+    color: #64748b;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-bottom: 10rem;
+}
+
+.titulo {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 1rem;
+    margin-top: 10rem;
+}
+
+.titulo::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: #90caf9;
+    margin: 15px auto;
+    border-radius: 2px;
+}
+

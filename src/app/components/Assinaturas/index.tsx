@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 export default function Assinaturas() {
   return (
     <>
-      <h2 className={styles.h2} >ASSINATURAS</h2>
+      <h2 className={styles.titulo} >ASSINATURAS</h2>
 
       <div id="assinatura" className={styles.container}>
         <Plano
