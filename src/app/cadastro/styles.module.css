@@ -1,21 +1,27 @@
 .containerp{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+.containers{
     width: 800px;
     display: flex;
-    gap: 90px;
+    gap: px;
     border: 3px solid gray;
-    padding: 5px;
+    padding: 20px;
     margin: 30px;
     flex-wrap: wrap;
     align-items: center;
+    margin: auto;
     
 }
+
 
 .sel{
     margin-top: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    
 }
 
 .dadosp{
@@ -23,5 +29,25 @@
     gap: 20px;
     flex-wrap: wrap;
     align-items: center;
-    
+    justify-content: center;
+    /* padding-top: 20px; */
 }
+
+.contato{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.end{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+}
+

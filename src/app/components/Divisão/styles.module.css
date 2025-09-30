@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    }
+    
+    
+    .line {
+    flex: 1;
+    height: 2px;
+    background-color: #ccc;
+    }
+    
+    
+    .title {
+    margin: 0 12px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #888;
+    }

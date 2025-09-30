@@ -7,6 +7,7 @@ import axios from 'axios';
 import Selection from "../components/Selection"
 import styles from "./styles.module.css"
 import { green } from '@mui/material/colors';
+import Divisao from '../components/Divisão';
 
 
 
@@ -49,6 +50,7 @@ export default function Home() {
     return (
 
         <>
+            <div className={styles.containerp}>
 
             <div className={styles.sel}>
 
@@ -57,29 +59,44 @@ export default function Home() {
 
             </div>
 
-            <div className={styles.containerp}>
+           
+
+            <div className={styles.containers}>
 
 
 
                 {
                     selection === "PF" ?
-                        (<>
+                    (<>
                             <div className={styles.dadosp}>
-
+                            <Divisao title="Dados Pessoais"/>
                             <TxtField label="Nome" type="text" onChange={setNome} />
                             <TxtField label="Sobrenome" type="text" onChange={setLastName} />
                             <TxtField label="CPF" type="text" onChange={setDocument} />
                             <TxtField label="Nome da Empresa" type="text" onChange={setCompanyName} />
                             
                             </div>
+
+                            <div className={styles.end}>
+
+                            <Divisao title="Endereço"/>
                             <TxtField label="CEP" type="text" onChange={setCep} />
                             <TxtField label="Endereço" type="text" onChange={setAddress} />
                             <TxtField label="Número" type="text" onChange={setNumber} />
                             <TxtField label="Bairro" type="text" onChange={setNeighborhood} />
                             <TxtField label="Estado" type="text" onChange={setState} />
                             <TxtField label="Cidade" type="text" onChange={setCity} />
+
+                            </div>
+
+                            <div className={styles.contato}>
+
+                            <Divisao title="Contato"/>
                             <TxtField label="Telefone" type="text" onChange={setPhone} />
                             <TxtField label="Site" type="text" onChange={setSite} />
+
+                            </div>
+
                             <TxtField label="Email" type="text" onChange={setEmail} />
                             <TxtField label="Senha" type="password" onChange={setPassword} />
                             <TxtField label="Confirmar senha" type="password" onChange={setEmail} />
@@ -112,6 +129,7 @@ export default function Home() {
                 }
 
 
+                        </div>
             </div>
         </>
     )
