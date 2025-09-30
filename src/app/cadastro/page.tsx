@@ -1,7 +1,7 @@
 'use client'
 import { Box, Container, rgbToHex } from '@mui/material';
 import TxtField from '../components/TxtField';
-import Botão from '../components/Botão';
+import Botão from '../components/Botao';
 import { useState } from 'react';
 import axios from 'axios';
 import Selection from "../components/Selection"

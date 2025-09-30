@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 export default function PaginaInicial() {
   return (
     <>
-      <span className={styles.featuresSection}>
+      <span id='paginainicial' className={styles.featuresSection}>
 
         <div className={styles.container}>
           <h2 className={styles.titulo}>Por que Escolher a LUMMA?</h2>

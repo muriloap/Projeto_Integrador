@@ -8,7 +8,7 @@ type Props = {
     onClick(): void;
 };
 
-export default function Button(props: Props) {
+export default function Selection(props: Props) {
     function getClassName() {
         const baseClass = styles.btn;
 
