@@ -105,7 +105,7 @@ export default function Home() {
                                 </div>
 
                                 <div className={styles.btn}>
-                                    <Btn variant="outline" onClick={cadastro} label="Concluir" />
+                                    <Btn variant="outline" onClick={cadastro} label="Enviar" />
                                 </div>
 
                             </>) :
@@ -153,7 +153,7 @@ export default function Home() {
                                 </div>
 
                                 <div className={styles.btn}>
-                                    <Btn variant="outline" onClick={cadastro} label="Concluir" />
+                                    <Btn variant="outline" onClick={cadastro} label="Enviar" />
                                 </div>
 
                             </>)
