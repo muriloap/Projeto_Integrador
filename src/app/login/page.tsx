@@ -5,9 +5,10 @@ import TxtField from '../components/TxtField';
 import { useState } from 'react';
 import { Login } from '@mui/icons-material';
 import axios from 'axios';
-import styles from "./styles.module.css"
+import styles from './styles.module.css'
 import Botão from '../components/Btn';
 import { useRouter } from "next/navigation";
+import Header from '../components/Header';
 
 
 export default function Home() {
@@ -19,7 +20,7 @@ export default function Home() {
 
 
   function login() {
-    axios.get("https://localhost:3000/users")
+    router.push("/home")
 
     
   }
@@ -29,27 +30,33 @@ export default function Home() {
   }
 
   return (
-    <Container maxWidth="sm">
+    <>
+    <Header/>
 
-      <Box display="flex" flexDirection="column" alignItems="center" gap={20} mt={4}>
+        <div className={styles.containerp}>
+
+
+        <div className={styles.containers}>
 
         <AccountCircleIcon sx={{ fontSize: 100, color: 'Black' }} />
-        {/* <a>Seja Bem - Vindo ao nosso sistema de Ordem de serviço, Faça Login ou Cadastre - Se para continuar</a> */}
+        
+        <span className={styles.textBV}>Seja Bem - Vindo ao nosso sistema de Ordem de serviço</span>
+        <span className={styles.textLogin}>Faça Login ou Cadastre-se para continuar</span>
 
-        <Container maxWidth="sm">
-          <Box display="flex" flexDirection="column" alignItems="center" gap={3} mt={4}>
-
+        
+          
+            <div className={styles.camposlogin}>
             <TxtField label="Email" type="email" onChange={setEmail} />
             <TxtField label="Senha" type="password" onChange={setPassword} />
             <Botão variant="primary" onClick={login} label="LOGIN" />
             <Botão variant="outline" onClick={cadastrese} label="CADASTRE - SE" />
+            </div>
 
 
-          </Box>
-
-        </Container >
-      </Box>
-    </Container>
+          
+        </div>
+        </div>
+    </>
 
   )
 }
