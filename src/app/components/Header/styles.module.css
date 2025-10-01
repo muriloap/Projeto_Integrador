@@ -6,12 +6,7 @@
     align-items: center;
     justify-content: space-between;
     border-bottom-right-radius: 15px;
-    margin-bottom: 500px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
+    margin-bottom: 2rem;
 }
 
 .h1 {

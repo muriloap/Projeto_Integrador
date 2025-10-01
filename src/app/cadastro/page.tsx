@@ -8,12 +8,14 @@ import styles from "./styles.module.css"
 import { green } from '@mui/material/colors';
 import Divisao from '../components/Divisao';
 import Btn from '../components/Btn';
+import Header from '../components/Header';
 
 
 
 
 export default function Home() {
 
+    const [text, setText] = useState('')
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [selection, setSelection] = useState("PJ");
@@ -48,6 +50,7 @@ export default function Home() {
 
     return (
         <>
+        <Header/>
             <div className={styles.containerp}>
 
                 <div className={styles.sel}>
@@ -62,6 +65,7 @@ export default function Home() {
                     {
                         selection === "PF" ?
                             (<>
+                            <h1 className={styles.textModo}>PREENCHA ESSES CAMPOS COMO PESSOA FÍSICA</h1>
                                 <div className={styles.dadosp}>
                                     <Divisao title="Dados Pessoais" />
                                     <TxtField label="Nome" type="text" onChange={setNome} />
@@ -106,6 +110,7 @@ export default function Home() {
 
                             </>) :
                             (<>
+                                <h1 className={styles.textModo}>PREENCHA ESSES CAMPOS COMO PESSOA JURÍDICA</h1>
 
                                 <div className={styles.dadosp}>
                                     <Divisao title="Dados Pessoais" />
