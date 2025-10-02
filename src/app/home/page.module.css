@@ -75,12 +75,31 @@
 }
 
 .sidebar li .icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
     font-size: 20px;
 }
 
 .sidebar li .navtext{
     font-size: 20px;
     color: var(--text-color);
+}
+
+.sidebar li a{
+    height: 100%;
+    width: 100%;
+    border-radius: 6px;
+    transition: var(--tran-04);
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.sidebar li a:hover{
+    background: var(--primary-color);
+    
 }
 
 .sidebar{
