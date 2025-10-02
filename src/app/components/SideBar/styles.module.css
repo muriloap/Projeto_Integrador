@@ -1,8 +1,0 @@
-.sideBar{
-    display: flex;
-    flex-direction: column;
-    background-color: #1a33ff;
-    height: 100vh;
-    width: 200px;
-    align-items: center;
-}
