@@ -2,12 +2,19 @@ import Typography from "@mui/material/Typography";
 import Plano from "../Plano";
 import styles from './styles.module.css';
 
-export default function Assinaturas() {
+type Props = {
+  variant?: "landpage" | "logado";
+}
+
+
+export default function Assinaturas(props: Props) {
+
+  const cls = `${styles.btn} ${props.variant === "landpage" ? styles["landpage"] : styles["logado"]}`;
   return (
     <>
       <h2 className={styles.titulo} >ASSINATURAS</h2>
 
-      <div id="assinatura" className={styles.container}>
+      <div id="assinatura" className={cls}>
         <Plano
           plano="Free"
           valor={0}

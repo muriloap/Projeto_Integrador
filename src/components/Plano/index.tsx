@@ -1,5 +1,6 @@
 import { Typography, List, ListItem } from "@mui/material";
 import styles from './styles.module.css';
+import Link from "next/link";
 
 type Props = {
   plano: string;
@@ -26,7 +27,9 @@ export default function Plano({ plano, descricao, valor }: Props) {
         ))}
       </List>
 
-      <button className={styles.botao}>Assinar</button>
+      <Link href="/login" className={styles.botaol}>
+        Assinar
+      </Link>
     </div>
   );
 }

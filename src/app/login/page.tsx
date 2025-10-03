@@ -1,13 +1,17 @@
 'use client'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import TxtField from '../components/TxtField';
+
 import { useState } from 'react';
-import { Login } from '@mui/icons-material';
+import {Login } from '@mui/icons-material';
 import axios from 'axios';
 import styles from './styles.module.css'
-import Botão from '../components/Btn';
+
 import { useRouter } from "next/navigation";
-import Header from '../components/Header';
+import Header from '@/components/Header';
+import TxtField from '@/components/TxtField';
+import Btn from '@/components/Btn';
+import Link from 'next/link';
+
 
 
 export default function Home() {
@@ -24,14 +28,9 @@ export default function Home() {
     
   }
 
-  function cadastrese() {
-    router.push("/cadastro");
-  }
 
   return (
     <>
-    <Header/>
-
         <div className={styles.containerp}>
 
 
@@ -47,8 +46,8 @@ export default function Home() {
             <div className={styles.camposlogin}>
             <TxtField label="Email" type="email" onChange={setEmail} />
             <TxtField label="Senha" type="password" onChange={setPassword} />
-            <Botão variant="primary" onClick={login} label="LOGIN" />
-            <Botão variant="outline" onClick={cadastrese} label="CADASTRE - SE" />
+            <Btn variant="primary" onClick={login} label="LOGIN" />
+            <Link className={styles.btn}href="/login/cadastro">CADASTRE - SE</Link>
             </div>
 
 
