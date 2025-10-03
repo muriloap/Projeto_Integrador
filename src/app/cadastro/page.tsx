@@ -67,7 +67,7 @@ export default function Home() {
                             (<>
                             <h1 className={styles.textModo}>PREENCHA ESSES CAMPOS COMO PESSOA FÍSICA</h1>
                                 <div className={styles.dadosp}>
-                                    <Divisao title="Dados Pessoais" />
+                                    <Divisao title="Dados Pessoais" variant="default"/>
                                     <TxtField label="Nome" type="text" onChange={setNome} />
                                     <TxtField label="Sobrenome" type="text" onChange={setLastName} />
                                     <TxtField label="CPF" type="text" onChange={setDocument} />
@@ -77,7 +77,7 @@ export default function Home() {
 
                                 <div className={styles.end}>
 
-                                    <Divisao title="Endereço" />
+                                    <Divisao title="Endereço" variant="default" />
                                     <TxtField label="CEP" type="text" onChange={setCep} />
                                     <TxtField label="Endereço" type="text" onChange={setAddress} />
                                     <TxtField label="Número" type="text" onChange={setNumber} />
@@ -89,7 +89,7 @@ export default function Home() {
 
                                 <div className={styles.contato}>
 
-                                    <Divisao title="Contato" />
+                                    <Divisao title="Contato" variant="default"/>
                                     <TxtField label="Telefone" type="text" onChange={setPhone} />
                                     <TxtField label="Site" type="text" onChange={setSite} />
                                     <TxtField label="Email" type="text" onChange={setEmail} />
@@ -97,7 +97,7 @@ export default function Home() {
 
                                 <div className={styles.cadastro}>
 
-                                    <Divisao title="Cadastro " />
+                                    <Divisao title="Cadastro" variant="default" />
                                     <TxtField label="Email" type="text" onChange={setEmail} />
                                     <TxtField label="Senha" type="password" onChange={setPassword} />
                                     <TxtField label="Confirmar senha" type="password" onChange={setEmail} />
@@ -113,7 +113,7 @@ export default function Home() {
                                 <h1 className={styles.textModo}>PREENCHA ESSES CAMPOS COMO PESSOA JURÍDICA</h1>
 
                                 <div className={styles.dadosp}>
-                                    <Divisao title="Dados Pessoais" />
+                                    <Divisao title="Dados Pessoais" variant="default"/>
                                     <TxtField label="Nome" type="text" onChange={setNome} />
                                     <TxtField label="Sobrenome" type="text" onChange={setLastName} />
                                     <TxtField label="Nome da Empresa" type="text" onChange={setCompanyName} />
@@ -125,7 +125,7 @@ export default function Home() {
 
                                 <div className={styles.end}>
 
-                                    <Divisao title="Endereço" />
+                                    <Divisao title="Endereço" variant="default"/>
                                     <TxtField label="CEP" type="text" onChange={setCep} />
                                     <TxtField label="Número" type="text" onChange={setNumber} />
                                     <TxtField label="Endereço" type="text" onChange={setAddress} />
@@ -137,7 +137,7 @@ export default function Home() {
 
                                 <div className={styles.contato}>
 
-                                    <Divisao title="Contato" />
+                                    <Divisao title="Contato" variant="default"/>
                                     <TxtField label="Telefone" type="text" onChange={setPhone} />
                                     <TxtField label="Site" type="text" onChange={setSite} />
                                     <TxtField label="Email" type="text" onChange={setEmail} />
@@ -145,7 +145,7 @@ export default function Home() {
 
                                 <div className={styles.cadastro}>
 
-                                    <Divisao title="Cadastro " />
+                                    <Divisao title="Cadastro " variant="default"/>
                                     <TxtField label="Email" type="text" onChange={setEmail} />
                                     <TxtField label="Senha" type="password" onChange={setPassword} />
                                     <TxtField label="Confirmar senha" type="password" onChange={setEmail} />
