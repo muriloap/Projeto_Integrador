@@ -1,4 +1,4 @@
-export default function Clientes(){
+export default function HomeClientes(){
     return(
         <>
         <p>Clientes</p>

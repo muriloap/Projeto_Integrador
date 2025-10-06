@@ -34,7 +34,7 @@
 
 :root{
     /* ===== Colors ===== */
-    --body-color: #E4E9F7;
+    --body-color: #0c3dc5;
     --sidebar-color: #FFF;
     --primary-color: #695CFE;
     --primary-color-light: #F6F5FF;
@@ -49,7 +49,6 @@
 }
 
 .containerp{
-    height: 100vh;
     background: var(--body-color);
     color: var(--text-color);
     font-family: "Poppins", sans-serif;

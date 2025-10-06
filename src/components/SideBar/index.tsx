@@ -109,10 +109,10 @@ export default function Sidebar() {
                                         </a>
                                     </li>
                                     <li className={styles.navlink}>
-                                        <a href="#">
+                                        <Link href="/home/assinaturas">
                                             <SellIcon className={styles.icon} />
                                             <span className={styles.navtext}>Assinaturas</span>
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li className={styles.navlink}>
                                         <a href="#">
