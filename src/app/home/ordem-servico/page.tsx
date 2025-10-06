@@ -1,7 +1,10 @@
+import Assinaturas from '@/components/Assinaturas'
+import styles from './page.module.css'
 export default function HomeOs(){
     return(
         <>
-        <p>Ordem de Serviço</p>
+        <div className={styles.containerp}>
+        </div>
         </>
     )
 }

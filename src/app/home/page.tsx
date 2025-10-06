@@ -9,7 +9,6 @@ export default function Home(){
     return (
         <>
         <div className={styles.containerp}>
-       <Assinaturas/>
         </div>
         </>
     )

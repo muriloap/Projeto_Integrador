@@ -1,0 +1,9 @@
+.ass{
+    display: flex;
+    justify-content: center;
+}
+.containerp{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
