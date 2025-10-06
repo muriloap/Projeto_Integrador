@@ -1,7 +1,27 @@
+
+
+:root{
+
+    --tran-02: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.4s ease;
+    --tran-05: all 0.5s ease;
+}
+
 .containerp{
+    margin-left: 250px;
+    height: 100vh;
+    transition: var(--tran-04);
+}
+
+.containerp.close{
+    margin-left: 80px;
+    transition: var(--tran-04);
+}
+
+.teste{
     background: gray;
-   display: flexbox;
-   justify-content: center;
-   margin-left: 250px;
-    
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
