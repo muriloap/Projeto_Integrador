@@ -17,7 +17,11 @@ import { useState } from "react";
 import { tree } from "next/dist/build/templates/app-page";
 import Divisao from "../Divisao";
 import Link from "next/link";
-export default function Sidebar() {
+
+type Props = {
+    onClick(): void;
+}
+export default function Sidebar(props: Props) {
 
     const [isOpen, setIsOpen] = useState(true);
 
@@ -133,17 +137,19 @@ export default function Sidebar() {
                             </div>
                         </div>
                     </nav>
+                    <div onClick={props.onClick}>
 
-                    <div className={styles.toggleFixed} onClick={toggleSidebar}>
-                        <ChevronRightIcon
-                            className={`${styles.toggleIcon} ${isOpen ? styles.rotated : ''}`}
-                            sx={{ fontSize: 25, cursor: 'pointer' }}
-                        />
+                        <div className={styles.toggleFixed} onClick={toggleSidebar}>
+                            <ChevronRightIcon
+                                className={`${styles.toggleIcon} ${isOpen ? styles.rotated : ''}`}
+                                sx={{ fontSize: 25, cursor: 'pointer' }}
+                            />
+                        </div>
                     </div>
 
                 </div>
             </div>
-            
+
         </>
     )
 }
