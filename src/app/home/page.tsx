@@ -5,12 +5,14 @@ import Dashboard from "@/components/Dashboard";
 
 
 export default function Home(){
+
+    
    
 
     return (
         <>
         <div className={styles.container}>
-            <Dashboard/>
+            <Dashboard quantityc={90} quantityp={890} quantityos={300} quantitys={50}/>
         </div>
         </>
     )

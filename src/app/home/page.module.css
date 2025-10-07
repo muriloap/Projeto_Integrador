@@ -1,5 +1,4 @@
 
-
 :root{
 
     --tran-02: all 0.2s ease;
@@ -25,8 +24,11 @@
 }
 
 .container{
-    display: flex;
-    align-items: center;
-    margin: auto;
+    position: relative;
+    left: 7rem;
+    margin-top: 4rem;
+    margin-bottom: auto;
     background: transparent;
+    
+    
 }
