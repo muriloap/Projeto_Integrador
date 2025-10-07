@@ -1,4 +1,3 @@
-import Typography from "@mui/material/Typography";
 import Plano from "../Plano";
 import styles from "./styles.module.css";
 
