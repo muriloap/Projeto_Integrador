@@ -29,6 +29,10 @@ export default function Sidebar(props: Props) {
         setIsOpen(!isOpen);
     }
 
+    function Logout(){
+
+    }
+
 
 
     return (
@@ -88,29 +92,29 @@ export default function Sidebar(props: Props) {
                                         </Link>
                                     </li>
                                     <li className={styles.navlink}>
-                                        <a href="#">
+                                        <Link href="/home/servicos">
                                             <BuildIcon className={styles.icon} />
                                             <span className={styles.navtext}>Serviços</span>
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li className={styles.navlink}>
-                                        <a href="#">
+                                        <Link href="/home/produtos">
                                             <InventoryIcon className={styles.icon} />
                                             <span className={styles.navtext}>Produtos</span>
-                                        </a>
+                                        </Link>
                                     </li>
                                     <Divisao className={styles.divbar} variant="full" />
                                     <li className={styles.navlink}>
-                                        <a href="#">
+                                        <Link href="/home/configuracoes">
                                             <SettingsIcon className={styles.icon} />
                                             <span className={styles.navtext}>Configurações</span>
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li className={styles.navlink}>
-                                        <a href="#">
+                                        <Link href="/home/suporte">
                                             <HelpIcon className={styles.icon} />
                                             <span className={styles.navtext}>Suporte</span>
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li className={styles.navlink}>
                                         <Link href="/home/assinaturas">
@@ -119,16 +123,16 @@ export default function Sidebar(props: Props) {
                                         </Link>
                                     </li>
                                     <li className={styles.navlink}>
-                                        <a href="#">
+                                        <Link href="/home/relatorios">
                                             <AssessmentIcon className={styles.icon} />
-                                            <span className={styles.navtext}>Relatório</span>
-                                        </a>
+                                            <span className={styles.navtext}>Relatórios</span>
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>
                             <div className={styles.bottomcontent}>
                                 <li>
-                                    <a href="#">
+                                    <a onClick={Logout}>
                                         <LogoutIcon className={styles.iconSair} />
                                         <span className={styles.navtext}>Sair</span>
                                     </a>

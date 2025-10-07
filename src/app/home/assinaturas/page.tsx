@@ -7,8 +7,7 @@ export default function HomeAssinaturas() {
 
   return (
     <>
-    <div className={styles.teste}>
-      
+    <div className={styles.containerp}>
       <Assinaturas />
     </div>
 

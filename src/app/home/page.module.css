@@ -8,20 +8,18 @@
     --tran-05: all 0.5s ease;
 }
 
-.containerp{
+.containers{
     margin-left: 250px;
     height: 100vh;
     transition: var(--tran-04);
 }
 
-.containerp.close{
+.containers.close{
     margin-left: 80px;
     transition: var(--tran-04);
 }
 
-.teste{
-    background: gray;
+.containerp{
+    background: rgb(195, 195, 195);
     display: flex;
-    align-items: center;
-    justify-content: center;
 }

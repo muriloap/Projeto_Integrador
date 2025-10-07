@@ -20,8 +20,8 @@ export default function HomeLayout(props: Props) {
 
     return (
         <>
-        <div className={styles.teste}>
-            <div className={`${styles.containerp} ${open ? '' : styles.close}`}/>
+        <div className={styles.containerp}>
+            <div className={`${styles.containers} ${open ? '' : styles.close}`}/>
             <Sidebar onClick={Mudarcss} />
             {props.children}
         </div>

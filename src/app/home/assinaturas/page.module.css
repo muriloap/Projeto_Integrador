@@ -1,5 +1,7 @@
 .containerp{
     display: flex;
+    align-items: center;
+    margin: auto;
     background: transparent;
 }
 

@@ -1,7 +1,6 @@
-export default function HomeClientes(){
+export default function PageClientes(){
     return(
         <>
-        <p>Clientes</p>
         </>
     )
 }
