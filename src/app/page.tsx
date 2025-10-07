@@ -11,7 +11,7 @@ export default function Home() {
       <div className={styles.containerp}>
         <PaginaInicial />
         <SobreNos />
-        <div className={styles.ass}>
+        <div className={styles.assinatura}>
           <Assinaturas />
         </div>
         <Contato />

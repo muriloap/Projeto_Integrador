@@ -1,11 +1,18 @@
+.containerp {
+    background-color: rgb(212, 212, 212);
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+}
+
 .titulo {
     text-align: center;
     font-size: 2.5rem;
     font-weight: 700;
     color: #1e293b;
     margin-bottom: 1rem;
+    background-color: rgb(212, 212, 212);
 }
-    
+
 .titulo::after {
     content: '';
     display: block;

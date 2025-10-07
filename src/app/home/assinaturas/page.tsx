@@ -1,6 +1,5 @@
+import AssinaturasLogado from "@/components/AssinaturasLogado";
 import styles from "./page.module.css";
-
-import Assinaturas from "@/components/Assinaturas";
 
 export default function HomeAssinaturas() {
 
@@ -8,7 +7,7 @@ export default function HomeAssinaturas() {
   return (
     <>
     <div className={styles.containerp}>
-      <Assinaturas />
+      <AssinaturasLogado />
     </div>
 
 

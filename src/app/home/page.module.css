@@ -20,6 +20,13 @@
 }
 
 .containerp{
-    background: rgb(195, 195, 195);
+    background-color: rgb(195, 195, 195);
     display: flex;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    margin: auto;
+    background: transparent;
 }

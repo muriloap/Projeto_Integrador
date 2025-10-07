@@ -6,9 +6,10 @@ type Props = {
   plano: string;
   descricao: string[];
   valor: number;
+  botao?: string;
 };
 
-export default function Plano({ plano, descricao, valor }: Props) {
+export default function Plano({ plano, descricao, valor, botao }: Props) {
   return (
     <div className={styles.card}>
       <Typography className={styles.tituloPlano}>
@@ -27,8 +28,8 @@ export default function Plano({ plano, descricao, valor }: Props) {
         ))}
       </List>
 
-      <Link href="/login" className={styles.botaol}>
-        Assinar
+      <Link href="" className={styles.botao1}>
+        {botao}
       </Link>
     </div>
   );

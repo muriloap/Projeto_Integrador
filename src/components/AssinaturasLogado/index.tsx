@@ -1,7 +1,9 @@
 import Plano from "../Plano";
 import styles from "./styles.module.css";
 
-export default function Assinaturas() {
+
+
+export default function AssinaturasLogado() {
   return (
     <>
       <div className={styles.containerp}>
@@ -19,7 +21,8 @@ export default function Assinaturas() {
               "✖ Relatório mensais;",
               "✖ Alertas.",
             ]}
-          />
+            botao="Você ja possui"
+            />
 
           <Plano
             plano="Premium"
@@ -33,6 +36,7 @@ export default function Assinaturas() {
               "✔ Relatório mensais;",
               "✔ Alertas.",
             ]}
+            botao="Assinar"
           />
         </div>
       </div>
