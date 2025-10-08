@@ -1,0 +1,282 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modalContent {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slideIn 0.3s ease-out;
+}
+
+.modalClose {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.modalClose:hover {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.modalTitle {
+  margin-bottom: 16px;
+  color: #304ffe;
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+}
+
+.modalDescription {
+  margin-bottom: 20px;
+  color: #666;
+  line-height: 1.5;
+  font-family: "Poppins", sans-serif;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.formInput {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+  font-family: "Poppins", sans-serif;
+}
+
+.formInput:focus {
+    outline: none;
+    border-color: #304ffe;
+}
+
+.formSelect {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: white;
+    cursor: pointer;
+    font-family: "Poppins", sans-serif;
+}
+
+.formSelect:focus {
+    outline: none;
+    border-color: #304ffe;
+}
+
+.formTextarea {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    resize: vertical;
+    min-height: 80px;
+    font-family: "Poppins", sans-serif;
+}
+
+.formTextarea:focus {
+  outline: none;
+  border-color: #304ffe;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.buttonPrimary {
+  padding: 12px 24px;
+  background-color: #304ffe;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.buttonPrimary:hover {
+  background-color: #1e40ff;
+}
+
+.buttonSecondary {
+  padding: 12px 24px;
+  background-color: #f5f5f5;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.buttonSecondary:hover {
+  background-color: #e0e0e0;
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* ⬅️ Altere esta cor para mudar o fundo escuro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .modalContent {
+    background: white;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* ⬅️ Sombra escura */
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    animation: slideIn 0.3s ease-out;
+  }
+  
+  .modalClose {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666; /* ⬅️ Cor do "X" */
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+  
+  .modalClose:hover {
+    background-color: #f5f5f5;
+    color: #333; /* ⬅️ Cor do "X" no hover */
+  }
+  
+  .modalTitle {
+    margin-bottom: 16px;
+    color: #304FFE; /* ⬅️ Título - já está azul */
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  
+  .modalDescription {
+    margin-bottom: 20px;
+    color: #666; /* ⬅️ Cor do texto da descrição */
+    line-height: 1.5;
+  }
+  
+  /* Cores dos inputs */
+  .formInput {
+    padding: 12px;
+    border: 1px solid #ddd; /* ⬅️ Borda dos inputs */
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+    color: #333; /* ⬅️ Cor do texto digitado */
+  }
+  
+  .formSelect {
+    padding: 12px;
+    border: 1px solid #ddd; /* ⬅️ Borda do select */
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: white;
+    cursor: pointer;
+    color: #333; /* ⬅️ Cor do texto do select */
+  }
+  
+  .formTextarea {
+    padding: 12px;
+    border: 1px solid #ddd; /* ⬅️ Borda do textarea */
+    border-radius: 4px;
+    font-size: 14px;
+    resize: vertical;
+    min-height: 80px;
+    font-family: inherit;
+    color: #333; /* ⬅️ Cor do texto do textarea */
+  }
+  
+  .buttonSecondary {
+    padding: 12px 24px;
+    background-color: #f5f5f5;
+    color: #333; /* ⬅️ Cor do texto do botão Cancelar */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+  }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
