@@ -3,7 +3,8 @@
   flex-direction: column;
   margin-top: 4rem;
   margin-bottom: 4rem;
-  background: transparent;
+  background-color: rgb(212, 212, 212);
+  
 }
 
 .containers{

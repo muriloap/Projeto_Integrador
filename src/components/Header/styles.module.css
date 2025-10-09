@@ -1,15 +1,14 @@
 .header {
     gap: 30px;
-    background-color: #90caf9;
+    background-color: #0c74e8;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     border-bottom-right-radius: 15px;
-    margin-bottom: 2rem;
 }
 
 .h1 {
     margin-left: -800px;
-    background-color: #90caf9;
+    background-color: #0c74e8;
 }

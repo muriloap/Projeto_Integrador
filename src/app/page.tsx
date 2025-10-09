@@ -9,7 +9,9 @@ export default function Home() {
   return (
     <>
       <div className={styles.containerp}>
+        <div className={styles.pi}>
         <PaginaInicial />
+        </div>
         <SobreNos />
         <div className={styles.assinatura}>
           <Assinaturas />

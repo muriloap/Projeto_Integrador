@@ -1,8 +1,14 @@
 .assinatura{
     display: flex;
     justify-content: center;
+    background-color: rgb(212, 212, 212);
 }
 .containerp{
     display: flex;
     flex-direction: column;
+    background-color: rgb(212, 212, 212);
+}
+
+.pi{
+    background-color: rgb(212, 212, 212);
 }
