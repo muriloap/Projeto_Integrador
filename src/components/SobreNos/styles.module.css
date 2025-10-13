@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
 .containerp {
     background-color: rgb(212, 212, 212);
     padding-top: 5rem;
     padding-bottom: 2rem;
+    font-family: "Poppins", sans-serif;
 }
 
 .titulo {
@@ -24,7 +28,7 @@
 }
 
 .p {
-    background-color: #1f4d5c;
+    background-color: #084A95;
     color: #ffffff;
     font-size: 1.25rem; /* tamanho agradável */
     line-height: 2.9rem; /* espaçamento entre linhas */

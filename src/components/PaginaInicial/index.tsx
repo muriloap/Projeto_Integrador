@@ -5,6 +5,7 @@ import styles from './styles.module.css';
 export default function PaginaInicial() {
   return (
     <>
+    
       <span id='paginainicial' className={styles.featuresSection}>
 
         <div className={styles.container}>

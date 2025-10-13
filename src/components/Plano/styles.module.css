@@ -1,5 +1,5 @@
 .card {
-  background-color: #1d4f6b;
+  background-color: #084A95;
   color: white;
   border: 1px solid gray;
   border-radius: 20px;
@@ -10,6 +10,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-family: "Poppins", sans-serif;
 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -20,10 +21,10 @@
 }
 
 .tituloPlano {
-  font-weight: bold;
   font-size: 1.75rem;
   margin-bottom: 12px;
-  background-color: #1d4f6b;
+  background-color: #084A95;
+  font-family: "Poppins", sans-serif;
 }
 
 .valor {
@@ -32,6 +33,7 @@
   margin-bottom: 24px;
   background-color: #002236;
   border-radius: 15px;
+  font-family: "Poppins", sans-serif;
   
 }
 
@@ -39,12 +41,13 @@
   list-style: none; /* remove bolinhas do ul */
   padding: 0;
   margin: 0 0 24px 0;
-  background-color: #1d4f6b;
+  background-color: #084A95;
 }
 
 .listaItem {
   margin-bottom: 12px;
-  background-color: #1d4f6b;
+  background-color: #084A95;
+ 
 }
 
 .botao1 {
