@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useState } from "react";
 import { Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
@@ -14,32 +14,38 @@ export default function BotaoNovo() {
     <>
       <Fab
         variant="extended"
-        color="primary"
         onClick={handleOpenModal}
+        disableRipple
+        disableFocusRipple
         sx={{
           padding: "20px",
           fontSize: "20px",
           position: "fixed",
           bottom: 24,
           right: 24,
-          backgroundColor: "#304FFE",
-          color: "white",
+          backgroundColor: "#304FFE !important",
+          color: "white !important",
           fontWeight: "bold",
           textTransform: "none",
           boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.3)",
+          transition: "background-color 0.2s ease, transform 0.1s ease",
           "&:hover": {
-            backgroundColor: "#1E40FF",
+            backgroundColor: "#1E40FF !important",
+            transform: "scale(1.05)",
+          },
+          "&:focus": {
+            backgroundColor: "#304FFE !important",
+          },
+          "&:active": {
+            backgroundColor: "#1E3AFF !important",
+            transform: "scale(0.98)",
+          },
+          "&:visited": {
+            backgroundColor: "#304FFE !important",
           },
         }}
       >
-        <AddIcon
-          sx={{
-            fontSize: "20px",
-            backgroundColor: "#304FFE",
-            color: "white",
-            mr: 1,
-          }}
-        />
+        <AddIcon sx={{ fontSize: "20px", mr: 1, color: "white", backgroundColor: "#304FFE" }} />
         Novo
       </Fab>
 

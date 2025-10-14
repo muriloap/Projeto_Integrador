@@ -1,3 +1,4 @@
+import ModalEntreContato from "../ModalEntreContato";
 import styles from "./styles.module.css";
 
 export default function Contato() {
@@ -11,7 +12,7 @@ export default function Contato() {
               Em caso de dúvidas, entre em contato conosco clicando no botão
               abaixo.
             </p>
-            <button className={styles.button}>Entre em contato</button>
+            <ModalEntreContato/>
           </div>
           <div className={styles.tabelaContatos}>
             <h2>CONTATOS</h2>
