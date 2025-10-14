@@ -2,7 +2,7 @@
 import { Box, Container, rgbToHex } from '@mui/material';
 import Selection from '@/components/Selection'
 import { useState } from 'react';
-import axios from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 
 import styles from "./styles.module.css"
 import { green } from '@mui/material/colors';
@@ -11,35 +11,51 @@ import Divisao from '@/components/Divisao';
 import TxtField from '@/components/TxtField';
 import Btn from '@/components/Btn';
 import Link from 'next/link';
+import User from '@/models/user';
+
+type Props = {
+    onEnviando(): void;
+    onEnviadoSucesso(): void;
+    onEnviadoFalha(): void;
+}
 
 
 
 
 
+export default function Home(props: Props) {
 
-
-export default function Home() {
-
-    const [text, setText] = useState('')
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [selection, setSelection] = useState("PJ");
     const [name, setNome] = useState('');
     const [lastName, setLastName] = useState('');
     const [document, setDocument] = useState('');
-    const [documentStateRegistrion, setStateRegistrion] = useState('');
+    const [stateRegistration, setStateRegistration] = useState('');
     const [companyName, setCompanyName] = useState('');
+    const [corporateReason, setCorporateReason] = useState('');
     const [cep, setCep] = useState('');
     const [address, setAddress] = useState('');
     const [number, setNumber] = useState('');
-    const [numero, setEndereco] = useState('');
     const [neighborhood, setNeighborhood] = useState('');
     const [state, setState] = useState('');
     const [city, setCity] = useState('');
     const [site, setSite] = useState('');
     const [phone, setPhone] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
 
+
+    function sucesso(_res: AxiosResponse) {
+        props.onEnviadoSucesso();
+        alert("Teste")
+    }
+    
+    function falha(_error: AxiosError) {
+        alert("Teste")
+
+     }
+
+
+     
     function pfClick() {
         setSelection("PF")
     }
@@ -47,9 +63,37 @@ export default function Home() {
     function pjClick() {
         setSelection("PJ")
     }
-
-
+    
+    
     function cadastro() {
+
+        props.onEnviando()
+        axios.post("http://localhost:3000/users",{
+            name,
+            lastName,
+            email,
+            password,
+            companyName,
+            corporateReason,
+            document,
+            stateRegistration,
+            cep,
+            address,
+            number: Number(number),
+            neighborhood,
+            state,
+            city,
+            phone,
+            site
+        }, 
+        
+        { 
+            headers: {'Content-Type': 'application/json'}
+        })
+        .then(sucesso)
+        .catch(falha);
+        
+
 
     }
 
@@ -69,9 +113,9 @@ export default function Home() {
                     {
                         selection === "PF" ?
                             (<>
-                            <h1 className={styles.textModo}>PREENCHA ESSES CAMPOS COMO PESSOA FÍSICA</h1>
+                                <h1 className={styles.textModo}>PREENCHA ESSES CAMPOS COMO PESSOA FÍSICA</h1>
                                 <div className={styles.dadosp}>
-                                    <Divisao title="Dados Pessoais" variant="default"/>
+                                    <Divisao title="Dados Pessoais" variant="default" />
                                     <TxtField label="Nome" type="text" onChange={setNome} />
                                     <TxtField label="Sobrenome" type="text" onChange={setLastName} />
                                     <TxtField label="CPF" type="text" onChange={setDocument} />
@@ -93,7 +137,7 @@ export default function Home() {
 
                                 <div className={styles.contato}>
 
-                                    <Divisao title="Contato" variant="default"/>
+                                    <Divisao title="Contato" variant="default" />
                                     <TxtField label="Telefone" type="text" onChange={setPhone} />
                                     <TxtField label="Site" type="text" onChange={setSite} />
                                     <TxtField label="Email" type="text" onChange={setEmail} />
@@ -109,7 +153,7 @@ export default function Home() {
                                 </div>
 
                                 <div className={styles.btn}>
-                                    <Link href="/home" className={styles.link}>ENVIAR</Link>
+                                <Btn variant="outline" onClick={cadastro} label="ENVIAR" />
                                 </div>
 
                             </>) :
@@ -117,19 +161,19 @@ export default function Home() {
                                 <h1 className={styles.textModo}>PREENCHA ESSES CAMPOS COMO PESSOA JURÍDICA</h1>
 
                                 <div className={styles.dadosp}>
-                                    <Divisao title="Dados Pessoais" variant="default"/>
+                                    <Divisao title="Dados Pessoais" variant="default" />
                                     <TxtField label="Nome" type="text" onChange={setNome} />
                                     <TxtField label="Sobrenome" type="text" onChange={setLastName} />
                                     <TxtField label="Nome da Empresa" type="text" onChange={setCompanyName} />
-                                    <TxtField label="Razão Social" type="text" onChange={setCompanyName} />
+                                    <TxtField label="Razão Social" type="text" onChange={setCorporateReason} />
                                     <TxtField label="CNPJ" type="text" onChange={setDocument} />
-                                    <TxtField label="Incrisção Estadual" type="text" onChange={setStateRegistrion} />
+                                    <TxtField label="Incrisção Estadual" type="text" onChange={setStateRegistration} />
 
                                 </div>
 
                                 <div className={styles.end}>
 
-                                    <Divisao title="Endereço" variant="default"/>
+                                    <Divisao title="Endereço" variant="default" />
                                     <TxtField label="CEP" type="text" onChange={setCep} />
                                     <TxtField label="Número" type="text" onChange={setNumber} />
                                     <TxtField label="Endereço" type="text" onChange={setAddress} />
@@ -141,7 +185,7 @@ export default function Home() {
 
                                 <div className={styles.contato}>
 
-                                    <Divisao title="Contato" variant="default"/>
+                                    <Divisao title="Contato" variant="default" />
                                     <TxtField label="Telefone" type="text" onChange={setPhone} />
                                     <TxtField label="Site" type="text" onChange={setSite} />
                                     <TxtField label="Email" type="text" onChange={setEmail} />
@@ -149,15 +193,16 @@ export default function Home() {
 
                                 <div className={styles.cadastro}>
 
-                                    <Divisao title="Cadastro " variant="default"/>
+                                    <Divisao title="Cadastro " variant="default" />
                                     <TxtField label="Email" type="text" onChange={setEmail} />
                                     <TxtField label="Senha" type="password" onChange={setPassword} />
-                                    <TxtField label="Confirmar senha" type="password" onChange={setEmail} />
+                                    {/* <TxtField label="Confirmar senha" type="password" onChange={setEmail} /> */}
 
                                 </div>
 
+
                                 <div className={styles.btn}>
-                                <Link href="/home" className={styles.link}>ENVIAR</Link>
+                                    <Btn variant="outline" onClick={cadastro} label="ENVIAR" />
                                 </div>
 
                             </>)

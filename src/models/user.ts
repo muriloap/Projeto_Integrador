@@ -4,17 +4,17 @@ type User = {
     email: string,
     password: string,
     companyName: string,
-    corporateReason: string,
     document: string,
-    stateRegistration: string,
+    corporateReason: string,
+    stateRegistration: string, 
     cep: string,
     address: string,
-    number: Number,
+    number: number,
     neighborhood: string,
     state: string,
     city: string,
     phone: string,
-    site: string
+    site: string,
 }
 
-export default User;
+export default User

@@ -17,7 +17,7 @@ export default function Btn(props: Props) {
       type="button"
       className={cls}
       onClick={props.onClick}
-    >
+      >
       {props.label}
     </button>
   );
