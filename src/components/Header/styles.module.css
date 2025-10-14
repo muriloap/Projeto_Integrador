@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 .header {
     gap: 30px;
     background-color: #0c74e8;
@@ -6,6 +8,7 @@
     align-items: center;
     justify-content: space-between;
     border-bottom-right-radius: 15px;
+    font-family: "Poppins", sans-serif;
 }
 
 .h1 {

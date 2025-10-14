@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 .root {
-    background-color: #1f4d5c;
+    background-color: #084A95;
     padding: 1px;
 }
 
@@ -7,10 +9,11 @@
     text-align: center;
     color: white;
     font-size: 40px;
-    background-color: #1f4d5c;
+    background-color: #084A95;
     padding: 1rem;
     border-bottom: 2px solid #5095ac;
     border-radius: 5px;
+    font-family: "Poppins", sans-serif;
 
 }
 
@@ -24,6 +27,7 @@
     max-width: 350px;
     margin: 15px;
     text-align: center;
+    font-family: "Poppins", sans-serif;
 }
 
 .button {
@@ -37,6 +41,7 @@
     font-weight: bold;
     font-size: 1rem;
     transition: all 0.3s ease;
+    font-family: "Poppins", sans-serif;
 }
 
 .button:hover {
@@ -47,6 +52,7 @@
     font-size: 30px;
     color: rgb(0, 0, 0);
     border-bottom: 2px solid black;
+    font-family: "Poppins", sans-serif;
 }
 
 .p {
@@ -61,28 +67,31 @@
 .tabela {
     display: flex;
     justify-content: space-around;
-    background-color: #1f4d5c;
+    background-color: #084A95;
 }
 
 .tabelaContatos {
     padding-top: 7rem;
     justify-content: center;
     text-align: center;
-    background-color: #1f4d5c;
-    color: black;
+    background-color: #084A95;
+    color: rgb(255, 255, 255);
+    
 }
 
 .tabelaContatos h2 {
     font-size: 30px;
-    color: rgb(0, 0, 0);
-    border-bottom: 2px solid black;
-    background-color: #1f4d5c;
+    color: rgb(255, 255, 255);
+    border-bottom: 2px solid rgb(255, 255, 255);
+    background-color: #084A95;
     padding-bottom: 10px;
+    font-family: "Poppins", sans-serif;
 }
 
 .tabelaContatos p {
     padding-top: 5px;
-    background-color: #1f4d5c;
+    background-color: #084A95;
     font-size: 23px;
+    font-family: "Poppins", sans-serif;
 
 }
