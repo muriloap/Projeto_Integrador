@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import PaginaInicial from "@/components/PaginaInicial";
 import SobreNos from "@/components/SobreNos";
 import styles from "./page.module.css";
+import ModalEntreContato from "@/components/ModalEntreContato";
 
 export default function Home() {
   return (
