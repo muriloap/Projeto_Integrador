@@ -1,4 +1,5 @@
-import Plano from "../Plano";
+import PlanoFreeHome from "../PlanoFreeHome";
+import PlanoPremiumHome from "../PlanoPremiumHome";
 import styles from "./styles.module.css";
 
 
@@ -9,7 +10,7 @@ export default function AssinaturasLogado() {
       <div className={styles.containerp}>
         <h2 className={styles.titulo}>ASSINATURAS</h2>
         <div id="assinatura" className={styles.containers}>
-          <Plano
+          <PlanoFreeHome
             plano="Free"
             valor={0}
             descricao={[
@@ -24,7 +25,7 @@ export default function AssinaturasLogado() {
             botao="Você ja possui"
             />
 
-          <Plano
+          <PlanoPremiumHome
             plano="Premium"
             valor={49}
             descricao={[
