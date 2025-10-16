@@ -1,17 +1,14 @@
 'use client'
-import { Box, Container, rgbToHex } from '@mui/material';
 import Selection from '@/components/Selection'
 import { useState } from 'react';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 
 import styles from "./styles.module.css"
-import { green } from '@mui/material/colors';
-import Header from '@/components/Header';
+
 import Divisao from '@/components/Divisao';
 import TxtField from '@/components/TxtField';
 import Btn from '@/components/Btn';
-import Link from 'next/link';
-import User from '@/models/user';
+
 
 type Props = {
     onEnviando(): void;
@@ -49,8 +46,8 @@ export default function Home(props: Props) {
         alert("Teste")
     }
     
-    function falha(_error: AxiosError) {
-        alert("Teste")
+    function falha(error: AxiosError) {
+        alert(error)
 
      }
 
@@ -61,14 +58,13 @@ export default function Home(props: Props) {
     }
 
     function pjClick() {
+        setNome('');
         setSelection("PJ")
     }
     
     
     function cadastro() {
-
-        props.onEnviando()
-        axios.post("http://localhost:3000/users",{
+        const body = {
             name,
             lastName,
             email,
@@ -85,7 +81,11 @@ export default function Home(props: Props) {
             city,
             phone,
             site
-        }, 
+        };
+
+        console.log(body);
+
+        axios.post("http://localhost:3000/users", body, 
         
         { 
             headers: {'Content-Type': 'application/json'}
@@ -116,7 +116,7 @@ export default function Home(props: Props) {
                                 <h1 className={styles.textModo}>PREENCHA ESSES CAMPOS COMO PESSOA FÍSICA</h1>
                                 <div className={styles.dadosp}>
                                     <Divisao title="Dados Pessoais" variant="default" />
-                                    <TxtField label="Nome" type="text" onChange={setNome} />
+                                    <TxtField label="Nome" type="text" onChange={setNome}/>
                                     <TxtField label="Sobrenome" type="text" onChange={setLastName} />
                                     <TxtField label="CPF" type="text" onChange={setDocument} />
                                     <TxtField label="Nome da Empresa" type="text" onChange={setCompanyName} />

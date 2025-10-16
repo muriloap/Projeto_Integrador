@@ -14,7 +14,7 @@ type Props={
 
 export default function TxtField(props: Props) {
 
-    const [texto, setTexto] = useState(props.textStart)
+    const [texto, setTexto] = useState(props.textStart|| "")
     const [showPassword, setShowPassword] = useState(false);
 
     function handleInputChange(e: ChangeEvent<HTMLInputElement>){
