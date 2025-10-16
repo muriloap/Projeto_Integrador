@@ -9,7 +9,7 @@ type Props = {
   botao?: string;
 };
 
-export default function Plano({ plano, descricao, valor, botao }: Props) {
+export default function PlanoPaginaPrincipal({ plano, descricao, valor, botao }: Props) {
   return (
     <div className={styles.card}>
       <Typography className={styles.tituloPlano}>
