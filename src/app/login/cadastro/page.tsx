@@ -42,7 +42,6 @@ export default function Home(props: Props) {
 
 
     function sucesso(_res: AxiosResponse) {
-        props.onEnviadoSucesso();
         alert("Teste")
     }
     

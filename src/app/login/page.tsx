@@ -11,25 +11,37 @@ import Header from '@/components/Header';
 import TxtField from '@/components/TxtField';
 import Btn from '@/components/Btn';
 import Link from 'next/link';
+import { useAuth } from '@/hooks/useAuth';
 
 
 
 export default function Home() {
 
   const router = useRouter();
+  const auth = useAuth()
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  function entrarSucesso() {
+    router.push('/home');
+  }
 
-  function login() {
-    router.push("/home")
+  function entrarFalha(error: string) {
+    alert(error);
+  }
 
-    
+
+  function entrar(): void {
+    auth
+      .login(email, password)
+      .then(entrarSucesso)
+      .catch(entrarFalha);
   }
 
 
   return (
+    
     <>
         <div className={styles.containerp}>
 
@@ -38,7 +50,7 @@ export default function Home() {
 
         <AccountCircleIcon sx={{ fontSize: 100, color: 'Black' }} />
         
-        <span className={styles.textBV}>Seja Bem - Vindo ao nosso sistema de Ordem de serviço</span>
+        <span className={styles.textBV}>Seja Bem - Vindo ao nosso sistema de Ordem de Serviço</span>
         <span className={styles.textLogin}>Faça Login ou Cadastre-se para continuar</span>
 
         
@@ -46,7 +58,7 @@ export default function Home() {
             <div className={styles.camposlogin}>
             <TxtField label="Email" type="email" onChange={setEmail} />
             <TxtField label="Senha" type="password" onChange={setPassword} />
-            <Btn variant="primary" onClick={login} label="LOGIN" />
+            <Btn variant="primary" onClick={entrar} label="LOGIN" />
             <Link className={styles.btn}href="/login/cadastro">CADASTRE - SE</Link>
             </div>
 

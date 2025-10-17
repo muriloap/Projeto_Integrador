@@ -17,11 +17,15 @@ import { useState } from "react";
 import { tree } from "next/dist/build/templates/app-page";
 import Divisao from "../Divisao";
 import Link from "next/link";
+import { AuthProvider } from "@/contexts/AuthContext";
+import { useAuth } from "@/hooks/useAuth";
 
 type Props = {
     onClick(): void;
 }
 export default function Sidebar(props: Props) {
+
+    const auth = useAuth()
 
     const [isOpen, setIsOpen] = useState(true);
 
@@ -60,8 +64,7 @@ export default function Sidebar(props: Props) {
                                         <AccountCircleIcon sx={{ fontSize: 50 }} />
                                     </span>
                                     <div className={styles.textheadertext}>
-                                        <span className={styles.name}>OS Control</span>
-
+                                        <span className={styles.name}>Olá {auth.user?.name}</span>
                                     </div>
                                 </div>
 
