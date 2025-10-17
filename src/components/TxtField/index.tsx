@@ -8,17 +8,15 @@ type Props={
     label: string;
     type: "text" | "email" | "password";
     onChange?(texto: string): void;
-    textStart?: string;
+    value?: string;
 }
 
 
 export default function TxtField(props: Props) {
 
-    const [texto, setTexto] = useState(props.textStart|| "")
     const [showPassword, setShowPassword] = useState(false);
 
     function handleInputChange(e: ChangeEvent<HTMLInputElement>){
-        setTexto(e.target.value);
         if (props.onChange){
             props.onChange(e.target.value);
         }
@@ -29,7 +27,7 @@ export default function TxtField(props: Props) {
         <>
         <label>
             <span className={styles.mdInput} data-label={props.label}>
-            <input className={styles.input} value={texto} type={props.type === "password"
+            <input className={styles.input} value={props.value} type={props.type === "password"
               ? showPassword
                 ? "text"
                 : "password"
