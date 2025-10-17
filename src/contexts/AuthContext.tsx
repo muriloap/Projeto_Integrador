@@ -35,7 +35,7 @@ export function AuthProvider(props: Props) {
   function login(email: string, password: string): Promise<void> {
     return new Promise<void>(function (resolve, reject) {
       api
-        .post('/user/login', { email, password })
+        .post('/users/login', { email, senha: password })
         .then(function (res) {
           const token = res.data.token;
           localStorage.setItem('token', token);
