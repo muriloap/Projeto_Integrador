@@ -33,8 +33,9 @@ export default function Sidebar(props: Props) {
         setIsOpen(!isOpen);
     }
 
-    function Logout(){
-
+    function Logout() {
+        auth
+            .logout
     }
 
 

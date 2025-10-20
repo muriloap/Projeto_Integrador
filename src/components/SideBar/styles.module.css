@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 
+
 .poppins-light {
   font-family: "Poppins", sans-serif;
   font-weight: 300;
@@ -240,4 +241,8 @@
     justify-content: space-between;
     gap: 15px;
     margin-left: -33px;
+}
+
+.buttomcontent{
+  cursor: pointer;
 }

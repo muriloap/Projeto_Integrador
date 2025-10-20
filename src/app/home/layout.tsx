@@ -2,6 +2,7 @@
 import Sidebar from "@/components/SideBar";
 import { ReactNode, useState } from "react"
 import styles from './page.module.css'
+import PrivateRoute from "@/components/PrivateRouter";
 
 
 type Props = {
@@ -20,11 +21,13 @@ export default function HomeLayout(props: Props) {
 
     return (
         <>
+        <PrivateRoute>
         <div className={styles.containerp}>
             <div className={`${styles.containers} ${open ? '' : styles.close}`}/>
             <Sidebar onClick={Mudarcss} />
             {props.children}
         </div>
+        </PrivateRoute>
         </>
     )
 }
