@@ -37,7 +37,7 @@ export default function Sidebar(props: Props) {
   }
 
   function Logout() {
-    auth.logout;
+    auth.logout();
     router.push('/login');
   }
 
