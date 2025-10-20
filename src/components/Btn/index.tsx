@@ -5,6 +5,7 @@ type Props = {
   label: string;
   variant?: "primary" | "outline"; 
   onClick(): void;           
+  type?: "button" | "submit" | "reset";
 };
 
 export default function Btn(props: Props) {
@@ -14,7 +15,7 @@ export default function Btn(props: Props) {
 
   return (
     <button
-      type="button"
+      type={props.type || "button"}
       className={cls}
       onClick={props.onClick}
       >

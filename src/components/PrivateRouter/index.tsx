@@ -25,14 +25,6 @@ export default function PrivateRoute({ children }: Props) {
     return () => clearTimeout(timer);
   }, [isAuthenticated, router]);
 
-  if (loading) {
-    return (
-      <div className={styles.load}>
-        Carregando...
-      </div>
-    );
-  }
-
   if (!isAuthenticated) {
     return null;
   }
