@@ -1,10 +1,11 @@
 import BarraDePesquisa from "@/components/BarraDePesquisa";
-import BotaoNovo from "@/components/BotaoNovo";
+import ModalCliente from "@/components/ModalCliente";
+
 
 export default function PageClientes() {
   return (
     <>
-      <BotaoNovo />
+    <ModalCliente/>
       <BarraDePesquisa/>
     </>
   );

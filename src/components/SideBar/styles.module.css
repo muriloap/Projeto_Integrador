@@ -231,6 +231,7 @@
   margin-left: -33px;
 }
 
-.logout {
+.logout{
   cursor: pointer;
+  margin-left: 22px;
 }

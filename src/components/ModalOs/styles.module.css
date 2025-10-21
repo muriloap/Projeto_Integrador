@@ -81,6 +81,44 @@
   font-family: "Poppins", sans-serif;
 }
 
+.formData {
+  width: 31%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #333;
+  background-color: white;
+  appearance: auto;
+  -webkit-appearance: auto;
+  -moz-appearance: auto;
+  cursor: pointer;
+}
+
+.formData::-webkit-calendar-picker-indicator {
+  filter: invert(0.4); /* deixa o ícone mais escuro */
+  cursor: pointer;
+}
+
+.formData2 {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #333;
+  background-color: white;
+  appearance: auto;
+  -webkit-appearance: auto;
+  -moz-appearance: auto;
+  cursor: pointer;
+}
+
+.formData2::-webkit-calendar-picker-indicator {
+  filter: invert(0.4); /* deixa o ícone mais escuro */
+  cursor: pointer;
+}
+
 .formInput:focus {
     outline: none;
     border-color: #304ffe;
@@ -260,6 +298,29 @@
     font-size: 14px;
     transition: background-color 0.2s ease;
   }
+
+  .data{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .dataEquipamento{
+    display: flex;
+    flex-direction: row;
+    gap: 8rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dadosEquipamento{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    align-items: flex-start;
+  }
+
 
 @keyframes fadeIn {
   from {

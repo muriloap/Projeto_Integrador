@@ -1,6 +1,6 @@
 import Assinaturas from '@/components/Assinaturas'
 import styles from './page.module.css'
-import BotaoNovo from '@/components/BotaoNovo'
+import BotaoNovo from '@/components/ModalOs'
 import BarraDePesquisa from '@/components/BarraDePesquisa'
 export default function HomeOs(){
     return(
