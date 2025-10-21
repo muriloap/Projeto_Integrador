@@ -75,6 +75,24 @@
   color: #1976d2;
 }
 
+.fullWidth {
+  width: 100% !important;
+}
 
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
 
+.prefix {
+  position: absolute;
+  left: 10px;
+  color: #555;
+  font-weight: 500;
+  pointer-events: none;
+}
 
+.inputWithPrefix {
+  padding-left: 35px;
+}

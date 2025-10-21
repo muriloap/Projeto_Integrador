@@ -144,10 +144,10 @@ export default function BotaoNovo() {
               </div>
 
               <div className={styles.dadosEquipamento}>
-              <TxtField label="Equipamento" type="text"/>
-              <TxtField label="Defeito Relatados" type="text"/>
-              <TxtField label="Relatório Técnico" type="text"/>
-              <TxtField label="Garantia" type="text"/>
+              <TxtField label="Equipamento" type="text" fullWidth />
+              <TxtField label="Defeito Relatados" type="text" fullWidth />
+              <TxtField label="Relatório Técnico" type="text" fullWidth />
+              <TxtField label="Garantia" type="text" fullWidth />
               </div>
 
             </div>

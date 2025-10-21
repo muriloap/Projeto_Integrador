@@ -310,15 +310,15 @@
   gap: 5px;
 }
 
-.dataEquipamento {
+.ProductPrice {
   display: flex;
   flex-direction: row;
-  gap: 8rem;
+  gap: 3rem;
   align-items: center;
   justify-content: center;
 }
 
-.dadosEquipamento {
+.dadosProduto {
   display: flex;
   flex-direction: column;
   gap: 15px;

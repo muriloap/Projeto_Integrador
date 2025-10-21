@@ -212,7 +212,7 @@
     padding: 24px;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* ⬅️ Sombra escura */
-    max-width: 6000px;
+    max-width: 1000px;
     width: 90%;
     max-height: 80vh;
     overflow-y: auto;
@@ -244,16 +244,21 @@
   }
   
   .modalTitle {
+    display: flex;
+    justify-content: center;
     margin-bottom: 16px;
     color: #304FFE; /* ⬅️ Título - já está azul */
     font-size: 1.5rem;
     font-weight: 600;
+
   }
   
   .modalDescription {
     margin-bottom: 20px;
     color: #666; /* ⬅️ Cor do texto da descrição */
     line-height: 1.5;
+    display: flex;
+    justify-content: center;
   }
   
   /* Cores dos inputs */
