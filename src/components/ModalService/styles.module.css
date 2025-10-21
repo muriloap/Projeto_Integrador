@@ -304,10 +304,11 @@
   transition: background-color 0.2s ease;
 }
 
-.price{
+.price {
   display: flex;
   flex-direction: column;
   gap: 5px;
+  padding-right: 300px;
 }
 
 .ProductPrice {

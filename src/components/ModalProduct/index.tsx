@@ -73,9 +73,6 @@ export default function ModalProduct() {
       .then(cadastroSucesso)
       .catch(cadastroFalha);
 
-      setTimeout(() => {
-        handleCloseModal()
-      }, 1500);
   }
 
   return (
@@ -171,7 +168,7 @@ export default function ModalProduct() {
                   onChange={setsalesUnit}
                 />
                 <div className={styles.ProductPrice}>
-                  <div className={styles.data}>
+                  <div className={styles.price}>
                     <a>Preço de compra</a>
                     <TxtField
                       prefix="R$"
@@ -181,7 +178,7 @@ export default function ModalProduct() {
                       fullWidth
                     />
                   </div>
-                  <div className={styles.data}>
+                  <div className={styles.price}>
                     <a>Preço de venda</a>
                     <TxtField
                       prefix="R$"
@@ -211,7 +208,7 @@ export default function ModalProduct() {
                 Cancelar
               </button>
               <button className={styles.buttonPrimary} onClick={cadastro}>
-                Criar OS
+                Cadastrar Produto
               </button>
             </div>
           </div>

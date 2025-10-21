@@ -6,7 +6,7 @@ import styles from "./styles.module.css";
 import Divisao from "../Divisao";
 import TxtField from "../TxtField";
 
-export default function BotaoNovo() {
+export default function ModalOS() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [data, setData] = useState(new Date().toISOString().split("T")[0]);
 
