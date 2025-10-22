@@ -17,7 +17,7 @@ export default function Dashboard(props: Props) {
     <>
       <span className={styles.containerp}>
         <div className={styles.tabela1}>
-          <Link href="/home/ordem-servico" className={styles.campos} >
+          <Link href="/home/ordem-servico" className={styles.campos}>
             <div className={styles.serviceOrder}>
               <div className={styles.icon}>
                 <AssignmentIcon sx={{ fontSize: 50 }} />
@@ -31,7 +31,7 @@ export default function Dashboard(props: Props) {
             </div>
           </Link>
 
-          <Link href="/home/servicos" className={styles.campos} >
+          <Link href="/home/servicos" className={styles.campos}>
             <div className={styles.services}>
               <div className={styles.icon}>
                 <BuildIcon sx={{ fontSize: 50 }} />
@@ -47,8 +47,7 @@ export default function Dashboard(props: Props) {
         </div>
 
         <div className={styles.tabela2}>
-
-          <Link href="/home/clientes" className={styles.campos} >
+          <Link href="/home/clientes" className={styles.campos}>
             <div className={styles.services}>
               <div className={styles.icon}>
                 <GroupIcon sx={{ fontSize: 50 }} />
@@ -62,7 +61,7 @@ export default function Dashboard(props: Props) {
             </div>
           </Link>
 
-          <Link href="/home/produtos" className={styles.campos} >
+          <Link href="/home/produtos" className={styles.campos}>
             <div className={styles.services}>
               <div className={styles.icon}>
                 <InventoryIcon sx={{ fontSize: 50 }} />

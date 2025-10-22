@@ -6,9 +6,11 @@ import ModalService from "@/components/ModalService";
 export default function PageServicos() {
   return (
     <>
-     
+    
+     <div className={styles.container}>
       <ModalService/>
       <BarraDePesquisa />
+    </div>
 
     </>
   );

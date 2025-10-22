@@ -1,0 +1,22 @@
+.produto {
+  display: flex;
+  color: black;
+  font-size: 2rem;
+  gap: 10rem;
+  align-items: center;
+  flex-direction: row;
+  border-bottom: 2px solid gray;
+}
+
+.nome{
+    background-color: blue;
+    width: 18rem;
+    display: flex;
+    justify-content: center;
+}
+
+.teste{
+    background-color: black;
+}
+
+

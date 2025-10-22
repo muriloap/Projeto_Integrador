@@ -9,15 +9,15 @@ type Props = {
     children: ReactNode;
 }
 
-export default function HomeLayout(props: Props) {
 
+
+export default function HomeLayout(props: Props) {
     const [open, setIsOpen] = useState(true);
 
 
     function Mudarcss() {
         setIsOpen(!open);
     }
-
 
     return (
         <>
