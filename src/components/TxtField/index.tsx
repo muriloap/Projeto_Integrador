@@ -83,7 +83,7 @@ export default function TxtField(props: Props) {
             className={styles.toggle}
             onClick={() => setShowPassword((prev) => !prev)}
           >
-            {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+            {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon  />}
           </button>
         )}
       </span>
