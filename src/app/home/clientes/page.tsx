@@ -21,7 +21,7 @@ export default function PageClientes() {
 
   function loadProdutos() {
     axios
-      .get("http://localhost:3000/products", {
+      .get("http://localhost:3000/clients", {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,

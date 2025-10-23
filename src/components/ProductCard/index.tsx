@@ -24,7 +24,6 @@ export default function ProductCard(props: Props) {
         <span className={styles.teste}>Unidade de Venda</span>
         <span className={styles.teste}>Preço de Compra</span>
         <span className={styles.teste}>Preço de Venda</span>
-        <span className={styles.teste}>Ação</span>
       </div>
 
       {/* CONTEÚDO */}
@@ -37,7 +36,6 @@ export default function ProductCard(props: Props) {
         <span className={styles.span}>{props.purchasePrice}</span>
         <span className={styles.span}>{props.salePrice}</span>
         <span className={styles.button}>
-        <ModalEditProduct />
         </span>
       </div>
 

@@ -17,6 +17,7 @@ type Props = {
 export default function ClientCard(props: Props) {
   return (
     <li className={styles.client}>
+        
       {/* TITULOS (CABECALHO FIXO) */}
       <div className={styles.header}>
         <span className={styles.teste}>Nome do Cliente</span>

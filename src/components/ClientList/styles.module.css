@@ -1,11 +1,11 @@
-.clients{
-    background: transparent;
+.clients {
+    background: red;
     margin-top: 8rem;
     margin-bottom: 2rem;
-    width: 97rem;
+    width: 90rem;
     height: auto;
     display: flex;
     flex-direction: column;
     padding: 10px;
     padding-right: 10px;
-}
+  }

@@ -1,11 +1,12 @@
-.produtos{
+.produtos {
     background: transparent;
     margin-top: 8rem;
     margin-bottom: 2rem;
-    width: 97rem;
+    width: auto;
     height: auto;
     display: flex;
     flex-direction: column;
     padding: 10px;
     padding-right: 10px;
-}
+    gap: 1rem;
+  }
