@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
-.produto {
+.client {
   width: 96rem;
   border: 2px solid gray;
   margin-top: 1rem;
@@ -23,6 +23,7 @@
   align-items: stretch;
   text-align: center;
   border-bottom: 2px solid gray;
+  gap: 1rem;
 }
 
 /* Parte que rola */

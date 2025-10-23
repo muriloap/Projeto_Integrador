@@ -8,6 +8,7 @@ type Props = {
   label?: string;
   type: "text" | "email" | "password" | "number";
   onChange?(texto: string): void;
+  multiline?: boolean; // corrigido nome
   value?: string;
   fullWidth?: boolean;
   prefix?: string;
@@ -16,11 +17,12 @@ type Props = {
 
 export default function TxtField(props: Props) {
   const [showPassword, setShowPassword] = useState(false);
-  const [displayValue, setDisplayValue] = useState(props.formatCurrency ? "00,00" : props.value || "");
+  const [displayValue, setDisplayValue] = useState(
+    props.formatCurrency ? "00,00" : props.value || ""
+  );
 
   function formatCurrency(value: string) {
     const numericValue = value.replace(/\D/g, "");
-
     if (!numericValue) return "";
 
     const intValue = parseInt(numericValue, 10);
@@ -32,7 +34,9 @@ export default function TxtField(props: Props) {
     return formatted;
   }
 
-  function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
+  function handleInputChange(
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
     let value = e.target.value;
 
     if (props.formatCurrency) {
@@ -44,6 +48,12 @@ export default function TxtField(props: Props) {
 
     if (props.onChange) {
       props.onChange(value);
+    }
+  }
+
+  function handleTextAreaChange(e: ChangeEvent<HTMLTextAreaElement>) {
+    if (props.onChange) {
+      props.onChange(e.target.value);
     }
   }
 
@@ -60,30 +70,39 @@ export default function TxtField(props: Props) {
             <span className={styles.prefix}>{props.prefix}</span>
           )}
 
-          <input
-            className={`${styles.input} ${
-              props.prefix ? styles.inputWithPrefix : ""
-            }`}
-            value={displayValue}
-            type={
-              props.type === "password"
-                ? showPassword
-                  ? "text"
-                  : "password"
-                : "text"
-            }
-            placeholder={props.label}
-            onChange={handleInputChange}
-          />
+          {props.multiline ? (
+            <textarea
+              className={styles.input}
+              placeholder={props.label}
+              onChange={handleTextAreaChange}
+              rows={4} // você pode ajustar ou tornar prop também
+            />
+          ) : (
+            <input
+              className={`${styles.input} ${
+                props.prefix ? styles.inputWithPrefix : ""
+              }`}
+              value={displayValue}
+              type={
+                props.type === "password"
+                  ? showPassword
+                    ? "text"
+                    : "password"
+                  : props.type
+              }
+              placeholder={props.label}
+              onChange={handleInputChange}
+            />
+          )}
         </div>
 
-        {props.type === "password" && (
+        {props.type === "password" && !props.multiline && (
           <button
             type="button"
             className={styles.toggle}
             onClick={() => setShowPassword((prev) => !prev)}
           >
-            {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon  />}
+            {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
           </button>
         )}
       </span>

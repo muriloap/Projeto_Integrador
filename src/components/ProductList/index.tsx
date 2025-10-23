@@ -1,6 +1,6 @@
 import styles from "./styles.module.css";
 import ProductCard from "../ProductCard";
-import Produto from "../../models/produto";
+import Produto from "../../models/product";
 
 type Props = {
   produtos: Produto[];

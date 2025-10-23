@@ -9,7 +9,6 @@ type Props = {
   observations: string;
   salesUnit: string;
   category: string;
-
 };
 
 export default function ProductCard(props: Props) {
@@ -32,8 +31,8 @@ export default function ProductCard(props: Props) {
       <div className={styles.body}>
         <span className={styles.span}>{props.name}</span>
         <span className={styles.span}>{props.category}</span>
-        <span className={styles.span}>{props.description}</span>
-        <span className={styles.span}>{props.observations}</span>
+        <span className={styles.textoGrande}>{props.description}</span>
+        <span className={styles.textoGrande}>{props.observations}</span>
         <span className={styles.span}>{props.salesUnit}</span>
         <span className={styles.span}>{props.purchasePrice}</span>
         <span className={styles.span}>{props.salePrice}</span>
