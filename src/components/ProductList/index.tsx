@@ -16,6 +16,9 @@ function mapear(produto: Produto) {
         purchasePrice={produto.purchasePrice}
         salePrice={produto.salePrice}
         observations={produto.observations}
+        salesUnit={produto.salesUnit}
+        category={produto.category}
+
       />
     </>
   );
@@ -24,7 +27,6 @@ function mapear(produto: Produto) {
 export default function ProductList(props: Props) {
   return (
     <>
-    
       <ul className={styles.produtos}>{props.produtos.map(mapear)}</ul>
     </>
   );

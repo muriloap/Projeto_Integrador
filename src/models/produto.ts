@@ -5,6 +5,8 @@ type Produto = {
     purchasePrice: number;
     salePrice: number;
     observations: string;
+    salesUnit: string;
+    category:string;
 }
 
 export default Produto;

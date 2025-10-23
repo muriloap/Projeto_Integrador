@@ -1,14 +1,14 @@
 "use client";
 import { useState } from "react";
 import { Fab } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
 import styles from "./styles.module.css";
 import Divisao from "../Divisao";
 import TxtField from "../TxtField";
 import axios from "axios";
 import { Alert } from "react-bootstrap";
+import EditIcon from '@mui/icons-material/Edit';
 
-export default function ModalProduct() {
+export default function ModalEditProduct() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
@@ -29,10 +29,6 @@ export default function ModalProduct() {
   function cadastroSucesso() {
     setError(null);
     setSuccess("Produto cadastrado com sucesso!");
-
-    setTimeout(() => {
-      handleCloseModal()
-    }, 1000);
   }
 
   function cadastroFalha(error: string) {
@@ -88,10 +84,8 @@ export default function ModalProduct() {
         disableFocusRipple
         sx={{
           padding: "20px",
-          fontSize: "20px",
-          position: "fixed",
-          bottom: 24,
-          right: 24,
+          fontSize: "15px",
+          gap: "10px",
           backgroundColor: "#304FFE !important",
           color: "white !important",
           fontWeight: "bold",
@@ -114,15 +108,7 @@ export default function ModalProduct() {
           },
         }}
       >
-        <AddIcon
-          sx={{
-            fontSize: "20px",
-            mr: 1,
-            color: "white",
-            backgroundColor: "#304FFE",
-          }}
-        />
-        Novo
+        <EditIcon sx={{background: "transparent"}}/> Editar
       </Fab>
 
       {/* Modal */}
@@ -136,10 +122,10 @@ export default function ModalProduct() {
               ×
             </button>
 
-            <h2 className={styles.modalTitle}>Novo Produto</h2>
+            <h2 className={styles.modalTitle}>Editar Produto</h2>
 
             <p className={styles.modalDescription}>
-              Preencha os dados abaixo para adicionar um novo Produto.
+              Modifique os campos abaixo para adicionar um Editar o Produto.
             </p>
 
             {mensagemAlerta}

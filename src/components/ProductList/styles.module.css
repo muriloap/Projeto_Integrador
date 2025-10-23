@@ -1,7 +1,11 @@
 .produtos{
-    border: 2px solid red;
-    background-color: red;
+    background: transparent;
     margin-top: 8rem;
+    margin-bottom: 2rem;
     width: 97rem;
-    height: 48rem;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    padding-right: 10px;
 }
