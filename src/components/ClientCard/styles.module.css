@@ -16,8 +16,8 @@
   grid-template-columns: 1fr 1fr 2fr 2fr 1fr 1fr 1fr 1fr;
   background: #e5e5e5;
   font-weight: bold;
-  padding: 10px 0;
-  align-items: center;
+  height: 4rem;
+  align-items: stretch;
   text-align: center;
   border-bottom: 2px solid gray;
   gap: 0;
@@ -52,13 +52,13 @@
 }
 
 .teste {
-  background: transparent;
-  padding: 5px 5px;
+ background: transparent;
   border-right: 2px solid gray;
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 40px;
+  padding: 5px;
 }
 
 .teste:last-child {

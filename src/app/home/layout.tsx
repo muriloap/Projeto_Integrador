@@ -21,13 +21,19 @@ export default function HomeLayout(props: Props) {
 
     return (
         <>
-        <PrivateRoute>
-        <div className={styles.containerp}>
-            <div className={`${styles.containers} ${open ? '' : styles.close}`}/>
-            <Sidebar onClick={Mudarcss} />
-            {props.children}
-        </div>
-        </PrivateRoute>
+            <PrivateRoute>
+                <div className={styles.containerp}>
+
+                    <div className={`${styles.containers} ${open ? '' : styles.close}`}>
+                        <Sidebar onClick={Mudarcss} />
+                        <div className={`${styles.page} ${open ? '' : styles.close}`}>
+                            {props.children}
+                        </div>
+                    </div>
+
+                </div>
+
+            </PrivateRoute>
         </>
     )
 }

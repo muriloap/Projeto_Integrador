@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+.tabelaContainer {
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  width: auto;
+  height: auto;
+  margin-top: 8rem;
+  margin-bottom: 2rem;
+  background: #f9fafb;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.tabelaProdutos {
+  width: auto;
+  height: auto;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+}
+
+.tabelaProdutos thead th {
+  color: #000000;
+  background: rgb(226, 226, 226);
+  text-align: center;
+  border: 2px solid gray;
+}
+
+.tabelaProdutos th,
+.tabelaProdutos td {
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  color: #000000;
+  background: rgb(240, 240, 240);
+  border: 2px solid gray;
+  align-items: stretch;
+  max-width: 20.1rem;
+}
+
+.tabelaProdutos th {
+  font-weight: 600;
+}

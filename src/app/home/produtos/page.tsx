@@ -3,7 +3,7 @@ import BotaoNovo from "@/components/ModalOs";
 import styles from "./page.module.css";
 import BarraDePesquisa from "@/components/BarraDePesquisa";
 import ModalProduct from "@/components/ModalProduct";
-import ProductList from "@/components/ProductList";
+import ProductList from "@/components/TableProductList";
 import { useEffect, useState } from "react";
 import axios, { AxiosError, AxiosResponse } from "axios";
 
