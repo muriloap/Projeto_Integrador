@@ -8,7 +8,7 @@ type Props = {
 
 export default function TableProductList({ products }: Props) {
   return (
-    <div className={styles.tabelaContainer}>
+    <div className={styles.tableContainer}>
       <table className={styles.tableProducts}>
         <thead>
           <tr>
@@ -20,6 +20,7 @@ export default function TableProductList({ products }: Props) {
             <th>Unidade de Venda</th>
             <th>Preço de Compra</th>
             <th>Preço de Venda</th>
+            <th>Ação</th>
           </tr>
         </thead>
 

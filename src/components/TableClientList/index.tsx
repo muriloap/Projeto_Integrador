@@ -17,6 +17,7 @@ export default function TableClientList({ clients }: Props) {
             <th>CPFJ/CNPJ</th>
             <th>Endereço</th>
             <th>Telefone</th>
+            <th>Ação</th>
           </tr>
         </thead>
 

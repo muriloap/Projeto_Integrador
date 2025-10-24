@@ -12,6 +12,7 @@
     flex-direction: column;
     gap:28px;
     background: transparent;
+    height: 100%;
 }
 
 .campos {
