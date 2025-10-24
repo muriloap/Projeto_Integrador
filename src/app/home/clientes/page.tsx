@@ -1,10 +1,11 @@
 'use client'
 import BarraDePesquisa from "@/components/BarraDePesquisa";
-import ModalCliente from "@/components/ModalCliente";
+import ModalCliente from "@/components/ModalClients";
 import styles from "./page.module.css";
 import ClientList from "@/components/ClientList";
 import { useEffect, useState } from "react";
 import axios, { AxiosError, AxiosResponse } from "axios";
+import TableClientList from "@/components/TableClientList";
 
 export default function PageClientes() {
   const token = localStorage.getItem("token");
@@ -19,7 +20,7 @@ export default function PageClientes() {
     alert(error);
   }
 
-  function loadProdutos() {
+  function loadClients() {
     axios
       .get("http://localhost:3000/clients", {
         headers: {
@@ -31,14 +32,13 @@ export default function PageClientes() {
       .catch(falha);
   }
 
-  useEffect(loadProdutos, []);
+  useEffect(loadClients, []);
 
   return (
     <>
       <div className={styles.container}>
-        <ClientList clients={clients} />
         <ModalCliente />
-        <BarraDePesquisa />
+        <TableClientList clients={clients}/>
       </div>
     </>
   );

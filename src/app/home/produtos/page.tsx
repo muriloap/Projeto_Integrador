@@ -10,17 +10,17 @@ import axios, { AxiosError, AxiosResponse } from "axios";
 export default function PageProdutos() {
   const token = localStorage.getItem("token");
 
-  const [produtos, setProdutos] = useState([]);
+  const [products, setProducts] = useState([]);
 
   function sucesso(response: AxiosResponse) {
-    setProdutos(response.data);
+    setProducts(response.data);
   }
 
   function falha(error: AxiosError) {
     alert(error);
   }
 
-  function loadProdutos() {
+  function loadProducts() {
     axios
       .get("http://localhost:3000/products", {
         headers: {
@@ -32,13 +32,13 @@ export default function PageProdutos() {
       .catch(falha);
   }
 
-  useEffect(loadProdutos, []);
+  useEffect(loadProducts, []);
 
   return (
     <>
       <div className={styles.container}>
         <ModalProduct />
-        <ProductList produtos={produtos} />
+        <ProductList products={products} />
       </div>
       <BarraDePesquisa />
     </>

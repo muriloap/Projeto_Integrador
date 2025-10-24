@@ -13,7 +13,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-.tableProducts {
+.tabelaServices {
   width: auto;
   height: auto;
   border-collapse: collapse;
@@ -21,15 +21,15 @@
   border-radius: 8px;
 }
 
-.tableProducts thead th {
+.tabelaServices thead th {
   color: #000000;
   background: rgb(226, 226, 226);
   text-align: center;
   border: 2px solid gray;
 }
 
-.tableProducts th,
-.tableProducts td {
+.tabelaServices th,
+.tabelaServices td {
   padding: 0.75rem 1rem;
   font-size: 0.95rem;
   color: #000000;
@@ -39,6 +39,6 @@
   max-width: 20.1rem;
 }
 
-.tableProducts th {
+.tabelaServices th {
   font-weight: 600;
 }

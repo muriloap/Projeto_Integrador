@@ -1,9 +1,9 @@
 type Service = {
-    id?: number;
+    id: number;
     nameService: string;
-    price: number;
     description: string;
     observations: string;
+    price: number;
 }
 
 export default Service;

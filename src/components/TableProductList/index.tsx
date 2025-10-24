@@ -1,15 +1,15 @@
 import styles from "./styles.module.css";
-import Produto from "../../models/product";
 import TableProduct from "../TableProduct";
+import Product from "../../models/product";
 
 type Props = {
-  produtos: Produto[];
+  products: Product[];
 };
 
-export default function TableProductList({ produtos }: Props) {
+export default function TableProductList({ products }: Props) {
   return (
     <div className={styles.tabelaContainer}>
-      <table className={styles.tabelaProdutos}>
+      <table className={styles.tableProducts}>
         <thead>
           <tr>
             <th>ID</th>
@@ -24,7 +24,7 @@ export default function TableProductList({ produtos }: Props) {
         </thead>
 
         <tbody>
-          {produtos.map((produto) => (
+          {products.map((produto) => (
             <TableProduct
               key={produto.id}
               id={produto.id}
