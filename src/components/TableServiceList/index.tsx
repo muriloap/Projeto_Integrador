@@ -12,7 +12,6 @@ export default function TableServiceList({ services }: Props) {
       <table className={styles.tabelaServices}>
         <thead>
           <tr>
-            <th>ID</th>
             <th>Nome do Serviço</th>
             <th>Descrição</th>
             <th>Observações</th>
@@ -24,7 +23,6 @@ export default function TableServiceList({ services }: Props) {
           {services.map((service) => (
             <TableService
               key={service.id}
-              id={service.id}
               nameService={service.nameService}
               description={service.description}
               observations={service.observations}

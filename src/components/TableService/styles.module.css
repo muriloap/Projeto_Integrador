@@ -1,10 +1,7 @@
 .scrollableText {
   background: transparent;
-  max-height: 100px; /* controla a altura visível */
-  max-width: 250px; /* controla a altura visível */
   overflow-y: auto;
   white-space: normal;
-  padding-right: 6px;
 }
 
 /* Scrollbar customizada */

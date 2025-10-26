@@ -7,42 +7,16 @@ export default function Home() {
   return (
     <>
       <PrivateRoute>
-        <div className={styles.containerPage}>
 
-          <div className={styles.container}>
-            <Dashboard
-              quantityc={90}
-              quantityp={890}
-              quantityos={300}
-              quantitys={50}
-            />
-            <Dashboard
-              quantityc={90}
-              quantityp={890}
-              quantityos={300}
-              quantitys={50}
-            />
-            <Dashboard
-              quantityc={90}
-              quantityp={890}
-              quantityos={300}
-              quantitys={50}
-            />
-            <Dashboard
-              quantityc={90}
-              quantityp={890}
-              quantityos={300}
-              quantitys={50}
-            />
-            <Dashboard
-              quantityc={90}
-              quantityp={890}
-              quantityos={300}
-              quantitys={50}
-            />
-          </div>
-          
+        <div className={styles.dashboard}>
+          <Dashboard
+            quantityc={90}
+            quantityp={890}
+            quantityos={300}
+            quantitys={50}
+          />
         </div>
+
       </PrivateRoute>
     </>
   );

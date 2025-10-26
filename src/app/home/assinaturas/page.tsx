@@ -9,8 +9,6 @@ export default function HomeAssinaturas() {
     <div className={styles.containerp}>
       <AssinaturasLogado />
     </div>
-
-
     </>
   );
 }

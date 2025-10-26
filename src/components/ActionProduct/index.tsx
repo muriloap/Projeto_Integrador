@@ -1,0 +1,191 @@
+'use client'
+import styles from "./styles.module.css";
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import ModalEditClient from "../ModalEditClient";
+import { useState } from "react";
+import TxtField from "../TxtField";
+import Divisao from "../Divisao";
+import axios from "axios";
+import { Alert } from "react-bootstrap";
+
+
+export default function ActionProduct() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    const [success, setSuccess] = useState<string | null>(null);
+
+    const [name, setName] = useState("");
+    const [category, setCategory] = useState("");
+    const [description, setDescription] = useState("");
+    const [salesUnit, setsalesUnit] = useState("");
+    const [purchasePrice, setPurchasePrice] = useState("");
+    const [salePrice, setSalePrice] = useState("");
+    const [observations, setObservations] = useState("");
+
+    const handleOpenModal = () => setIsModalOpen(true);
+    const handleCloseModal = () => setIsModalOpen(false);
+
+    const token = localStorage.getItem("token");
+
+    function cadastroSucesso() {
+        setError(null);
+        setSuccess("Produto cadastrado com sucesso!");
+    }
+
+    function cadastroFalha(error: string) {
+        setSuccess(null);
+        setError("Não foi possível cadastrar o Produto!");
+    }
+
+    let mensagemAlerta = null;
+
+    if (error) {
+        mensagemAlerta = <Alert variant="danger">{error}</Alert>;
+    } else if (success) {
+        mensagemAlerta = <Alert variant="success">{success}</Alert>;
+    }
+
+    function cadastro() {
+        const body = {
+            name,
+            category,
+            description,
+            salesUnit,
+            purchasePrice: Number(purchasePrice),
+            salePrice: Number(salePrice),
+            observations,
+            isActive: true,
+        };
+
+        console.log(body);
+
+        axios
+            .post(
+                "http://localhost:3000/clients",
+                body,
+
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
+            .then(cadastroSucesso)
+            .catch(cadastroFalha);
+
+    }
+
+
+    return (
+        <>
+            <div className={styles.containerp}>
+                <div className={styles.edit}>
+                    <div className={styles.icon} onClick={handleOpenModal}>
+                        <EditIcon sx={{ fontSize: "auto", background: "transparent" }} />
+
+                    </div>
+                </div>
+                <div className={styles.delete}>
+                    <div className={styles.icon}>
+                        <DeleteForeverIcon className={styles.icon2} sx={{ fontSize: "auto", background: "transparent" }} />
+                    </div>
+                </div>
+            </div>
+
+            {isModalOpen && (
+                <div className={styles.modalOverlay} onClick={handleCloseModal}>
+                    <div
+                        className={styles.modalContent}
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <button className={styles.modalClose} onClick={handleCloseModal}>
+                            ×
+                        </button>
+
+                        <h2 className={styles.modalTitle}>Editar Produto</h2>
+
+                        <p className={styles.modalDescription}>
+                            Modifique os campos abaixo para adicionar um Editar o Produto.
+                        </p>
+
+                        {mensagemAlerta}
+
+                        <div className={styles.formGroup}>
+                            <Divisao title="PRODUTO" />
+                            <div className={styles.dadosProduto}>
+                                <TxtField
+                                    label="Nome do Produto"
+                                    type="text"
+                                    fullWidth
+                                    onChange={setName}
+                                />
+                                <TxtField
+                                    label="Categoria"
+                                    type="text"
+                                    fullWidth
+                                    onChange={setCategory}
+                                />
+                                <TxtField
+                                    label="Descrição"
+                                    type="text"
+                                    fullWidth
+                                    onChange={setDescription}
+                                />
+                                <TxtField
+                                    label="Unidade de venda"
+                                    type="text"
+                                    fullWidth
+                                    onChange={setsalesUnit}
+                                />
+                                <div className={styles.ProductPrice}>
+                                    <div className={styles.price}>
+                                        <a>Preço de compra</a>
+                                        <TxtField
+                                            prefix="R$"
+                                            formatCurrency
+                                            onChange={setPurchasePrice}
+                                            type="text"
+                                            fullWidth
+                                        />
+                                    </div>
+                                    <div className={styles.price}>
+                                        <a>Preço de venda</a>
+                                        <TxtField
+                                            prefix="R$"
+                                            formatCurrency
+                                            onChange={setSalePrice}
+                                            type="text"
+                                            fullWidth
+                                        />
+                                    </div>
+                                </div>
+                                <TxtField
+                                    label="Observações"
+                                    type="text"
+                                    fullWidth
+                                    onChange={setObservations}
+                                />
+                            </div>
+
+                            <div className={styles.dataEquipamento}></div>
+                        </div>
+
+                        <div className={styles.buttonGroup}>
+                            <button
+                                className={styles.buttonSecondary}
+                                onClick={handleCloseModal}
+                            >
+                                Cancelar
+                            </button>
+                            <button className={styles.buttonPrimary} onClick={cadastro}>
+                                Cadastrar Produto
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </>
+    )
+}

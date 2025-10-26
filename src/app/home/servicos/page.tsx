@@ -37,7 +37,7 @@ export default function PageServicos() {
 
   return (
     <>
-      <div className={styles.container}>
+      <div className={styles.containerp}>
         <ModalCliente />
         <TableServiceList services={services} />
       </div>

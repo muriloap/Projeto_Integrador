@@ -77,7 +77,7 @@ export default function Home(props: Props) {
         limparCampos()
         setSelection("PF")
     }
-    
+
     function pjClick() {
         limparCampos()
         setSelection("PJ")

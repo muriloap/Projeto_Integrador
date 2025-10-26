@@ -1,57 +1,10 @@
-:root {
-
-    --tran-02: all 0.2s ease;
-    --tran-03: all 0.3s ease;
-    --tran-04: all 0.4s ease;
-    --tran-05: all 0.5s ease;
-}
-
-.containers{
-    background: transparent;
-    width: auto;
-    min-height: 100vh;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.containers.close {
-    background: rgb(0, 0, 0); 
-    width: auto;
-    height: auto;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.page{
-    width: calc(100% - 250px);
-    min-height: 100vh;
-    background: transparent;
-    border: 5px solid gray;
-    transition: var(--tran-04);
-    flex-wrap: wrap;
-    padding: 5rem;
-}
-
-.page.close {
-    width: calc(100% - 80px);
-    background: transparent;
-    border: 5px solid gray;
-    transition: var(--tran-04);
-}
-
-.containerp{
-    background: red;
-    height: auto;
-}
-
-.container{
+.dashboard {
     display: flex;
     flex-wrap: wrap;
     position: absolute;
+    top: 4rem;
+    left: 7rem;
     background: transparent;
-}
-
-.containerPage{
     display: flex;
-    flex-direction: row;
+    gap: 50px;
 }

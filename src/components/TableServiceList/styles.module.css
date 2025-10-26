@@ -3,23 +3,19 @@
 .tabelaContainer {
   font-family: "Poppins", sans-serif;
   text-align: center;
-  width: auto;
   height: auto;
   margin-top: 8rem;
   margin-bottom: 2rem;
-  background: #f9fafb;
-  border-radius: 12px;
-  padding: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  background-color: transparent;
 }
 
 .tabelaServices {
-  width: auto;
+  width: 100%;
   height: auto;
-  border-collapse: collapse;
-  background: white;
+  background-color: transparent;
   border-radius: 8px;
 }
+
 
 .tabelaServices thead th {
   color: #000000;
@@ -36,7 +32,6 @@
   background: rgb(240, 240, 240);
   border: 2px solid gray;
   align-items: stretch;
-  max-width: 20.1rem;
 }
 
 .tabelaServices th {

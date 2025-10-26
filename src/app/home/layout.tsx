@@ -1,7 +1,7 @@
 'use client'
 import Sidebar from "@/components/SideBar";
 import { ReactNode, useState } from "react"
-import styles from './page.module.css'
+import styles from './layout.module.css'
 import PrivateRoute from "@/components/PrivateRouter";
 
 
@@ -23,17 +23,15 @@ export default function HomeLayout(props: Props) {
         <>
             <PrivateRoute>
                 <div className={styles.containerp}>
-
-                    <div className={`${styles.containers} ${open ? '' : styles.close}`}>
-                        <Sidebar onClick={Mudarcss} />
-                        <div className={`${styles.page} ${open ? '' : styles.close}`}>
-                            {props.children}
-                        </div>
+                    <Sidebar onClick={Mudarcss} />
+                    <div className={`${styles.page} ${open ? '' : styles.close}`}>
+                        {props.children}
                     </div>
-
                 </div>
-
             </PrivateRoute>
         </>
     )
+
 }
+
+

@@ -1,6 +1,4 @@
 "use client";
-import BotaoNovo from "@/components/ModalOs";
-import styles from "./page.module.css";
 import BarraDePesquisa from "@/components/BarraDePesquisa";
 import ModalProduct from "@/components/ModalProduct";
 import ProductList from "@/components/TableProductList";
@@ -36,10 +34,8 @@ export default function PageProdutos() {
 
   return (
     <>
-      <div className={styles.container}>
-        <ModalProduct />
-        <ProductList products={products} />
-      </div>
+      <ModalProduct />
+      <ProductList products={products} />
       <BarraDePesquisa />
     </>
   );

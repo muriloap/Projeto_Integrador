@@ -2,7 +2,6 @@ import ModalEditService from '../ModalEditService';
 import styles from "./styles.module.css";
 
 type Props = {
-    id: number;
     nameService: string;
     description: string;
     observations: string;
@@ -10,7 +9,6 @@ type Props = {
 };
 
 export default function TableService({
-  id,
   nameService,
   description,
   observations,
@@ -19,7 +17,6 @@ export default function TableService({
 
   return (
     <tr>
-      <td className={styles.td}>{id}</td>
       <td className={styles.td}>{nameService}</td>
       <td className={styles.document}>{description}</td>
       <td className={styles.td}>{observations}</td>

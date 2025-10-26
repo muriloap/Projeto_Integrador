@@ -1,8 +1,6 @@
 'use client'
-import BarraDePesquisa from "@/components/BarraDePesquisa";
 import ModalCliente from "@/components/ModalClients";
 import styles from "./page.module.css";
-import ClientList from "@/components/ClientList";
 import { useEffect, useState } from "react";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import TableClientList from "@/components/TableClientList";

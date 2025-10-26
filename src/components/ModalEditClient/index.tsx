@@ -77,40 +77,7 @@ export default function ModalEditClient() {
 
   return (
     <>
-      <Fab
-        variant="extended"
-        onClick={handleOpenModal}
-        disableRipple
-        disableFocusRipple
-        sx={{
-          padding: "20px",
-          fontSize: "15px",
-          gap: "10px",
-          backgroundColor: "#304FFE !important",
-          color: "white !important",
-          fontWeight: "bold",
-          textTransform: "none",
-          boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.3)",
-          transition: "background-color 0.2s ease, transform 0.1s ease",
-          "&:hover": {
-            backgroundColor: "#1E40FF !important",
-            transform: "scale(1.05)",
-          },
-          "&:focus": {
-            backgroundColor: "#304FFE !important",
-          },
-          "&:active": {
-            backgroundColor: "#1E3AFF !important",
-            transform: "scale(0.98)",
-          },
-          "&:visited": {
-            backgroundColor: "#304FFE !important",
-          },
-        }}
-      >
-        <EditIcon sx={{background: "transparent"}}/> Editar
-      </Fab>
-
+      
       {/* Modal */}
       {isModalOpen && (
         <div className={styles.modalOverlay} onClick={handleCloseModal}>

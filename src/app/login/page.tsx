@@ -38,9 +38,12 @@ export default function Home() {
   }
 
   function entrar(): void {
-    auth.login(email, password).then(entrarSucesso).catch(entrarFalha);
+    auth
+      .login(email, password)
+      .then(entrarSucesso)
+      .catch(entrarFalha);
   }
-  
+
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault(); // Evita o reload da página
     entrar();
