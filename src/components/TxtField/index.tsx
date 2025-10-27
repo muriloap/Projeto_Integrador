@@ -21,6 +21,8 @@ export default function TxtField(props: Props) {
     props.formatCurrency ? "00,00" : props.value || ""
   );
 
+  const [texto, setTexto]= useState(props.value)
+
   function formatCurrency(value: string) {
     const numericValue = value.replace(/\D/g, "");
     if (!numericValue) return "";
@@ -52,6 +54,7 @@ export default function TxtField(props: Props) {
   }
 
   function handleTextAreaChange(e: ChangeEvent<HTMLTextAreaElement>) {
+    setTexto(e.target.value)
     if (props.onChange) {
       props.onChange(e.target.value);
     }
@@ -75,6 +78,7 @@ export default function TxtField(props: Props) {
               className={styles.input}
               placeholder={props.label}
               onChange={handleTextAreaChange}
+              value={texto}
               rows={4} // você pode ajustar ou tornar prop também
             />
           ) : (

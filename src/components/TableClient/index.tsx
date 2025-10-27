@@ -1,32 +1,25 @@
+import Client from "@/models/client";
+import ActionClient from "../ActionClient";
 import ModalEditClient from "../ModalEditClient";
 import ModalEditProduct from "../ModalEditProduct";
 import styles from "./styles.module.css";
 
 type Props = {
-  id: number;
-  name: string;
-  document: string;
-  phone: string;
-  address: string;
+  client: Client;
 };
 
 export default function TableClient({
-  id,
-  name,
-  document,
-  phone,
-  address,
+ client
 }: Props) {
 
   return (
     <tr>
-      <td className={styles.td}>{id}</td>
-      <td className={styles.td}>{name}</td>
-      <td className={styles.document}>{document}</td>
-      <td className={styles.td}>{address}</td>
-      <td className={styles.td}>{phone}</td>
+      <td className={styles.td}>{client.name}</td>
+      <td className={styles.document}>{client.document}</td>
+      <td className={styles.td}>{client.address}</td>
+      <td className={styles.td}>{client.phone}</td>
       <td className={styles.td}>
-        <ModalEditClient />
+        <ActionClient client={client}/>
       </td>
     </tr>
   );

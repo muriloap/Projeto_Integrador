@@ -1,32 +1,22 @@
-import Action from "../ActionProduct";
+import Product from "@/models/product";
 import ModalEditProduct from "../ModalEditProduct";
 import styles from "./styles.module.css";
+import ActionProduct from "../ActionProduct";
 
 type Props = {
-  name: string;
-  purchasePrice: number;
-  salePrice: number;
-  salesUnit: string;
+  product: Product;
 };
 
 export default function TableProduct({
-  name,
-  purchasePrice,
-  salePrice,
-  salesUnit,
+  product
 }: Props) {
-  const formatPrice = (value: number) =>
-    value.toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    });
 
   return (
     <tr>
-      <td className={styles.td}>{name}</td>
-      <td className={styles.valor}>{formatPrice(purchasePrice)}</td>
-      <td className={styles.valor}>{formatPrice(salePrice)}</td>
-      <td className={styles.valor}><Action/></td>
+      <td className={styles.td}>{product.name}</td>
+      <td className={styles.valor}>{product.purchasePrice}</td>
+      <td className={styles.valor}>{product.salePrice}</td>
+      <td className={styles.valor}><ActionProduct product={product}/></td>
     </tr>
   );
 }

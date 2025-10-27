@@ -19,6 +19,8 @@ export default function ActionProduct(props: Props) {
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState<string | null>(null);
 
+    
+
     const [name, setName] = useState("");
     const [category, setCategory] = useState("");
     const [description, setDescription] = useState("");

@@ -7,6 +7,8 @@ type Props = {
 };
 
 export default function TableProductList({ products }: Props) {
+
+
   return (
     <div className={styles.tableContainer}>
       <table className={styles.tableProducts}>
@@ -22,10 +24,7 @@ export default function TableProductList({ products }: Props) {
           {products.map((produto) => (
             <TableProduct
               key={produto.id}
-              name={produto.name}
-              purchasePrice={produto.purchasePrice}
-              salePrice={produto.salePrice}
-              salesUnit={produto.salesUnit}
+              product={produto}
             />
           ))}
         </tbody>
