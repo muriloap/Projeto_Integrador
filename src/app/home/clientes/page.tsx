@@ -14,8 +14,8 @@ export default function PageClientes() {
     setClients(response.data);
   }
 
-  function falha(error: AxiosError) {
-    alert(error);
+  function falha(_error: AxiosError) {
+    
   }
 
   function loadClients() {

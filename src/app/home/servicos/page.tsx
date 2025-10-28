@@ -16,8 +16,8 @@ export default function PageServicos() {
     setServices(response.data);
   }
 
-  function falha(error: AxiosError) {
-    alert(error);
+  function falha(_error: AxiosError) {
+    
   }
 
   function loadServices() {

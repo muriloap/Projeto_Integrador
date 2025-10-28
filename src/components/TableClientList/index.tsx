@@ -24,8 +24,7 @@ export default function TableClientList({ clients }: Props) {
           {clients.map((client) => (
             <TableClient
               key={client.id}
-              client={client}
-              
+              client={client} 
             />
           ))}
         </tbody>

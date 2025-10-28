@@ -8,6 +8,7 @@ import styles from "./styles.module.css"
 import Divisao from '@/components/Divisao';
 import TxtField from '@/components/TxtField';
 import Btn from '@/components/Btn';
+import { Alert } from 'react-bootstrap';
 
 
 type Props = {
@@ -41,13 +42,16 @@ export default function Home(props: Props) {
     const [site, setSite] = useState('');
     const [phone, setPhone] = useState('');
 
+    const [error, setError] = useState<string | null>(null);
+    const [success, setSuccess] = useState<string | null>(null);
+
 
     function sucesso(_res: AxiosResponse) {
         alert("Teste")
     }
 
-    function falha(error: AxiosError) {
-        alert(error)
+    function falha(error: AxiosError<any>) {
+        setError(error.response?.data)
 
     }
 
@@ -118,6 +122,14 @@ export default function Home(props: Props) {
 
     }
 
+    let mensagemAlerta = null;
+
+    if (error) {
+        mensagemAlerta = <Alert variant="danger">{error}</Alert>;
+    } else if (success) {
+        mensagemAlerta = <Alert variant="success">{success}</Alert>;
+    }
+
     return (
         <>
             <div className={styles.containerp}>
@@ -130,6 +142,8 @@ export default function Home(props: Props) {
                 </div>
 
                 <div className={styles.containers}>
+
+                    {mensagemAlerta}
 
                     {
                         selection === "PF" ?

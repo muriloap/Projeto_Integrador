@@ -5,6 +5,9 @@ import AddIcon from "@mui/icons-material/Add";
 import styles from "./styles.module.css";
 import Divisao from "../Divisao";
 import TxtField from "../TxtField";
+import Client from "@/models/client";
+
+
 
 export default function ModalOS() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,6 +18,10 @@ export default function ModalOS() {
 
   return (
     <>
+
+    <tbody>
+              
+            </tbody>
       <Fab
         variant="extended"
         onClick={handleOpenModal}

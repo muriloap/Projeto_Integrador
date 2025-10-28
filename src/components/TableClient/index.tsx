@@ -1,7 +1,5 @@
 import Client from "@/models/client";
 import ActionClient from "../ActionClient";
-import ModalEditClient from "../ModalEditClient";
-import ModalEditProduct from "../ModalEditProduct";
 import styles from "./styles.module.css";
 
 type Props = {
