@@ -10,18 +10,7 @@ import TxtField from '@/components/TxtField';
 import Btn from '@/components/Btn';
 import { Alert } from 'react-bootstrap';
 
-
-type Props = {
-    onEnviando(): void;
-    onEnviadoSucesso(): void;
-    onEnviadoFalha(): void;
-}
-
-
-
-
-
-export default function Home(props: Props) {
+export default function Home() {
 
     const [emailCont, setEmailCont] = useState('');
     const [emailCad, setEmailCad] = useState('');
@@ -47,7 +36,7 @@ export default function Home(props: Props) {
 
 
     function sucesso(_res: AxiosResponse) {
-        alert("Teste")
+        setSuccess("Dados do Cliente alterado com sucesso!");
     }
 
     function falha(error: AxiosError<any>) {
@@ -55,7 +44,7 @@ export default function Home(props: Props) {
 
     }
 
-    function limparCampos() {
+    function limpaCampos() {
         setNome('');
         setLastName('');
         setDocument('');
@@ -78,12 +67,16 @@ export default function Home(props: Props) {
 
 
     function pfClick() {
-        limparCampos()
+        setError(null)
+        setSuccess(null)
+        limpaCampos()
         setSelection("PF")
     }
-
+    
     function pjClick() {
-        limparCampos()
+        setError(null)
+        setSuccess(null)
+        limpaCampos()
         setSelection("PJ")
     }
 
@@ -108,8 +101,7 @@ export default function Home(props: Props) {
             site
         };
 
-        console.log(body);
-
+       
         axios.post("http://localhost:3000/users", body,
 
             {
@@ -137,18 +129,18 @@ export default function Home(props: Props) {
                 <div className={styles.sel}>
 
                     <Selection variant="PF" selected={selection === "PF"} onClick={pfClick} label="Pessoa Física" />
-                    <Selection variant="PF" selected={selection === "PJ"} onClick={pjClick} label="Pessoa Juridica" />
+                    <Selection variant="PJ" selected={selection === "PJ"} onClick={pjClick} label="Pessoa Juridica" />
 
                 </div>
 
                 <div className={styles.containers}>
 
-                    {mensagemAlerta}
 
                     {
                         selection === "PF" ?
                             (<>
                                 <h1 className={styles.textModo}>PREENCHA ESSES CAMPOS COMO PESSOA FÍSICA</h1>
+                                {mensagemAlerta}
                                 <div className={styles.dadosp}>
                                     <Divisao title="Dados Pessoais" variant="default" />
                                     <TxtField value={name} label="Nome" type="text" onChange={setNome} />
@@ -194,10 +186,11 @@ export default function Home(props: Props) {
                             </>) :
                             (<>
                                 <h1 className={styles.textModo}>PREENCHA ESSES CAMPOS COMO PESSOA JURÍDICA</h1>
+                                {mensagemAlerta}
 
                                 <div className={styles.dadosp}>
                                     <Divisao title="Dados Pessoais" variant="default" />
-                                    <TxtField value={name} label="Nome" type="text" onChange={setNome} />
+                                    <TxtField label="Nome" type="text" onChange={setNome} />
                                     <TxtField value={lastName} label="Sobrenome" type="text" onChange={setLastName} />
                                     <TxtField value={companyName} label="Nome da Empresa" type="text" onChange={setCompanyName} />
                                     <TxtField value={corporateReason} label="Razão Social" type="text" onChange={setCorporateReason} />

@@ -51,7 +51,7 @@ export default function TxtField(props: Props) {
                 className={styles.input}
                 placeholder={props.label}
                 onChange={handleTextAreaChange}
-                value={texto}
+                value={props.value}
                 rows={4} // você pode ajustar ou tornar prop também
               />
             </a>
@@ -59,7 +59,7 @@ export default function TxtField(props: Props) {
             
             <a className={styles.name}>{props.label}:
               <input
-              value={texto2}
+              value={props.value}
                 className={styles.input}
                 type={
                   props.type === "password"
