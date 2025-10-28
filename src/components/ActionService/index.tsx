@@ -189,7 +189,6 @@ export default function ActionProduct(props: Props) {
                                     <div className={styles.price}>
                                         <a>Preço de compra</a>
                                         <TxtField
-                                            prefix="R$"
                                             formatCurrency
                                             onChange={setPurchasePrice}
                                             type="text"
@@ -199,7 +198,6 @@ export default function ActionProduct(props: Props) {
                                     <div className={styles.price}>
                                         <a>Preço de venda</a>
                                         <TxtField
-                                            prefix="R$"
                                             formatCurrency
                                             onChange={setSalePrice}
                                             type="text"

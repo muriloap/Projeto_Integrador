@@ -11,42 +11,20 @@ type Props = {
   multiline?: boolean; // corrigido nome
   value?: string;
   fullWidth?: boolean;
-  prefix?: string;
   formatCurrency?: boolean;
 };
 
 export default function TxtField(props: Props) {
   const [showPassword, setShowPassword] = useState(false);
-  const [displayValue, setDisplayValue] = useState(
-    props.formatCurrency ? "00,00" : props.value || ""
-  );
+  
+  const [texto, setTexto] = useState(props.value)
 
-  const [texto, setTexto]= useState(props.value)
-
-  function formatCurrency(value: string) {
-    const numericValue = value.replace(/\D/g, "");
-    if (!numericValue) return "";
-
-    const intValue = parseInt(numericValue, 10);
-    const formatted = (intValue / 100).toLocaleString("pt-BR", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    });
-
-    return formatted;
-  }
-
+  
   function handleInputChange(
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
-    let value = e.target.value;
 
-    if (props.formatCurrency) {
-      value = formatCurrency(value);
-      setDisplayValue(value);
-    } else {
-      setDisplayValue(value);
-    }
+    let value = e.target.value;
 
     if (props.onChange) {
       props.onChange(value);
@@ -63,40 +41,38 @@ export default function TxtField(props: Props) {
   return (
     <label>
       <span
-        className={`${styles.mdInput} ${
-          props.fullWidth ? styles.fullWidth : ""
-        }`}
+        className={`${styles.mdInput} ${props.fullWidth ? styles.fullWidth : ""
+          }`}
         data-label={props.label}
       >
         <div className={styles.inputWrapper}>
-          {props.prefix && (
-            <span className={styles.prefix}>{props.prefix}</span>
-          )}
-
+          
           {props.multiline ? (
-            <textarea
-              className={styles.input}
-              placeholder={props.label}
-              onChange={handleTextAreaChange}
-              value={texto}
-              rows={4} // você pode ajustar ou tornar prop também
-            />
+            <a className={styles.name}>{props.label}:
+              <textarea
+                className={styles.input}
+                placeholder={props.label}
+                onChange={handleTextAreaChange}
+                value={texto}
+                rows={4} // você pode ajustar ou tornar prop também
+              />
+            </a>
           ) : (
-            <input
-              className={`${styles.input} ${
-                props.prefix ? styles.inputWithPrefix : ""
-              }`}
-              value={displayValue}
-              type={
-                props.type === "password"
-                  ? showPassword
-                    ? "text"
-                    : "password"
-                  : props.type
-              }
-              placeholder={props.label}
-              onChange={handleInputChange}
-            />
+            
+            <a className={styles.name}>{props.label}:
+              <input
+                className={styles.input}
+                type={
+                  props.type === "password"
+                    ? showPassword
+                      ? "text"
+                      : "password"
+                    : props.type
+                }
+                placeholder={props.label}
+                onChange={handleInputChange}
+              />
+            </a>
           )}
         </div>
 

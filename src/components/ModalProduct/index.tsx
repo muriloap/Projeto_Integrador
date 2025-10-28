@@ -173,19 +173,17 @@ export default function ModalProduct() {
                 />
                 <div className={styles.ProductPrice}>
                   <div className={styles.price}>
-                    <a>Preço de compra</a>
                     <TxtField
-                      prefix="R$"
+                      label="Preço de Compra"
                       formatCurrency
                       onChange={setPurchasePrice}
                       type="text"
                       fullWidth
-                    />
+                      />
                   </div>
                   <div className={styles.price}>
-                    <a>Preço de venda</a>
                     <TxtField
-                      prefix="R$"
+                      label="Preço de Venda"
                       formatCurrency
                       onChange={setSalePrice}
                       type="text"

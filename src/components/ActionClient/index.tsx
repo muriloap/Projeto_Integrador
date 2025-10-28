@@ -134,7 +134,7 @@ export default function ActionClient(props: Props) {
         setSelection("PJ");
     }
 
-    
+
 
 
     return (
@@ -154,235 +154,234 @@ export default function ActionClient(props: Props) {
             </div>
 
             {isModalOpen && (
-            <div className={styles.modalOverlay} onClick={handleCloseModal}>
-                <div
-                    className={styles.modalContent}
-                    onClick={(e) => e.stopPropagation()}
-                >
-                    <button className={styles.modalClose} onClick={handleCloseModal}>
-                        ×
-                    </button>
+                <div className={styles.modalOverlay} onClick={handleCloseModal}>
+                    <div
+                        className={styles.modalContent}
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <button className={styles.modalClose} onClick={handleCloseModal}>
+                            ×
+                        </button>
 
-                    <h2 className={styles.modalTitle}>Editar Clientes</h2>
+                        <h2 className={styles.modalTitle}>Editar Clientes</h2>
 
-                    <p className={styles.modalDescription}>
-                        Preencha os dados abaixo para editar os Dados do Cliente.
-                    </p>
+                        <p className={styles.modalDescription}>
+                            Preencha os dados abaixo para editar os Dados do Cliente.
+                        </p>
 
-                    {mensagemAlerta}
+                        {mensagemAlerta}
 
-                    <div className={styles.formGroup}>
-                        <div className={styles.containerp}>
-                            <div className={styles.sel}>
-                                <Selection
-                                    variant="PF"
-                                    selected={selection === "PF"}
-                                    onClick={pfClick}
-                                    label="Pessoa Física"
-                                />
-                                <Selection
-                                    variant="PF"
-                                    selected={selection === "PJ"}
-                                    onClick={pjClick}
-                                    label="Pessoa Juridica"
-                                />
-                            </div>
+                        <div className={styles.formGroup}>
+                            <div className={styles.containerClient}>
+                                <div className={styles.sel}>
+                                    <Selection
+                                        variant="PF"
+                                        selected={selection === "PF"}
+                                        onClick={pfClick}
+                                        label="Pessoa Física"
+                                    />
+                                    <Selection
+                                        variant="PF"
+                                        selected={selection === "PJ"}
+                                        onClick={pjClick}
+                                        label="Pessoa Juridica"
+                                    />
+                                </div>
 
-                            <div className={styles.containers}>
-                                {selection === "PF" ? (
-                                    <>
-                                        <h1 className={styles.textModo}>
-                                            PREENCHA ESSES CAMPOS PARA CLIENTE PESSOA FÍSICA
-                                        </h1>
-                                        <div className={styles.dadosp}>
-                                            <Divisao title="Dados Pessoais" variant="default" />
-                                            <TxtField
-                                                value={props.client.name}
-                                                label="Nome"
-                                                type="text"
-                                                onChange={setNome}
-                                            />
-                                            <TxtField
-                                                value={props.client.name}
-                                                label="Sobrenome"
-                                                type="text"
-                                                onChange={setLastName}
-                                            />
-                                            <TxtField
-                                                value={props.client.document}
-                                                label="CPF"
-                                                type="text"
-                                                onChange={setDocument}
-                                            />
-                                        </div>
+                                <div className={styles.containers}>
+                                    {selection === "PF" ? (
+                                        <>
+                                            <h1 className={styles.textModo}>
+                                                PREENCHA ESSES CAMPOS PARA CLIENTE PESSOA FÍSICA
+                                            </h1>
+                                            <div className={styles.dadosp}>
+                                                <Divisao title="Dados Pessoais" variant="default" />
+                                                <TxtField
+                                                    value={props.client.name}
+                                                    label="Nome"
+                                                    type="text"
+                                                    onChange={setNome}
+                                                />
+                                                <TxtField
+                                                    label="Sobrenome"
+                                                    type="text"
+                                                    onChange={setLastName}
+                                                />
+                                                <TxtField
+                                                    value={props.client.document}
+                                                    label="CPF"
+                                                    type="text"
+                                                    onChange={setDocument}
+                                                />
+                                            </div>
 
-                                        <div className={styles.end}>
-                                            <Divisao title="Endereço" variant="default" />
-                                            <TxtField
-                                                value={props.client.cep}
-                                                label="CEP"
-                                                type="text"
-                                                onChange={setCep}
-                                            />
-                                            <TxtField
-                                                value={props.client.address}
-                                                label="Endereço"
-                                                type="text"
-                                                onChange={setAddress}
-                                            />
-                                            <TxtField
-                                                value={props.client.number}
-                                                label="Número"
-                                                type="text"
-                                                onChange={setNumber}
-                                            />
-                                            <TxtField
-                                                value={props.client.neighborhood}
-                                                label="Bairro"
-                                                type="text"
-                                                onChange={setNeighborhood}
-                                            />
-                                            <TxtField
-                                                value={props.client.state}
-                                                label="Estado"
-                                                type="text"
-                                                onChange={setState}
-                                            />
-                                            <TxtField
-                                                value={props.client.city}
-                                                label="Cidade"
-                                                type="text"
-                                                onChange={setCity}
-                                            />
-                                        </div>
+                                            <div className={styles.end}>
+                                                <Divisao title="Endereço" variant="default" />
+                                                <TxtField
+                                                    value={props.client.cep}
+                                                    label="CEP"
+                                                    type="text"
+                                                    onChange={setCep}
+                                                />
+                                                <TxtField
+                                                    value={props.client.address}
+                                                    label="Endereço"
+                                                    type="text"
+                                                    onChange={setAddress}
+                                                />
+                                                <TxtField
+                                                    value={props.client.number}
+                                                    label="Número"
+                                                    type="text"
+                                                    onChange={setNumber}
+                                                />
+                                                <TxtField
+                                                    value={props.client.neighborhood}
+                                                    label="Bairro"
+                                                    type="text"
+                                                    onChange={setNeighborhood}
+                                                />
+                                                <TxtField
+                                                    value={props.client.state}
+                                                    label="Estado"
+                                                    type="text"
+                                                    onChange={setState}
+                                                />
+                                                <TxtField
+                                                    value={props.client.city}
+                                                    label="Cidade"
+                                                    type="text"
+                                                    onChange={setCity}
+                                                />
+                                            </div>
 
-                                        <div className={styles.contato}>
-                                            <Divisao title="Contato" variant="default" />
-                                            <TxtField
-                                                value={props.client.phone}
-                                                label="Telefone"
-                                                type="text"
-                                                onChange={setPhone}
-                                            />
-                                            <TxtField
-                                                value={props.client.email}
-                                                label="Email"
-                                                type="text"
-                                                onChange={setEmailCont}
-                                            />
-                                        </div>
-                                    </>
-                                ) : (
-                                    <>
-                                        <h1 className={styles.textModo}>
-                                            PREENCHA ESSES CAMPOS PARA CLIENTE PESSOA JURÍDICA
-                                        </h1>
+                                            <div className={styles.contato}>
+                                                <Divisao title="Contato" variant="default" />
+                                                <TxtField
+                                                    value={props.client.phone}
+                                                    label="Telefone"
+                                                    type="text"
+                                                    onChange={setPhone}
+                                                />
+                                                <TxtField
+                                                    value={props.client.email}
+                                                    label="Email"
+                                                    type="text"
+                                                    onChange={setEmailCont}
+                                                />
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <h1 className={styles.textModo}>
+                                                PREENCHA ESSES CAMPOS PARA CLIENTE PESSOA JURÍDICA
+                                            </h1>
 
-                                        <div className={styles.dadosp}>
-                                            <Divisao title="Dados Pessoais" variant="default" />
-                                            <TxtField
-                                                value={companyName}
-                                                label="Nome da Empresa"
-                                                type="text"
-                                                onChange={setCompanyName}
-                                            />
-                                            <TxtField
-                                                value={corporateReason}
-                                                label="Razão Social"
-                                                type="text"
-                                                onChange={setCorporateReason}
-                                            />
-                                            <TxtField
-                                                value={props.client.document}
-                                                label="CNPJ"
-                                                type="text"
-                                                onChange={setDocument}
-                                            />
-                                            <TxtField
-                                                value={stateRegistration}
-                                                label="Incrisção Estadual"
-                                                type="text"
-                                                onChange={setStateRegistration}
-                                            />
-                                        </div>
+                                            <div className={styles.dadosp}>
+                                                <Divisao title="Dados Pessoais" variant="default" />
+                                                <TxtField
+                                                    value={companyName}
+                                                    label="Nome da Empresa"
+                                                    type="text"
+                                                    onChange={setCompanyName}
+                                                />
+                                                <TxtField
+                                                    value={corporateReason}
+                                                    label="Razão Social"
+                                                    type="text"
+                                                    onChange={setCorporateReason}
+                                                />
+                                                <TxtField
+                                                    value={props.client.document}
+                                                    label="CNPJ"
+                                                    type="text"
+                                                    onChange={setDocument}
+                                                />
+                                                <TxtField
+                                                    value={stateRegistration}
+                                                    label="Incrisção Estadual"
+                                                    type="text"
+                                                    onChange={setStateRegistration}
+                                                />
+                                            </div>
 
-                                        <div className={styles.end}>
-                                            <Divisao title="Endereço" variant="default" />
-                                            <TxtField
-                                                value={props.client.cep}
-                                                label="CEP"
-                                                type="text"
-                                                onChange={setCep}
-                                            />
-                                            <TxtField
-                                                value={props.client.number}
-                                                label="Número"
-                                                type="text"
-                                                onChange={setNumber}
-                                            />
-                                            <TxtField
-                                                value={props.client.address}
-                                                label="Endereço"
-                                                type="text"
-                                                onChange={setAddress}
-                                            />
-                                            <TxtField
-                                                value={props.client.neighborhood}
-                                                label="Bairro"
-                                                type="text"
-                                                onChange={setNeighborhood}
-                                            />
-                                            <TxtField
-                                                value={props.client.state}
-                                                label="Estado"
-                                                type="text"
-                                                onChange={setState}
-                                            />
-                                            <TxtField
-                                                value={props.client.city}
-                                                label="Cidade"
-                                                type="text"
-                                                onChange={setCity}
-                                            />
-                                        </div>
+                                            <div className={styles.end}>
+                                                <Divisao title="Endereço" variant="default" />
+                                                <TxtField
+                                                    value={props.client.cep}
+                                                    label="CEP"
+                                                    type="text"
+                                                    onChange={setCep}
+                                                />
+                                                <TxtField
+                                                    value={props.client.number}
+                                                    label="Número"
+                                                    type="text"
+                                                    onChange={setNumber}
+                                                />
+                                                <TxtField
+                                                    value={props.client.address}
+                                                    label="Endereço"
+                                                    type="text"
+                                                    onChange={setAddress}
+                                                />
+                                                <TxtField
+                                                    value={props.client.neighborhood}
+                                                    label="Bairro"
+                                                    type="text"
+                                                    onChange={setNeighborhood}
+                                                />
+                                                <TxtField
+                                                    value={props.client.state}
+                                                    label="Estado"
+                                                    type="text"
+                                                    onChange={setState}
+                                                />
+                                                <TxtField
+                                                    value={props.client.city}
+                                                    label="Cidade"
+                                                    type="text"
+                                                    onChange={setCity}
+                                                />
+                                            </div>
 
-                                        <div className={styles.contato}>
-                                            <Divisao title="Contato" variant="default" />
-                                            <TxtField
-                                                value={props.client.phone}
-                                                label="Telefone"
-                                                type="text"
-                                                onChange={setPhone}
-                                            />
-                                            <TxtField
-                                                value={props.client.email}
-                                                label="Email"
-                                                type="text"
-                                                onChange={setEmailCont}
-                                            />
-                                        </div>
-                                    </>
-                                )}
+                                            <div className={styles.contato}>
+                                                <Divisao title="Contato" variant="default" />
+                                                <TxtField
+                                                    value={props.client.phone}
+                                                    label="Telefone"
+                                                    type="text"
+                                                    onChange={setPhone}
+                                                />
+                                                <TxtField
+                                                    value={props.client.email}
+                                                    label="Email"
+                                                    type="text"
+                                                    onChange={setEmailCont}
+                                                />
+                                            </div>
+                                        </>
+                                    )}
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div className={styles.buttonGroup}>
-                        <button
-                            className={styles.buttonSecondary}
-                            onClick={handleCloseModal}
-                        >
-                            Cancelar
-                        </button>
-                        <button
-                            className={styles.buttonPrimary}
-                            onClick={save}
-                        >
-                            Salvar
-                        </button>
+                        <div className={styles.buttonGroup}>
+                            <button
+                                className={styles.buttonSecondary}
+                                onClick={handleCloseModal}
+                            >
+                                Cancelar
+                            </button>
+                            <button
+                                className={styles.buttonPrimary}
+                                onClick={save}
+                            >
+                                Salvar
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
             )}
 
             {IsDeleteModal && (
@@ -411,7 +410,6 @@ export default function ActionClient(props: Props) {
 
                             </div>
 
-                            <div className={styles.dataEquipamento}></div>
                         </div>
 
                         <div className={styles.buttonGroup}>
