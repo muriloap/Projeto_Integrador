@@ -1,24 +1,27 @@
-'use client'
+"use client";
 import ModalCliente from "@/components/ModalClients";
-import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import TableClientList from "@/components/TableClientList";
+import Client from "@/models/client";
+import BarraDePesquisa from "@/components/BarraDePesquisa";
 
-export default function PageClientes() {
-  const token = localStorage.getItem("token");
+export default function PageProdutos() {
+  const token =
+    typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
-  const [clients, setClients] = useState([]);
+  const [products, setProducts] = useState<Client[]>([]);
+  const [filter, setFilter] = useState("");
 
   function sucesso(response: AxiosResponse) {
-    setClients(response.data);
+    setProducts(response.data as Client[]);
   }
 
   function falha(error: AxiosError) {
-    alert(error);
+    alert(error?.message ?? "Erro ao carregar produtos");
   }
 
-  function loadClients() {
+  function loadProducts() {
     axios
       .get("http://localhost:3000/clients", {
         headers: {
@@ -30,14 +33,21 @@ export default function PageClientes() {
       .catch(falha);
   }
 
-  useEffect(loadClients, []);
+  useEffect(() => {
+    loadProducts();
+  }, []);
+
+  const filteredProducts = products.filter((product) =>
+    (product.name || "").toLowerCase().includes(filter.toLowerCase())
+  );
 
   return (
     <>
-      <div className={styles.container}>
-        <ModalCliente />
-        <TableClientList clients={clients}/>
-      </div>
+      <ModalCliente />
+
+      <BarraDePesquisa onSearch={setFilter} />
+
+      <TableClientList clients={filteredProducts} />
     </>
   );
 }

@@ -6,21 +6,24 @@ import ModalService from "@/components/ModalService";
 import { useEffect, useState } from "react";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import TableServiceList from "@/components/TableServiceList";
+import Service from "@/models/service";
 
-export default function PageServicos() {
-  const token = localStorage.getItem("token");
+export default function PageProdutos() {
+  const token =
+    typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
-  const [services, setServices] = useState([]);
+  const [products, setProducts] = useState<Service[]>([]);
+  const [filter, setFilter] = useState("");
 
   function sucesso(response: AxiosResponse) {
-    setServices(response.data);
+    setProducts(response.data as Service[]);
   }
 
   function falha(error: AxiosError) {
-    alert(error);
+    alert(error?.message ?? "Erro ao carregar produtos");
   }
 
-  function loadServices() {
+  function loadProducts() {
     axios
       .get("http://localhost:3000/services", {
         headers: {
@@ -32,15 +35,21 @@ export default function PageServicos() {
       .catch(falha);
   }
 
-  useEffect(loadServices, []);
+  useEffect(() => {
+    loadProducts();
+  }, []);
+
+  const filteredProducts = products.filter((product) =>
+    (product.nameService || "").toLowerCase().includes(filter.toLowerCase())
+  );
 
   return (
     <>
-      <div className={styles.containerp}>
-        <ModalService/>
-        <TableServiceList services={services} />
-      </div>
-      <BarraDePesquisa />
+      <ModalService />
+
+      <BarraDePesquisa onSearch={setFilter} />
+
+      <TableServiceList services={filteredProducts} />
     </>
   );
 }

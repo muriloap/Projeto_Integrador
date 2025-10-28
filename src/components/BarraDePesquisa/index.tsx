@@ -2,7 +2,11 @@ import React from "react";
 import styles from './styles.module.css'
 import SearchIcon from '@mui/icons-material/Search';
 
-export default function BarraDePesquisa() {
+type Props = {
+  onSearch: (valor: string) => void;
+}
+
+export default function BarraDePesquisa({onSearch}: Props) {
 
   return (
     <div className={styles.searchContainer}>
@@ -14,6 +18,7 @@ export default function BarraDePesquisa() {
           type="text"
           placeholder="Digite o Número da Ordem de Serviço que deseja Buscar"
           className={styles.searchInput}
+          onChange={(e) => onSearch(e.target.value)}
         />
       </div>
     </div>
