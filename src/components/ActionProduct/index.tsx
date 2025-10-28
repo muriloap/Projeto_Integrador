@@ -40,6 +40,7 @@ export default function ActionProduct(props: Props) {
 
         setTimeout(() => {
             handleCloseModal();
+            window.location.reload();
         }, 1000);
     }
 
@@ -54,6 +55,7 @@ export default function ActionProduct(props: Props) {
 
         setTimeout(() => {
             handleDeleteCloseModal();
+            window.location.reload();
         }, 1000);
     }
 
@@ -185,20 +187,18 @@ export default function ActionProduct(props: Props) {
                                 />
                                 <div className={styles.ProductPrice}>
                                     <div className={styles.price}>
-                                        <a>Preço de compra</a>
                                         <TxtField
-                                            prefix="R$"
-                                            formatCurrency
+                                            label="Preço de Compra"
+                                            value={props.product.purchasePrice}
                                             onChange={setPurchasePrice}
                                             type="text"
                                             fullWidth
                                         />
                                     </div>
                                     <div className={styles.price}>
-                                        <a>Preço de venda</a>
                                         <TxtField
-                                            prefix="R$"
-                                            formatCurrency
+                                            label="Preço de Venda"
+                                            value={props.product.salePrice}
                                             onChange={setSalePrice}
                                             type="text"
                                             fullWidth
@@ -246,7 +246,7 @@ export default function ActionProduct(props: Props) {
                         <h2 className={styles.modalTitle}>Deletar Produto</h2>
 
                         <p className={styles.modalDescription}>
-                            Selecione a opção deletar para DELETAR o Produto.
+                            Selecione uma das opçôes abaixo.
                         </p>
 
                         {mensagemAlerta}

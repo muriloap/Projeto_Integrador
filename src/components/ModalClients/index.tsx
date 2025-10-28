@@ -39,6 +39,10 @@ export default function ModalCliente() {
     function cadastroSucesso(_res: AxiosResponse) {
         setError(null);
         setSuccess("Cliente cadastrado com sucesso!");
+        setTimeout(() => {
+            handleCloseModal();
+            window.location.reload();
+        }, 1000);
     }
 
     function cadastroFalha(_error: AxiosError) {
@@ -157,7 +161,7 @@ export default function ModalCliente() {
                         backgroundColor: "#304FFE",
                     }}
                 />
-                Novo
+                Novo Cliente
             </Fab>
 
             {/* Modal */}

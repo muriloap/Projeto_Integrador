@@ -304,29 +304,6 @@
   transition: background-color 0.2s ease;
 }
 
-.price {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  padding-right: 300px;
-}
-
-.ProductPrice {
-  display: flex;
-  flex-direction: row;
-  gap: 3rem;
-  align-items: center;
-  justify-content: center;
-}
-
-.dadosProduto {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 100%;
-  align-items: stretch;
-}
-
 @keyframes fadeIn {
   from {
     opacity: 0;

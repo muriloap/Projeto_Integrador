@@ -26,11 +26,15 @@ export default function ModalService() {
     function cadastroSucesso() {
         setError(null);
         setSuccess("Serviço cadastrado com sucesso!");
+        setTimeout(() => {
+            handleCloseModal();
+            window.location.reload();
+        }, 1000);
     }
 
     function cadastroFalha(error: AxiosError) {
         setSuccess(null);
-        console.log()
+        console.log(error)
         setError("Não foi possível cadastrar o Serviço!");
     }
 
@@ -66,10 +70,6 @@ export default function ModalService() {
             )
             .then(cadastroSucesso)
             .catch(cadastroFalha);
-
-        setTimeout(() => {
-            handleCloseModal()
-        }, 1500);
     }
 
     return (
@@ -115,7 +115,7 @@ export default function ModalService() {
                         backgroundColor: "#304FFE",
                     }}
                 />
-                Novo
+                Novo Serviço
             </Fab>
 
             {/* Modal */}
@@ -153,6 +153,7 @@ export default function ModalService() {
                                     type="text"
                                     fullWidth
                                     onChange={setDescription}
+                                    multiline
                                 />
                                 
                                 <TxtField
@@ -160,12 +161,11 @@ export default function ModalService() {
                                     type="text"
                                     fullWidth
                                     onChange={setObservations}
+                                    multiline
                                 />
                                 <div className={styles.price}>
-                                    <a>Preço do Serviço</a>
                                     <TxtField
-                                        prefix="R$"
-                                        formatCurrency
+                                        label="Preço do Serviço"
                                         onChange={setPrice}
                                         type="text"
                                         fullWidth

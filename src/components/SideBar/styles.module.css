@@ -222,6 +222,11 @@
   transition: var(--tran-03);
 }
 
+.sidebar li a:hover .iconSair{
+  color: var(--primary-color);
+  transition: var(--tran-03);
+}
+
 .menulinks {
   height: calc(100% - 50px);
   display: flex;

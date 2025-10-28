@@ -7,26 +7,21 @@ import TxtField from "../TxtField";
 import Divisao from "../Divisao";
 import axios from "axios";
 import { Alert } from "react-bootstrap";
-import Product from "@/models/product";
+import Service from "@/models/service";
 
 type Props = {
-    product: Product
+    service: Service;
 }
 
-export default function ActionProduct(props: Props) {
+export default function ActionService(props: Props) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [IsDeleteModal, setIsDeleteOpenModal] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState<string | null>(null);
 
-    
-
-    const [name, setName] = useState("");
-    const [category, setCategory] = useState("");
+    const [nameService, setName] = useState("");
+    const [price, setPrice] = useState("");
     const [description, setDescription] = useState("");
-    const [salesUnit, setsalesUnit] = useState("");
-    const [purchasePrice, setPurchasePrice] = useState("");
-    const [salePrice, setSalePrice] = useState("");
     const [observations, setObservations] = useState("");
 
     const handleOpenModal = () => setIsModalOpen(true);
@@ -42,6 +37,7 @@ export default function ActionProduct(props: Props) {
 
         setTimeout(() => {
             handleCloseModal();
+            window.location.reload()
         }, 1000);
     }
 
@@ -52,16 +48,17 @@ export default function ActionProduct(props: Props) {
 
     function deletarSucesso() {
         setError(null);
-        setSuccess("Produto deletado com sucesso!");
+        setSuccess("Serviço deletado com sucesso!");
 
         setTimeout(() => {
             handleDeleteCloseModal();
+            window.location.reload()
         }, 1000);
     }
 
     function deletarFalha(error: string) {
         setSuccess(null);
-        setError("Não foi possível deletar o Produto!");
+        setError("Não foi possível deletar o Serviço!");
     }
 
     let mensagemAlerta = null;
@@ -73,28 +70,27 @@ export default function ActionProduct(props: Props) {
     }
 
     function save() {
-        const body = {
-            name,
-            category,
+         const body = {
+            nameService,
             description,
-            salesUnit,
-            purchasePrice: Number(purchasePrice),
-            salePrice: Number(salePrice),
+            price: Number(price),
             observations,
-            isActive: true,
+            isActive: true
         };
+
+        console.log(body);
 
         axios
             .put(
-                `http://localhost:3000/products/ ${props.product.id}`,
+                `http://localhost:3000/services ${props.service.id}`,
                 body,
 
                 {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
+                    headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+                },
+
+
+
             )
             .then(salvarSucesso)
             .catch(salvarFalha);
@@ -104,7 +100,7 @@ export default function ActionProduct(props: Props) {
 
         axios
             .delete(
-                `http://localhost:3000/products/ ${props.product.id}`,
+                `http://localhost:3000/services/ ${props.service.id}`,
                 {
                     headers: {
                         "Content-Type": "application/json",
@@ -145,74 +141,51 @@ export default function ActionProduct(props: Props) {
                             ×
                         </button>
 
-                        <h2 className={styles.modalTitle}>Editar Produto</h2>
+                        <h2 className={styles.modalTitle}>Editar Serviço</h2>
 
                         <p className={styles.modalDescription}>
-                            Modifique os campos abaixo para adicionar um Editar o Produto.
+                            Modifique os campos abaixo para Editar um Serviço.
                         </p>
 
                         {mensagemAlerta}
 
                         <div className={styles.formGroup}>
-                            <Divisao title="PRODUTO" />
+                            <Divisao title="Serviço" />
                             <div className={styles.dadosProduto}>
                                 <TxtField
-                                    label="Nome do Produto"
+                                    label="Nome do Serviço"
+                                    value={props.service.nameService}
                                     type="text"
-                                    value={props.product.name}
                                     fullWidth
                                     onChange={setName}
-                                />
-                                <TxtField
-                                    label="Categoria"
-                                    type="text"
-                                    value={props.product.category}
-                                    fullWidth
-                                    onChange={setCategory}
-                                />
-                                <TxtField
-                                    label="Descrição"
-                                    type="text"
-                                    value={props.product.description}
-                                    fullWidth
-                                    multiline
-                                    onChange={setDescription}
-                                />
-                                <TxtField
-                                    label="Unidade de venda"
-                                    type="text"
-                                    value={props.product.salesUnit}
-                                    fullWidth
-                                    onChange={setsalesUnit}
-                                />
-                                <div className={styles.ProductPrice}>
-                                    <div className={styles.price}>
-                                        <a>Preço de compra</a>
-                                        <TxtField
-                                            formatCurrency
-                                            onChange={setPurchasePrice}
-                                            type="text"
-                                            fullWidth
-                                        />
-                                    </div>
-                                    <div className={styles.price}>
-                                        <a>Preço de venda</a>
-                                        <TxtField
-                                            formatCurrency
-                                            onChange={setSalePrice}
-                                            type="text"
-                                            fullWidth
-                                        />
-                                    </div>
+                                    />
+                                
                                 </div>
                                 <TxtField
-                                    label="Observações"
+                                    label="Descrição"
+                                    value={props.service.description}
                                     type="text"
-                                    value={props.product.observations}
                                     fullWidth
+                                    onChange={setDescription}
                                     multiline
+                                    />
+                                
+                                <TxtField
+                                    label="Observações"
+                                    value={props.service.observations}
+                                    type="text"
+                                    fullWidth
                                     onChange={setObservations}
-                                />
+                                    multiline
+                                    />
+                                <div className={styles.price}>
+                                    <TxtField
+                                        label="Preço do Serviço"
+                                        value={props.service.price}
+                                        onChange={setPrice}
+                                        type="text"
+                                        fullWidth
+                                    />
                             </div>
 
                             <div className={styles.dataEquipamento}></div>

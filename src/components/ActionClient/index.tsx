@@ -2,7 +2,7 @@
 import styles from "./styles.module.css";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TxtField from "../TxtField";
 import Divisao from "../Divisao";
 import axios from "axios";
@@ -49,6 +49,7 @@ export default function ActionClient(props: Props) {
 
         setTimeout(() => {
             handleCloseModal();
+            window.location.reload();
         }, 1000);
     }
 
@@ -63,6 +64,7 @@ export default function ActionClient(props: Props) {
 
         setTimeout(() => {
             handleDeleteCloseModal();
+            window.location.reload();
         }, 1000);
     }
 
@@ -129,10 +131,20 @@ export default function ActionClient(props: Props) {
     function pfClick() {
         setSelection("PF");
     }
-
+    
     function pjClick() {
         setSelection("PJ");
     }
+    
+   useEffect(() => {
+    if (props.client.document) {
+      if (props.client.document.length === 11) {
+        setSelection("PF");
+      } else if (props.client.document.length === 14) {
+        setSelection("PJ");
+      }
+    }
+  }, [props.client.document]);
 
 
 
@@ -387,7 +399,7 @@ export default function ActionClient(props: Props) {
             {IsDeleteModal && (
                 <div className={styles.modalOverlay} onClick={handleDeleteCloseModal}>
                     <div
-                        className={styles.modalContent}
+                        className={styles.modalContentDelete}
                         onClick={(e) => e.stopPropagation()}
                     >
                         <button className={styles.modalClose} onClick={handleDeleteCloseModal}>
@@ -406,7 +418,7 @@ export default function ActionClient(props: Props) {
 
                             <div className={styles.dadosProduto}>
 
-                                <Alert variant="warning">Você Realmente deseja DELETAR esse Produto?</Alert>
+                                <Alert variant="warning">Você Realmente deseja DELETAR esse Cliente?</Alert>
 
                             </div>
 

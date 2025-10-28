@@ -5,7 +5,6 @@ import BarraDePesquisa from "@/components/BarraDePesquisa";
 import ModalService from "@/components/ModalService";
 import { useEffect, useState } from "react";
 import axios, { AxiosError, AxiosResponse } from "axios";
-import ModalCliente from "@/components/ModalClients";
 import TableServiceList from "@/components/TableServiceList";
 
 export default function PageServicos() {
@@ -38,7 +37,7 @@ export default function PageServicos() {
   return (
     <>
       <div className={styles.containerp}>
-        <ModalCliente />
+        <ModalService/>
         <TableServiceList services={services} />
       </div>
       <BarraDePesquisa />

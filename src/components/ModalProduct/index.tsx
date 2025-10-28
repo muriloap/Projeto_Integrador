@@ -31,8 +31,9 @@ export default function ModalProduct() {
     setSuccess("Produto cadastrado com sucesso!");
 
     setTimeout(() => {
-      handleCloseModal();
-    }, 1000);
+            handleCloseModal();
+            window.location.reload();
+        }, 1000);
   }
 
   function cadastroFalha(error: string) {
@@ -121,7 +122,7 @@ export default function ModalProduct() {
             backgroundColor: "#304FFE",
           }}
         />
-        Novo
+        Novo Produto
       </Fab>
 
       {/* Modal */}

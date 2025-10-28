@@ -12,7 +12,6 @@ export default function TableClientList({ clients }: Props) {
       <table className={styles.tabelaClients}>
         <thead>
           <tr>
-            <th>ID</th>
             <th>Nome do Cliente</th>
             <th>CPFJ/CNPJ</th>
             <th>Endereço</th>

@@ -9,7 +9,7 @@ type Props = {
   type: "text" | "email" | "password" | "number";
   onChange?(texto: string): void;
   multiline?: boolean; // corrigido nome
-  value?: string;
+  value?: string | number;
   fullWidth?: boolean;
   formatCurrency?: boolean;
 };
@@ -18,16 +18,14 @@ export default function TxtField(props: Props) {
   const [showPassword, setShowPassword] = useState(false);
   
   const [texto, setTexto] = useState(props.value)
+  const [texto2, setTexto2] = useState(props.value)
 
   
-  function handleInputChange(
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  function handleInputChange(e: ChangeEvent<HTMLInputElement>
   ) {
-
-    let value = e.target.value;
-
+    setTexto2(e.target.value)
     if (props.onChange) {
-      props.onChange(value);
+      props.onChange(e.target.value);
     }
   }
 
@@ -61,6 +59,7 @@ export default function TxtField(props: Props) {
             
             <a className={styles.name}>{props.label}:
               <input
+              value={texto2}
                 className={styles.input}
                 type={
                   props.type === "password"
