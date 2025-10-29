@@ -9,6 +9,7 @@ import Divisao from '@/components/Divisao';
 import TxtField from '@/components/TxtField';
 import Btn from '@/components/Btn';
 import { Alert } from 'react-bootstrap';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
 
@@ -34,14 +35,45 @@ export default function Home() {
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState<string | null>(null);
 
+    const router = useRouter()
 
+    
+    
+    
     function sucesso(_res: AxiosResponse) {
-        setSuccess("Dados do Cliente alterado com sucesso!");
+        setSuccess("Usuário Cadastrado com Sucesso!");
+        
+        setTimeout(() => {
+            router.push('/login') 
+        }, 1000);
     }
 
     function falha(error: AxiosError<any>) {
         setError(error.response?.data)
 
+    }
+
+    function buscarCep(valorCep: string) {
+        const cep = valorCep.replace(/\D/g, '');
+
+        if (cep.length !== 8) return;
+
+        axios.get(`https://viacep.com.br/ws/${cep}/json/`)
+            .then((res) => {
+                if (res.data.erro) {
+                    setError("CEP inválido ou não encontrado!");
+                    return;
+                }
+
+                setAddress(res.data.logradouro || '');
+                setNeighborhood(res.data.bairro || '');
+                setCity(res.data.localidade || '');
+                setState(res.data.uf || '');
+                setError(null);
+            })
+            .catch(() => {
+                setError("Erro ao buscar o CEP.");
+            });
     }
 
     function limpaCampos() {
@@ -72,7 +104,7 @@ export default function Home() {
         limpaCampos()
         setSelection("PF")
     }
-    
+
     function pjClick() {
         setError(null)
         setSuccess(null)
@@ -101,7 +133,7 @@ export default function Home() {
             site
         };
 
-       
+
         axios.post("http://localhost:3000/users", body,
 
             {
@@ -145,7 +177,7 @@ export default function Home() {
                                     <Divisao title="Dados Pessoais" variant="default" />
                                     <TxtField value={name} label="Nome" type="text" onChange={setNome} />
                                     <TxtField value={lastName} label="Sobrenome" type="text" onChange={setLastName} />
-                                    <TxtField value={document} label="CPF" type="text" onChange={setDocument} />
+                                    <TxtField value={document} label="CPF" type="text" onChange={setDocument} cpf={true} />
                                     <TxtField value={companyName} label="Nome da Empresa" type="text" onChange={setCompanyName} />
 
                                 </div>
@@ -153,7 +185,15 @@ export default function Home() {
                                 <div className={styles.end}>
 
                                     <Divisao title="Endereço" variant="default" />
-                                    <TxtField value={cep} label="CEP" type="text" onChange={setCep} />
+                                    <TxtField value={cep} label="CEP" type="text" onChange={(valor) => {
+                                        setCep(valor);
+                                        if (valor.replace(/\D/g, '').length === 8) {
+                                            buscarCep(valor);
+                                        }
+
+                                    }}
+                                        cep={true}
+                                    />
                                     <TxtField value={address} label="Endereço" type="text" onChange={setAddress} />
                                     <TxtField value={number} label="Número" type="text" onChange={setNumber} />
                                     <TxtField value={neighborhood} label="Bairro" type="text" onChange={setNeighborhood} />
@@ -165,7 +205,7 @@ export default function Home() {
                                 <div className={styles.contato}>
 
                                     <Divisao title="Contato" variant="default" />
-                                    <TxtField value={phone} label="Telefone" type="text" onChange={setPhone} />
+                                    <TxtField value={phone} label="Telefone" type="text" onChange={setPhone} phone={true} />
                                     <TxtField value={site} label="Site" type="text" onChange={setSite} />
                                     <TxtField value={emailCont} label="Email" type="text" onChange={setEmailCont} />
                                 </div>
@@ -194,7 +234,7 @@ export default function Home() {
                                     <TxtField value={lastName} label="Sobrenome" type="text" onChange={setLastName} />
                                     <TxtField value={companyName} label="Nome da Empresa" type="text" onChange={setCompanyName} />
                                     <TxtField value={corporateReason} label="Razão Social" type="text" onChange={setCorporateReason} />
-                                    <TxtField value={document} label="CNPJ" type="text" onChange={setDocument} />
+                                    <TxtField value={document} label="CNPJ" type="text" onChange={setDocument} cnpj={true} />
                                     <TxtField value={stateRegistration} label="Incrisção Estadual" type="text" onChange={setStateRegistration} />
 
                                 </div>
@@ -202,7 +242,14 @@ export default function Home() {
                                 <div className={styles.end}>
 
                                     <Divisao title="Endereço" variant="default" />
-                                    <TxtField value={cep} label="CEP" type="text" onChange={setCep} />
+                                    <TxtField value={cep} label="CEP" type="text" onChange={(valor) => {
+                                        setCep(valor);
+                                        if (valor.replace(/\D/g, '').length === 8) {
+                                            buscarCep(valor);
+                                        }
+
+                                    }}
+                                        cep={true} />
                                     <TxtField value={number} label="Número" type="text" onChange={setNumber} />
                                     <TxtField value={address} label="Endereço" type="text" onChange={setAddress} />
                                     <TxtField value={neighborhood} label="Bairro" type="text" onChange={setNeighborhood} />
@@ -214,7 +261,7 @@ export default function Home() {
                                 <div className={styles.contato}>
 
                                     <Divisao title="Contato" variant="default" />
-                                    <TxtField value={phone} label="Telefone" type="text" onChange={setPhone} />
+                                    <TxtField value={phone} label="Telefone" type="text" onChange={setPhone} phone={true} />
                                     <TxtField value={site} label="Site" type="text" onChange={setSite} />
                                     <TxtField value={emailCont} label="Email" type="text" onChange={setEmailCont} />
                                 </div>

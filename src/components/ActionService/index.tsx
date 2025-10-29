@@ -185,6 +185,7 @@ export default function ActionService(props: Props) {
                                         onChange={setPrice}
                                         type="text"
                                         fullWidth
+                                        
                                     />
                             </div>
 
