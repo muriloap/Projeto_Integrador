@@ -128,7 +128,6 @@ export default function ModalEditClient() {
                   <div className={styles.price}>
                     <a>Preço de compra</a>
                     <TxtField
-                      formatCurrency
                       onChange={setPurchasePrice}
                       type="text"
                       fullWidth
@@ -137,7 +136,6 @@ export default function ModalEditClient() {
                   <div className={styles.price}>
                     <a>Preço de venda</a>
                     <TxtField
-                      formatCurrency
                       onChange={setSalePrice}
                       type="text"
                       fullWidth
