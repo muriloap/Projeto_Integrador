@@ -49,21 +49,21 @@ export default function TxtField(props: Props) {
       .replace(/(\d{5})(\d{4})$/, "$1-$2");
   };
 
+  // Máscara CEP (formato 00000-000)
+  const maskCEP = (value: string): string => {
+    const numbers = value.replace(/\D/g, "").slice(0, 8);
+    return numbers.replace(/(\d{5})(\d{1,3})$/, "$1-$2");
+  };
+
   function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
     let value = e.target.value;
 
     if (props.cpf) value = maskCPF(value);
     if (props.cnpj) value = maskCNPJ(value);
     if (props.phone) value = maskTelefone(value);
-    if (props.cep) {
-      let valor = value.replace(/\D/g, "");
-      if (valor.length > 8) valor = valor.slice(0, 8);
-      if (valor.length > 5) {
-        valor = valor.replace(/(\d{5})(\d)/, "$1-$2");
-      }
-      props.onChange?.(valor);
-      return;
-    }
+    if (props.cep) value = maskCEP(value);
+      
+    
 
     setTexto(value);
     if (props.onChange) {
@@ -81,9 +81,8 @@ export default function TxtField(props: Props) {
   return (
     <label>
       <span
-        className={`${styles.mdInput} ${
-          props.fullWidth ? styles.fullWidth : ""
-        }`}
+        className={`${styles.mdInput} ${props.fullWidth ? styles.fullWidth : ""
+          }`}
         data-label={props.label}
       >
         <div className={styles.inputWrapper}>
@@ -102,7 +101,7 @@ export default function TxtField(props: Props) {
             <a className={styles.name}>
               {props.label}:
               <input
-                value={props.value}
+                value={texto}
                 className={styles.input}
                 type={
                   props.type === "password"

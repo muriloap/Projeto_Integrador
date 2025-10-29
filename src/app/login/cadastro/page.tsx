@@ -213,7 +213,7 @@ export default function Home() {
                       buscarCep(valor);
                     }
                   }}
-                  cep={true}
+                  cep
                 />
                 <TxtField
                   value={address}

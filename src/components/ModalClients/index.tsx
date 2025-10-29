@@ -77,6 +77,30 @@ export default function ModalCliente() {
         setSelection("PJ");
     }
 
+    function buscarCep(valorCep: string) {
+        const cep = valorCep.replace(/\D/g, "");
+
+        if (cep.length !== 8) return;
+
+        axios
+            .get(`https://viacep.com.br/ws/${cep}/json/`)
+            .then((res) => {
+                if (res.data.erro) {
+                    setError("CEP inválido ou não encontrado!");
+                    return;
+                }
+
+                setAddress(res.data.logradouro || "");
+                setNeighborhood(res.data.bairro || "");
+                setCity(res.data.localidade || "");
+                setState(res.data.uf || "");
+                setError(null);
+            })
+            .catch(() => {
+                setError("Erro ao buscar o CEP.");
+            });
+    }
+
     let mensagemAlerta = null;
 
     if (error) {
@@ -225,6 +249,7 @@ export default function ModalCliente() {
                                                     label="CPF"
                                                     type="text"
                                                     onChange={setDocument}
+                                                    cpf
                                                 />
                                             </div>
 
@@ -234,7 +259,13 @@ export default function ModalCliente() {
                                                     value={cep}
                                                     label="CEP"
                                                     type="text"
-                                                    onChange={setCep}
+                                                    cep
+                                                    onChange={(valor) => {
+                                                        setCep(valor);
+                                                        if (valor.replace(/\D/g, "").length === 8) {
+                                                            buscarCep(valor);
+                                                        }
+                                                    }}
                                                 />
                                                 <TxtField
                                                     value={address}
@@ -275,6 +306,7 @@ export default function ModalCliente() {
                                                     label="Telefone"
                                                     type="text"
                                                     onChange={setPhone}
+                                                    phone
                                                 />
                                                 <TxtField
                                                     value={emailCont}

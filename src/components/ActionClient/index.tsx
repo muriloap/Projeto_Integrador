@@ -43,6 +43,56 @@ export default function ActionClient(props: Props) {
 
     const token = localStorage.getItem("token");
 
+    useEffect(() => {
+        if (isModalOpen && props.client.cep) {
+            const cepLimpo = props.client.cep.replace(/\D/g, "");
+            if (cepLimpo.length === 8) {
+                buscarCep(props.client.cep);
+            }
+        }
+    }, [isModalOpen]);
+
+    useEffect(() => {
+        if (isModalOpen && props.client) {
+          setNome(props.client.name || "");
+          setDocument(props.client.document || "");
+          setCep(props.client.cep || "");
+          setAddress(props.client.address || "");
+          setNumber(props.client.number?.toString() || "");
+          setNeighborhood(props.client.neighborhood || "");
+          setCity(props.client.city || "");
+          setState(props.client.state || "");
+          setPhone(props.client.phone || "");
+          setEmailCont(props.client.email || "");
+        }
+      }, [isModalOpen, props.client]);
+
+    async function buscarCep(valor: string) {
+        const cepLimpo = valor.replace(/\D/g, "");
+
+        if (cepLimpo.length !== 8) return; // só busca se tiver 8 dígitos
+
+        // 🔹 limpa os campos antes de buscar novos dados
+        setAddress("");
+        setNeighborhood("");
+        setCity("");
+        setState("");
+
+        try {
+            const res = await axios.get(`https://viacep.com.br/ws/${cepLimpo}/json/`);
+
+            if (!res.data.erro) {
+                // 🔹 preenche com os dados vindos da API
+                setAddress(res.data.logradouro || "");
+                setNeighborhood(res.data.bairro || "");
+                setCity(res.data.localidade || "");
+                setState(res.data.uf || "");
+            }
+        } catch (err) {
+            console.error("Erro ao buscar CEP:", err);
+        }
+    }
+
     function salvarSucesso() {
         setError(null);
         setSuccess("Dados do Cliente alterado com sucesso!");
@@ -131,20 +181,20 @@ export default function ActionClient(props: Props) {
     function pfClick() {
         setSelection("PF");
     }
-    
+
     function pjClick() {
         setSelection("PJ");
     }
-    
-   useEffect(() => {
-    if (props.client.document) {
-      if (props.client.document.length === 11) {
-        setSelection("PF");
-      } else if (props.client.document.length === 14) {
-        setSelection("PJ");
-      }
-    }
-  }, [props.client.document]);
+
+    useEffect(() => {
+        if (props.client.document) {
+            if (props.client.document.length === 11) {
+                setSelection("PF");
+            } else if (props.client.document.length === 14) {
+                setSelection("PJ");
+            }
+        }
+    }, [props.client.document]);
 
 
 
@@ -209,7 +259,7 @@ export default function ActionClient(props: Props) {
                                             <div className={styles.dadosp}>
                                                 <Divisao title="Dados Pessoais" variant="default" />
                                                 <TxtField
-                                                    value={props.client.name}
+                                                    value={name}
                                                     label="Nome"
                                                     type="text"
                                                     onChange={setNome}
@@ -220,7 +270,7 @@ export default function ActionClient(props: Props) {
                                                     onChange={setLastName}
                                                 />
                                                 <TxtField
-                                                    value={props.client.document}
+                                                    value={document}
                                                     label="CPF"
                                                     type="text"
                                                     onChange={setDocument}
@@ -230,37 +280,46 @@ export default function ActionClient(props: Props) {
                                             <div className={styles.end}>
                                                 <Divisao title="Endereço" variant="default" />
                                                 <TxtField
-                                                    value={props.client.cep}
+                                                    value={cep}
                                                     label="CEP"
+                                                    cep
                                                     type="text"
-                                                    onChange={setCep}
+                                                    onChange={(valor) => {
+                                                        setCep(valor);
+
+                                                        const cepLimpo = valor.replace(/\D/g, "");
+                                                        if (cepLimpo.length === 8) {
+                                                            buscarCep(valor); 
+                                                        }
+                                                    }}
+
                                                 />
                                                 <TxtField
-                                                    value={props.client.address}
+                                                    value={address}
                                                     label="Endereço"
                                                     type="text"
                                                     onChange={setAddress}
                                                 />
                                                 <TxtField
-                                                    value={props.client.number}
+                                                    value={number}
                                                     label="Número"
                                                     type="text"
                                                     onChange={setNumber}
                                                 />
                                                 <TxtField
-                                                    value={props.client.neighborhood}
+                                                    value={neighborhood}
                                                     label="Bairro"
                                                     type="text"
                                                     onChange={setNeighborhood}
                                                 />
                                                 <TxtField
-                                                    value={props.client.state}
+                                                    value={state}
                                                     label="Estado"
                                                     type="text"
                                                     onChange={setState}
                                                 />
                                                 <TxtField
-                                                    value={props.client.city}
+                                                    value={city}
                                                     label="Cidade"
                                                     type="text"
                                                     onChange={setCity}
@@ -270,13 +329,13 @@ export default function ActionClient(props: Props) {
                                             <div className={styles.contato}>
                                                 <Divisao title="Contato" variant="default" />
                                                 <TxtField
-                                                    value={props.client.phone}
+                                                    value={phone}
                                                     label="Telefone"
                                                     type="text"
                                                     onChange={setPhone}
                                                 />
                                                 <TxtField
-                                                    value={props.client.email}
+                                                    value={emailCont}
                                                     label="Email"
                                                     type="text"
                                                     onChange={setEmailCont}
@@ -304,7 +363,7 @@ export default function ActionClient(props: Props) {
                                                     onChange={setCorporateReason}
                                                 />
                                                 <TxtField
-                                                    value={props.client.document}
+                                                    value={document}
                                                     label="CNPJ"
                                                     type="text"
                                                     onChange={setDocument}
@@ -320,37 +379,37 @@ export default function ActionClient(props: Props) {
                                             <div className={styles.end}>
                                                 <Divisao title="Endereço" variant="default" />
                                                 <TxtField
-                                                    value={props.client.cep}
+                                                    value={cep}
                                                     label="CEP"
                                                     type="text"
                                                     onChange={setCep}
                                                 />
                                                 <TxtField
-                                                    value={props.client.number}
+                                                    value={number}
                                                     label="Número"
                                                     type="text"
                                                     onChange={setNumber}
                                                 />
                                                 <TxtField
-                                                    value={props.client.address}
+                                                    value={address}
                                                     label="Endereço"
                                                     type="text"
                                                     onChange={setAddress}
                                                 />
                                                 <TxtField
-                                                    value={props.client.neighborhood}
+                                                    value={neighborhood}
                                                     label="Bairro"
                                                     type="text"
                                                     onChange={setNeighborhood}
                                                 />
                                                 <TxtField
-                                                    value={props.client.state}
+                                                    value={state}
                                                     label="Estado"
                                                     type="text"
                                                     onChange={setState}
                                                 />
                                                 <TxtField
-                                                    value={props.client.city}
+                                                    value={city}
                                                     label="Cidade"
                                                     type="text"
                                                     onChange={setCity}
@@ -360,13 +419,13 @@ export default function ActionClient(props: Props) {
                                             <div className={styles.contato}>
                                                 <Divisao title="Contato" variant="default" />
                                                 <TxtField
-                                                    value={props.client.phone}
+                                                    value={phone}
                                                     label="Telefone"
                                                     type="text"
                                                     onChange={setPhone}
                                                 />
                                                 <TxtField
-                                                    value={props.client.email}
+                                                    value={emailCont}
                                                     label="Email"
                                                     type="text"
                                                     onChange={setEmailCont}
