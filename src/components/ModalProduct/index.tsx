@@ -31,9 +31,9 @@ export default function ModalProduct() {
     setSuccess("Produto cadastrado com sucesso!");
 
     setTimeout(() => {
-            handleCloseModal();
-            window.location.reload();
-        }, 1000);
+      handleCloseModal();
+      window.location.reload();
+    }, 1000);
   }
 
   function cadastroFalha(error: string) {
@@ -148,18 +148,21 @@ export default function ModalProduct() {
               <Divisao title="PRODUTO" />
               <div className={styles.dadosProduto}>
                 <TxtField
+                  value={name}
                   label="Nome do Produto"
                   type="text"
                   fullWidth
                   onChange={setName}
                 />
                 <TxtField
+                  value={category}
                   label="Categoria"
                   type="text"
                   fullWidth
                   onChange={setCategory}
                 />
                 <TxtField
+                  value={description}
                   label="Descrição"
                   type="text"
                   fullWidth
@@ -167,6 +170,7 @@ export default function ModalProduct() {
                   multiline
                 />
                 <TxtField
+                  value={salesUnit}
                   label="Unidade de venda"
                   type="text"
                   fullWidth
@@ -175,17 +179,17 @@ export default function ModalProduct() {
                 <div className={styles.ProductPrice}>
                   <div className={styles.price}>
                     <TxtField
+                      value={purchasePrice}
                       label="Preço de Compra"
-                      formatCurrency
                       onChange={setPurchasePrice}
                       type="text"
                       fullWidth
-                      />
+                    />
                   </div>
                   <div className={styles.price}>
                     <TxtField
+                      value={salePrice}
                       label="Preço de Venda"
-                      formatCurrency
                       onChange={setSalePrice}
                       type="text"
                       fullWidth
@@ -193,6 +197,7 @@ export default function ModalProduct() {
                   </div>
                 </div>
                 <TxtField
+                  value={observations}
                   label="Observações"
                   type="text"
                   fullWidth

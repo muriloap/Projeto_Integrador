@@ -8,8 +8,8 @@ type Props = {
 
 export default function TableServiceList({ services }: Props) {
   return (
-    <div className={styles.tabelaContainer}>
-      <table className={styles.tabelaServices}>
+    <div className={styles.tableContainer}>
+      <table className={styles.tableServices}>
         <thead>
           <tr>
             <th>Nome do Serviço</th>

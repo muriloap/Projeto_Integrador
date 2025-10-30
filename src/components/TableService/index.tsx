@@ -11,12 +11,12 @@ export default function TableService({
 }: Props) {
 
   return (
-    <tr>
-      <td className={styles.td}>{service.nameService}</td>
-      <td className={styles.document}>{service.description}</td>
-      <td className={styles.td}>{service.observations}</td>
-      <td className={styles.td}>{service.price}</td>
-      <td className={styles.td}>
+    <tr className={styles.row}>
+      <td>{service.nameService}</td>
+      <td>{service.description}</td>
+      <td>{service.observations}</td>
+      <td>{service.price}</td>
+      <td>
         <ActionService service={service} />
       </td>
     </tr>
