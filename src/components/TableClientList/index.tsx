@@ -8,8 +8,8 @@ type Props = {
 
 export default function TableClientList({ clients }: Props) {
   return (
-    <div className={styles.tabelaContainer}>
-      <table className={styles.tabelaClients}>
+    <div className={styles.tableContainer}>
+      <table className={styles.tableClients}>
         <thead>
           <tr>
             <th>Nome do Cliente</th>

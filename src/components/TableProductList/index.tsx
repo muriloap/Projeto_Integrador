@@ -17,6 +17,7 @@ export default function TableProductList({ products }: Props) {
             <th>Nome do Produto</th>
             <th>Preço de Compra</th>
             <th>Preço de Venda</th>
+            <th>Editar/Excluir</th>
           </tr>
         </thead>
 

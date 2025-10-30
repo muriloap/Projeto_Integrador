@@ -1,27 +1,15 @@
-.scrollableText {
-  background: transparent;
-  max-height: 100px; /* controla a altura visível */
-  max-width: 250px; /* controla a altura visível */
-  overflow-y: auto;
-  white-space: normal;
-  padding-right: 6px;
-}
-
-/* Scrollbar customizada */
-.scrollableText::-webkit-scrollbar {
-  width: 6px;
-}
-
-.scrollableText::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-  border-radius: 3px;
-}
-
-.td {
-  padding: 0.75rem 1rem;
+.row td {
   font-size: 0.95rem;
-  color: #000000;
-  background: rgb(1, 255, 43);
-  border: 2px solid gray;
-  align-items: stretch;
+  padding: 0.9rem 1rem;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  background-color: #fff;
+}
+
+.row td:first-child {
+  font-weight: 500;
+}
+
+.row:hover td {
+  background-color: #f4f2ff;
 }

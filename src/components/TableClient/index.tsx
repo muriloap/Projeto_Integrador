@@ -8,19 +8,16 @@ type Props = {
   client: Client;
 };
 
-export default function TableClient({
- client
-}: Props) {
-
+export default function TableClient({ client }: Props) {
   return (
-    <tr>
-      <td className={styles.td}>{client.name}</td>
-      <td className={styles.document}>{client.document}</td>
-      <td className={styles.td}>{client.address}</td>
-      <td className={styles.td}>{client.phone}</td>
-      <td className={styles.td}>
-        <ActionClient client={client}/>
-      </td>
+    <tr className={styles.row}>
+      <td>{client.name}</td>
+      <td>{client.document}</td>
+      <td>{client.address}</td>
+      <td>{client.phone}</td>
+      <td>
+        <ActionClient client={client} />
+      </td>                                                                                                     
     </tr>
   );
 }
