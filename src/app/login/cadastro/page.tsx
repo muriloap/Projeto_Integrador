@@ -36,16 +36,29 @@ export default function Home() {
 
   const router = useRouter();
 
-  function sucesso(_res: AxiosResponse) {
-    setSuccess("Usuário Cadastrado com Sucesso!");
+  function sucesso(res: AxiosResponse<any>) {
+    const mensagem =
+      typeof res.data === "string"
+        ? res.data
+        : res.data?.success;
 
+    setSuccess(mensagem);
+
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
     setTimeout(() => {
       router.push("/login");
     }, 1000);
   }
-
+  
   function falha(error: AxiosError<any>) {
-    setError(error.response?.data);
+    const mensagem =
+    typeof error.response?.data === "string"
+    ? error.response.data
+    : error.response?.data?.error || "Ocorreu um erro inesperado.";
+    
+    setError(mensagem);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   function buscarCep(valorCep: string) {
