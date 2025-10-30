@@ -45,9 +45,14 @@ export default function ModalCliente() {
         }, 1000);
     }
 
-    function cadastroFalha(_error: AxiosError) {
-        setSuccess(null);
-        setError("Não foi possível cadastrar o Cliente!");
+    function cadastroFalha(error: AxiosError<any>) {
+        const mensagem =
+            typeof error.response?.data === "string"
+                ? error.response.data
+                : error.response?.data?.error || "Ocorreu um erro inesperado.";
+
+        setError(mensagem);
+        window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     function limparCampos() {
