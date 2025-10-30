@@ -313,7 +313,11 @@ export default function Home() {
 
               <div className={styles.dadosp}>
                 <Divisao title="Dados Pessoais" variant="default" />
-                <TxtField label="Nome" type="text" onChange={setNome} />
+                <TxtField
+                value={name} 
+                label="Nome" 
+                type="text" 
+                onChange={setNome} />
                 <TxtField
                   value={lastName}
                   label="Sobrenome"

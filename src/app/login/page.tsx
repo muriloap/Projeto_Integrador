@@ -73,8 +73,8 @@ export default function Home() {
           {mensagemAlerta}
 
           <form className={styles.camposlogin} onSubmit={handleSubmit}>
-            <TxtField label="Email" type="email" onChange={setEmail} />
-            <TxtField label="Senha" type="password" onChange={setPassword} />
+            <TxtField value={email} label="Email" type="email" onChange={setEmail}/>
+            <TxtField value={password}label="Senha" type="password" onChange={setPassword} />
             <Btn variant="primary" onClick={entrar} type='submit' label="LOGIN" />
             <Link className={styles.btn} href="/login/cadastro">
               CADASTRE - SE
