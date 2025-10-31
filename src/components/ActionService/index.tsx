@@ -2,10 +2,10 @@
 import styles from "./styles.module.css";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TxtField from "../TxtField";
 import Divisao from "../Divisao";
-import axios, { AxiosError } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { Alert } from "react-bootstrap";
 import Service from "@/models/service";
 
@@ -29,17 +29,32 @@ export default function ActionService(props: Props) {
     const handleDeleteCloseModal = () => setIsDeleteOpenModal(false);
     const handleCloseModal = () => setIsModalOpen(false);
 
+    useEffect(() => {
+        if (isModalOpen && props.service) {
+            setName(props.service.nameService || "");
+            setPrice(props.service.price?.toString() || "");
+            setDescription(props.service.description || "");
+            setObservations(props.service.observations || "");
+            setError(null)
+            setSuccess(null)
+        }
+    }, [isModalOpen, props.service]);
+
     const token = localStorage.getItem("token");
 
-    function salvarSucesso() {
-        setError(null);
-        setSuccess("Produto alterado com sucesso!");
+    function salvarSucesso(res: AxiosResponse<any>) {
+        const mensagem =
+            typeof res.data === "string"
+                ? res.data
+                : res.data?.message || res.data?.success;
 
+        setSuccess(mensagem);
+        setError(null);
         setTimeout(() => {
             handleCloseModal();
-            window.location.reload()
+            window.location.reload();
         }, 1000);
-    }
+    };
 
     function salvarFalha(error: AxiosError<any>) {
         const mensagem =
@@ -47,24 +62,35 @@ export default function ActionService(props: Props) {
                 ? error.response.data
                 : error.response?.data?.error || "Ocorreu um erro inesperado.";
 
+        setSuccess(null)
         setError(mensagem);
         window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+    };
 
-    function deletarSucesso() {
+    function deletarSucesso(res: AxiosResponse<any>) {
+        const mensagem =
+            typeof res.data === "string"
+                ? res.data
+                : res.data?.message || res.data?.success;
+
         setError(null);
-        setSuccess("Serviço deletado com sucesso!");
-
+        setSuccess(mensagem);
         setTimeout(() => {
-            handleDeleteCloseModal();
-            window.location.reload()
+            handleCloseModal();
+            window.location.reload();
         }, 1000);
-    }
+    };
 
-    function deletarFalha(error: string) {
+    function deletarFalha(error: AxiosError<any>) {
+        const mensagem =
+            typeof error.response?.data === "string"
+                ? error.response.data
+                : error.response?.data?.error || "Ocorreu um erro inesperado.";
+
         setSuccess(null);
-        setError("Não foi possível deletar o Serviço!");
-    }
+        setError(mensagem);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
 
     let mensagemAlerta = null;
 
@@ -117,9 +143,7 @@ export default function ActionService(props: Props) {
             .catch(deletarFalha);
     }
 
-    console.log(error)
-
-
+    
     return (
         <>
             <div className={styles.containerp}>

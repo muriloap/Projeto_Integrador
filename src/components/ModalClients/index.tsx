@@ -45,7 +45,7 @@ export default function ModalCliente() {
             handleCloseModal();
             window.location.reload();
         }, 1000);
-    }
+    };
 
     function cadastroFalha(error: AxiosError<any>) {
         const mensagem =
@@ -55,7 +55,7 @@ export default function ModalCliente() {
 
         setError(mensagem);
         window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+    };
 
     function limparCampos() {
         setNome("");

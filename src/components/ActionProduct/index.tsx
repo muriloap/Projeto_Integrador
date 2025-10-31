@@ -2,10 +2,10 @@
 import styles from "./styles.module.css";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TxtField from "../TxtField";
 import Divisao from "../Divisao";
-import axios from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { Alert } from "react-bootstrap";
 import Product from "@/models/product";
 
@@ -34,35 +34,69 @@ export default function ActionProduct(props: Props) {
 
     const token = localStorage.getItem("token");
 
-    function salvarSucesso() {
-        setError(null);
-        setSuccess("Produto alterado com sucesso!");
+    useEffect(() => {
+        if (isModalOpen && props.product) {
+            setName(props.product.name || "");
+            setCategory(props.product.category || "");
+            setDescription(props.product.description || "");
+            setsalesUnit(props.product.salesUnit || "");
+            setPurchasePrice(props.product.purchasePrice?.toString() || "");
+            setSalePrice(props.product.salePrice?.toString() || "");
+            setObservations(props.product.observations || "");
+            setError(null);
+            setSuccess(null);
+        }
+    }, [isModalOpen, props.product]);
 
+    function salvarSucesso(res: AxiosResponse<any>) {
+        const mensagem =
+            typeof res.data === "string"
+                ? res.data
+                : res.data?.message || res.data?.success;
+
+        setError(null)
+        setSuccess(mensagem);
         setTimeout(() => {
             handleCloseModal();
             window.location.reload();
         }, 1000);
-    }
+    };
 
-    function salvarFalha(error: string) {
-        setSuccess(null);
-        setError("Não foi possível editar o Produto!");
-    }
+    function salvarFalha(error: AxiosError<any>) {
+        const mensagem =
+            typeof error.response?.data === "string"
+                ? error.response.data
+                : error.response?.data?.error || "Ocorreu um erro inesperado.";
 
-    function deletarSucesso() {
-        setError(null);
-        setSuccess("Produto deletado com sucesso!");
+        setSuccess(null)
+        setError(mensagem);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
 
+    function deletarSucesso(res: AxiosResponse<any>) {
+        const mensagem =
+            typeof res.data === "string"
+                ? res.data
+                : res.data?.message || res.data?.success;
+
+        setError(null)
+        setSuccess(mensagem);
         setTimeout(() => {
-            handleDeleteCloseModal();
+            handleCloseModal();
             window.location.reload();
         }, 1000);
-    }
+    };
 
-    function deletarFalha(error: string) {
-        setSuccess(null);
-        setError("Não foi possível deletar o Produto!");
-    }
+    function deletarFalha(error: AxiosError<any>) {
+        const mensagem =
+            typeof error.response?.data === "string"
+                ? error.response.data
+                : error.response?.data?.error || "Ocorreu um erro inesperado.";
+
+        setSuccess(null)
+        setError(mensagem);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
 
     let mensagemAlerta = null;
 
@@ -86,7 +120,7 @@ export default function ActionProduct(props: Props) {
 
         axios
             .put(
-                `http://localhost:3000/products/ ${props.product.id}`,
+                `http://localhost:3000/products/${props.product.id}`,
                 body,
 
                 {
@@ -104,7 +138,7 @@ export default function ActionProduct(props: Props) {
 
         axios
             .delete(
-                `http://localhost:3000/products/ ${props.product.id}`,
+                `http://localhost:3000/products/${props.product.id}`,
                 {
                     headers: {
                         "Content-Type": "application/json",
@@ -159,21 +193,21 @@ export default function ActionProduct(props: Props) {
                                 <TxtField
                                     label="Nome do Produto"
                                     type="text"
-                                    value={props.product.name}
+                                    value={name}
                                     fullWidth
                                     onChange={setName}
                                 />
                                 <TxtField
                                     label="Categoria"
                                     type="text"
-                                    value={props.product.category}
+                                    value={category}
                                     fullWidth
                                     onChange={setCategory}
                                 />
                                 <TxtField
                                     label="Descrição"
                                     type="text"
-                                    value={props.product.description}
+                                    value={description}
                                     fullWidth
                                     multiline
                                     onChange={setDescription}
@@ -181,7 +215,7 @@ export default function ActionProduct(props: Props) {
                                 <TxtField
                                     label="Unidade de venda"
                                     type="text"
-                                    value={props.product.salesUnit}
+                                    value={salesUnit}
                                     fullWidth
                                     onChange={setsalesUnit}
                                 />
@@ -189,7 +223,7 @@ export default function ActionProduct(props: Props) {
                                     <div className={styles.price}>
                                         <TxtField
                                             label="Preço de Compra"
-                                            value={props.product.purchasePrice}
+                                            value={purchasePrice}
                                             onChange={setPurchasePrice}
                                             type="text"
                                             fullWidth
@@ -198,7 +232,7 @@ export default function ActionProduct(props: Props) {
                                     <div className={styles.price}>
                                         <TxtField
                                             label="Preço de Venda"
-                                            value={props.product.salePrice}
+                                            value={salePrice}
                                             onChange={setSalePrice}
                                             type="text"
                                             fullWidth
@@ -208,7 +242,7 @@ export default function ActionProduct(props: Props) {
                                 <TxtField
                                     label="Observações"
                                     type="text"
-                                    value={props.product.observations}
+                                    value={observations}
                                     fullWidth
                                     multiline
                                     onChange={setObservations}

@@ -5,7 +5,7 @@ import AddIcon from "@mui/icons-material/Add";
 import styles from "./styles.module.css";
 import Divisao from "../Divisao";
 import TxtField from "../TxtField";
-import axios from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { Alert } from "react-bootstrap";
 
 export default function ModalProduct() {
@@ -26,20 +26,26 @@ export default function ModalProduct() {
 
   const token = localStorage.getItem("token");
 
-  function cadastroSucesso() {
-    setError(null);
-    setSuccess("Produto cadastrado com sucesso!");
+  function cadastroSucesso(res: AxiosResponse) {
 
+    const mensagem = res.data?.message
+    setError(null);
+    setSuccess(mensagem);
     setTimeout(() => {
       handleCloseModal();
       window.location.reload();
     }, 1000);
-  }
+  };
 
-  function cadastroFalha(error: string) {
-    setSuccess(null);
-    setError("Não foi possível cadastrar o Produto!");
-  }
+  function cadastroFalha(error: AxiosError<any>) {
+    const mensagem =
+      typeof error.response?.data === "string"
+        ? error.response.data
+        : error.response?.data?.error || "Ocorreu um erro inesperado.";
+
+    setError(mensagem);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   let mensagemAlerta = null;
 

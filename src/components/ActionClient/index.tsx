@@ -5,7 +5,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useEffect, useState } from "react";
 import TxtField from "../TxtField";
 import Divisao from "../Divisao";
-import axios, { AxiosError } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { Alert } from "react-bootstrap";
 import Selection from "@/components/Selection";
 import Client from "@/models/client";
@@ -64,6 +64,8 @@ export default function ActionClient(props: Props) {
             setState(props.client.state || "");
             setPhone(props.client.phone || "");
             setEmailCont(props.client.email || "");
+            setError(null);
+            setSuccess(null);
         }
     }, [isModalOpen, props.client]);
 
@@ -91,15 +93,19 @@ export default function ActionClient(props: Props) {
         }
     }
 
-    function salvarSucesso() {
-        setError(null);
-        setSuccess("Dados do Cliente alterado com sucesso!");
+    function salvarSucesso(res: AxiosResponse<any>) {
+        const mensagem =
+            typeof res.data === "string"
+                ? res.data
+                : res.data?.message || res.data?.success;
+
+        setSuccess(mensagem);
 
         setTimeout(() => {
             handleCloseModal();
             window.location.reload();
         }, 1000);
-    }
+    };
 
     function salvarFalha(error: AxiosError<any>) {
         const mensagem =
@@ -109,22 +115,31 @@ export default function ActionClient(props: Props) {
 
         setError(mensagem);
         window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+    };
 
-    function deletarSucesso() {
-        setError(null);
-        setSuccess("Cliente deletado com sucesso!");
+    function deletarSucesso(res: AxiosResponse<any>) {
+        const mensagem =
+            typeof res.data === "string"
+                ? res.data
+                : res.data?.message || res.data?.success;
+
+        setSuccess(mensagem);
 
         setTimeout(() => {
-            handleDeleteCloseModal();
+            handleCloseModal();
             window.location.reload();
         }, 1000);
-    }
+    };
 
-    function deletarFalha(error: string) {
-        setSuccess(null);
-        setError("Não foi possível deletar o Cliente!");
-    }
+    function deletarFalha(error: AxiosError<any>) {
+        const mensagem =
+            typeof error.response?.data === "string"
+                ? error.response.data
+                : error.response?.data?.error || "Ocorreu um erro inesperado.";
+
+        setError(mensagem);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
 
     let mensagemAlerta = null;
 
