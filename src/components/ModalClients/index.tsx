@@ -210,7 +210,6 @@ export default function ModalCliente() {
                             Preencha os dados abaixo para cadastrar um novo Cliente.
                         </p>
 
-                        {mensagemAlerta}
 
                         <div className={styles.formGroup}>
                             <div className={styles.containerp}>
@@ -232,9 +231,8 @@ export default function ModalCliente() {
                                 <div className={styles.containers}>
                                     {selection === "PF" ? (
                                         <>
-                                            <h1 className={styles.textModo}>
-                                                PREENCHA ESSES CAMPOS PARA CLIENTE PESSOA FÍSICA
-                                            </h1>
+                                            <h1 className={styles.textModo}>PREENCHA ESSES CAMPOS PARA CLIENTE PESSOA FÍSICA</h1>
+                                            {mensagemAlerta}
                                             <div className={styles.dadosp}>
                                                 <Divisao title="Dados Pessoais" variant="default" />
                                                 <TxtField
@@ -254,7 +252,7 @@ export default function ModalCliente() {
                                                     label="CPF"
                                                     type="text"
                                                     onChange={setDocument}
-                                                    cpf
+                                                    cnpj
                                                 />
                                             </div>
 
@@ -346,6 +344,7 @@ export default function ModalCliente() {
                                                     label="CNPJ"
                                                     type="text"
                                                     onChange={setDocument}
+                                                    cnpj
                                                 />
                                                 <TxtField
                                                     value={stateRegistration}
@@ -361,7 +360,13 @@ export default function ModalCliente() {
                                                     value={cep}
                                                     label="CEP"
                                                     type="text"
-                                                    onChange={setCep}
+                                                    cep
+                                                    onChange={(valor) => {
+                                                        setCep(valor);
+                                                        if (valor.replace(/\D/g, "").length === 8) {
+                                                            buscarCep(valor);
+                                                        }
+                                                    }}
                                                 />
                                                 <TxtField
                                                     value={number}
@@ -402,6 +407,7 @@ export default function ModalCliente() {
                                                     label="Telefone"
                                                     type="text"
                                                     onChange={setPhone}
+                                                    phone
                                                 />
                                                 <TxtField
                                                     value={emailCont}

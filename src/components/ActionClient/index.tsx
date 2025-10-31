@@ -5,7 +5,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useEffect, useState } from "react";
 import TxtField from "../TxtField";
 import Divisao from "../Divisao";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { Alert } from "react-bootstrap";
 import Selection from "@/components/Selection";
 import Client from "@/models/client";
@@ -54,25 +54,24 @@ export default function ActionClient(props: Props) {
 
     useEffect(() => {
         if (isModalOpen && props.client) {
-          setNome(props.client.name || "");
-          setDocument(props.client.document || "");
-          setCep(props.client.cep || "");
-          setAddress(props.client.address || "");
-          setNumber(props.client.number?.toString() || "");
-          setNeighborhood(props.client.neighborhood || "");
-          setCity(props.client.city || "");
-          setState(props.client.state || "");
-          setPhone(props.client.phone || "");
-          setEmailCont(props.client.email || "");
+            setNome(props.client.name || "");
+            setDocument(props.client.document || "");
+            setCep(props.client.cep || "");
+            setAddress(props.client.address || "");
+            setNumber(props.client.number?.toString() || "");
+            setNeighborhood(props.client.neighborhood || "");
+            setCity(props.client.city || "");
+            setState(props.client.state || "");
+            setPhone(props.client.phone || "");
+            setEmailCont(props.client.email || "");
         }
-      }, [isModalOpen, props.client]);
+    }, [isModalOpen, props.client]);
 
     async function buscarCep(valor: string) {
         const cepLimpo = valor.replace(/\D/g, "");
 
-        if (cepLimpo.length !== 8) return; // só busca se tiver 8 dígitos
+        if (cepLimpo.length !== 8) return;
 
-        // 🔹 limpa os campos antes de buscar novos dados
         setAddress("");
         setNeighborhood("");
         setCity("");
@@ -82,7 +81,6 @@ export default function ActionClient(props: Props) {
             const res = await axios.get(`https://viacep.com.br/ws/${cepLimpo}/json/`);
 
             if (!res.data.erro) {
-                // 🔹 preenche com os dados vindos da API
                 setAddress(res.data.logradouro || "");
                 setNeighborhood(res.data.bairro || "");
                 setCity(res.data.localidade || "");
@@ -103,9 +101,14 @@ export default function ActionClient(props: Props) {
         }, 1000);
     }
 
-    function salvarFalha(error: string) {
-        setSuccess(null);
-        setError("Não foi possível editar os Dados do Cliente!");
+    function salvarFalha(error: AxiosError<any>) {
+        const mensagem =
+            typeof error.response?.data === "string"
+                ? error.response.data
+                : error.response?.data?.error || "Ocorreu um erro inesperado.";
+
+        setError(mensagem);
+        window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     function deletarSucesso() {
@@ -188,9 +191,9 @@ export default function ActionClient(props: Props) {
 
     useEffect(() => {
         if (props.client.document) {
-            if (props.client.document.length === 11) {
+            if (props.client.document.length === 14) {
                 setSelection("PF");
-            } else if (props.client.document.length === 14) {
+            } else if (props.client.document.length === 18) {
                 setSelection("PJ");
             }
         }
@@ -231,7 +234,6 @@ export default function ActionClient(props: Props) {
                             Preencha os dados abaixo para editar os Dados do Cliente.
                         </p>
 
-                        {mensagemAlerta}
 
                         <div className={styles.formGroup}>
                             <div className={styles.containerClient}>
@@ -256,6 +258,7 @@ export default function ActionClient(props: Props) {
                                             <h1 className={styles.textModo}>
                                                 PREENCHA ESSES CAMPOS PARA CLIENTE PESSOA FÍSICA
                                             </h1>
+                                            {mensagemAlerta}
                                             <div className={styles.dadosp}>
                                                 <Divisao title="Dados Pessoais" variant="default" />
                                                 <TxtField
@@ -274,6 +277,7 @@ export default function ActionClient(props: Props) {
                                                     label="CPF"
                                                     type="text"
                                                     onChange={setDocument}
+                                                    cpf
                                                 />
                                             </div>
 
@@ -289,7 +293,7 @@ export default function ActionClient(props: Props) {
 
                                                         const cepLimpo = valor.replace(/\D/g, "");
                                                         if (cepLimpo.length === 8) {
-                                                            buscarCep(valor); 
+                                                            buscarCep(valor);
                                                         }
                                                     }}
 
@@ -333,6 +337,7 @@ export default function ActionClient(props: Props) {
                                                     label="Telefone"
                                                     type="text"
                                                     onChange={setPhone}
+                                                    phone
                                                 />
                                                 <TxtField
                                                     value={emailCont}
@@ -347,7 +352,7 @@ export default function ActionClient(props: Props) {
                                             <h1 className={styles.textModo}>
                                                 PREENCHA ESSES CAMPOS PARA CLIENTE PESSOA JURÍDICA
                                             </h1>
-
+                                            {mensagemAlerta}
                                             <div className={styles.dadosp}>
                                                 <Divisao title="Dados Pessoais" variant="default" />
                                                 <TxtField
@@ -367,6 +372,7 @@ export default function ActionClient(props: Props) {
                                                     label="CNPJ"
                                                     type="text"
                                                     onChange={setDocument}
+                                                    cnpj
                                                 />
                                                 <TxtField
                                                     value={stateRegistration}
@@ -423,6 +429,7 @@ export default function ActionClient(props: Props) {
                                                     label="Telefone"
                                                     type="text"
                                                     onChange={setPhone}
+                                                    phone
                                                 />
                                                 <TxtField
                                                     value={emailCont}
