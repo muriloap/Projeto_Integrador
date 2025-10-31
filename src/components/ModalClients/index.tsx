@@ -36,9 +36,11 @@ export default function ModalCliente() {
 
     const token = localStorage.getItem("token");
 
-    function cadastroSucesso(_res: AxiosResponse) {
+    function cadastroSucesso(res: AxiosResponse) {
+
+        const mensagem = res.data?.message
         setError(null);
-        setSuccess("Cliente cadastrado com sucesso!");
+        setSuccess(mensagem);
         setTimeout(() => {
             handleCloseModal();
             window.location.reload();
@@ -122,7 +124,7 @@ export default function ModalCliente() {
             phone,
             email: emailCont,
             address,
-            number: Number(number),
+            number,
             neighborhood,
             state,
             city,
@@ -252,7 +254,7 @@ export default function ModalCliente() {
                                                     label="CPF"
                                                     type="text"
                                                     onChange={setDocument}
-                                                    cnpj
+                                                    cpf
                                                 />
                                             </div>
 

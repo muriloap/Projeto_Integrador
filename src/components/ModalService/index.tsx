@@ -5,7 +5,7 @@ import AddIcon from "@mui/icons-material/Add";
 import styles from "./styles.module.css";
 import Divisao from "../Divisao";
 import TxtField from "../TxtField";
-import axios, { AxiosError } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { Alert } from "react-bootstrap";
 
 export default function ModalService() {
@@ -23,19 +23,25 @@ export default function ModalService() {
 
   const token = localStorage.getItem("token");
 
-  function cadastroSucesso() {
+  function cadastroSucesso(res: AxiosResponse) {
+
+    const mensagem = res.data?.message
     setError(null);
-    setSuccess("Serviço cadastrado com sucesso!");
+    setSuccess(mensagem);
     setTimeout(() => {
       handleCloseModal();
       window.location.reload();
     }, 1000);
   }
 
-  function cadastroFalha(error: AxiosError) {
-    setSuccess(null);
-    console.log(error);
-    setError("Não foi possível cadastrar o Serviço!");
+  function cadastroFalha(error: AxiosError<any>) {
+    const mensagem =
+      typeof error.response?.data === "string"
+        ? error.response.data
+        : error.response?.data?.error || "Ocorreu um erro inesperado.";
+
+    setError(mensagem);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   let mensagemAlerta = null;
@@ -50,7 +56,7 @@ export default function ModalService() {
     const body = {
       nameService,
       description,
-      price: Number(price),
+      price,
       observations,
       isActive: true,
     };

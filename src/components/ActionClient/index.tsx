@@ -142,7 +142,7 @@ export default function ActionClient(props: Props) {
             phone,
             email: emailCont,
             address,
-            number: Number(number),
+            number,
             neighborhood,
             state,
             city,
@@ -151,7 +151,7 @@ export default function ActionClient(props: Props) {
 
         axios
             .put(
-                `http://localhost:3000/clients/ ${props.client.id}`,
+                `http://localhost:3000/clients/${props.client.id}`,
                 body,
 
                 {
@@ -169,7 +169,7 @@ export default function ActionClient(props: Props) {
 
         axios
             .delete(
-                `http://localhost:3000/clients/ ${props.client.id}`,
+                `http://localhost:3000/clients/${props.client.id}`,
                 {
                     headers: {
                         "Content-Type": "application/json",

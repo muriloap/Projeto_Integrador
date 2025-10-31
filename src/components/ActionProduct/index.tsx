@@ -78,8 +78,8 @@ export default function ActionProduct(props: Props) {
             category,
             description,
             salesUnit,
-            purchasePrice: Number(purchasePrice),
-            salePrice: Number(salePrice),
+            purchasePrice,
+            salePrice,
             observations,
             isActive: true,
         };

@@ -15,7 +15,7 @@ export default function TableService({
       <td>{service.nameService}</td>
       <td>{service.description}</td>
       <td>{service.observations}</td>
-      <td>{service.price}</td>
+      <td>R$: {service.price}</td>
       <td>
         <ActionService service={service} />
       </td>

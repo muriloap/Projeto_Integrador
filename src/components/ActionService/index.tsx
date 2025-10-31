@@ -5,7 +5,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useState } from "react";
 import TxtField from "../TxtField";
 import Divisao from "../Divisao";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { Alert } from "react-bootstrap";
 import Service from "@/models/service";
 
@@ -41,9 +41,14 @@ export default function ActionService(props: Props) {
         }, 1000);
     }
 
-    function salvarFalha(error: string) {
-        setSuccess(null);
-        setError("Não foi possível editar o Produto!");
+    function salvarFalha(error: AxiosError<any>) {
+        const mensagem =
+            typeof error.response?.data === "string"
+                ? error.response.data
+                : error.response?.data?.error || "Ocorreu um erro inesperado.";
+
+        setError(mensagem);
+        window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     function deletarSucesso() {
@@ -70,10 +75,10 @@ export default function ActionService(props: Props) {
     }
 
     function save() {
-         const body = {
+        const body = {
             nameService,
             description,
-            price: Number(price),
+            price,
             observations,
             isActive: true
         };
@@ -82,7 +87,7 @@ export default function ActionService(props: Props) {
 
         axios
             .put(
-                `http://localhost:3000/services ${props.service.id}`,
+                `http://localhost:3000/services/${props.service.id}`,
                 body,
 
                 {
@@ -154,38 +159,38 @@ export default function ActionService(props: Props) {
                             <div className={styles.dadosProduto}>
                                 <TxtField
                                     label="Nome do Serviço"
-                                    value={props.service.nameService}
+                                    value={nameService}
                                     type="text"
                                     fullWidth
                                     onChange={setName}
-                                    />
-                                
-                                </div>
+                                />
+
+                            </div>
+                            <TxtField
+                                label="Descrição"
+                                value={description}
+                                type="text"
+                                fullWidth
+                                onChange={setDescription}
+                                multiline
+                            />
+
+                            <TxtField
+                                label="Observações"
+                                value={observations}
+                                type="text"
+                                fullWidth
+                                onChange={setObservations}
+                                multiline
+                            />
+                            <div className={styles.price}>
                                 <TxtField
-                                    label="Descrição"
-                                    value={props.service.description}
+                                    label="Preço do Serviço"
+                                    value={price}
+                                    onChange={setPrice}
                                     type="text"
                                     fullWidth
-                                    onChange={setDescription}
-                                    multiline
-                                    />
-                                
-                                <TxtField
-                                    label="Observações"
-                                    value={props.service.observations}
-                                    type="text"
-                                    fullWidth
-                                    onChange={setObservations}
-                                    multiline
-                                    />
-                                <div className={styles.price}>
-                                    <TxtField
-                                        label="Preço do Serviço"
-                                        value={props.service.price}
-                                        onChange={setPrice}
-                                        type="text"
-                                        fullWidth
-                                    />
+                                />
                             </div>
 
                             <div className={styles.dataEquipamento}></div>

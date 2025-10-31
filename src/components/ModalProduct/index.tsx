@@ -55,8 +55,8 @@ export default function ModalProduct() {
       category,
       description,
       salesUnit,
-      purchasePrice: Number(purchasePrice),
-      salePrice: Number(salePrice),
+      purchasePrice,
+      salePrice,
       observations,
       isActive: true,
     };

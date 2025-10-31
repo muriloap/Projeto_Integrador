@@ -131,7 +131,7 @@ export default function Home() {
       stateRegistration,
       cep,
       address,
-      number: Number(number),
+      number,
       neighborhood,
       state,
       city,

@@ -10,8 +10,8 @@ export default function TableProduct({ product }: Props) {
   return (
     <tr className={styles.row}>
       <td>{product.name}</td>
-      <td>{product.purchasePrice}</td>
-      <td>{product.salePrice}</td>
+      <td>R$: {product.purchasePrice}</td>
+      <td>R$: {product.salePrice}</td>
       <td>
         <ActionProduct product={product} />
       </td>
