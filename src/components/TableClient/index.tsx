@@ -11,7 +11,7 @@ type Props = {
 export default function TableClient({ client }: Props) {
   return (
     <tr className={styles.row}>
-      <td>{client.name}</td>
+      <td>{client.name || client.companyName}</td>
       <td>{client.document}</td>
       <td>{client.address}</td>
       <td>{client.phone}</td>

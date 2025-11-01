@@ -1,7 +1,7 @@
 'use client'
 import ModalOS from '@/components/ModalOs'
 import styles from './page.module.css'
-import BarraDePesquisa from '@/components/BarraDePesquisa'
+import BarraDePesquisa from '@/components/SearchBarService'
 
 
 export default function HomeOs() {

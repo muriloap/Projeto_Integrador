@@ -55,6 +55,10 @@ export default function ActionClient(props: Props) {
     useEffect(() => {
         if (isModalOpen && props.client) {
             setNome(props.client.name || "");
+            setLastName(props.client.lastName || "");
+            setCompanyName(props.client.companyName || "");
+            setCorporateReason(props.client.corporateReason || "");
+            setStateRegistration(props.client.stateRegistration);
             setDocument(props.client.document || "");
             setCep(props.client.cep || "");
             setAddress(props.client.address || "");
@@ -283,6 +287,7 @@ export default function ActionClient(props: Props) {
                                                     onChange={setNome}
                                                 />
                                                 <TxtField
+                                                    value={lastName}
                                                     label="Sobrenome"
                                                     type="text"
                                                     onChange={setLastName}

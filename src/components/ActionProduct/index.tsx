@@ -26,6 +26,7 @@ export default function ActionProduct(props: Props) {
     const [purchasePrice, setPurchasePrice] = useState("");
     const [salePrice, setSalePrice] = useState("");
     const [observations, setObservations] = useState("");
+    const [quantity, setQuantity] = useState("");
 
     const handleOpenModal = () => setIsModalOpen(true);
     const handleDeletOpenModal = () => setIsDeleteOpenModal(true);
@@ -43,6 +44,7 @@ export default function ActionProduct(props: Props) {
             setPurchasePrice(props.product.purchasePrice?.toString() || "");
             setSalePrice(props.product.salePrice?.toString() || "");
             setObservations(props.product.observations || "");
+            setQuantity(props.product.quantity?.toString() || "");
             setError(null);
             setSuccess(null);
         }
@@ -115,7 +117,7 @@ export default function ActionProduct(props: Props) {
             purchasePrice,
             salePrice,
             observations,
-            isActive: true,
+            quantity
         };
 
         axios
@@ -190,13 +192,7 @@ export default function ActionProduct(props: Props) {
                         <div className={styles.formGroup}>
                             <Divisao title="PRODUTO" />
                             <div className={styles.dadosProduto}>
-                                <TxtField
-                                    label="Nome do Produto"
-                                    type="text"
-                                    value={name}
-                                    fullWidth
-                                    onChange={setName}
-                                />
+                                <TxtField label="Nome do Produto" type="text" value={name}fullWidth onChange={setName}/>
                                 <TxtField
                                     label="Categoria"
                                     type="text"
@@ -239,6 +235,8 @@ export default function ActionProduct(props: Props) {
                                         />
                                     </div>
                                 </div>
+
+                                <TxtField value={quantity} label="Quantidade" fullWidth type="text" onChange={setQuantity}/>
                                 <TxtField
                                     label="Observações"
                                     type="text"

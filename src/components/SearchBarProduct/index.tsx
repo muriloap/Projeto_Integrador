@@ -6,7 +6,7 @@ type Props = {
   onSearch: (valor: string) => void;
 }
 
-export default function BarraDePesquisa({onSearch}: Props) {
+export default function SearchBarProduct({onSearch}: Props) {
 
   return (
     <div className={styles.searchContainer}>
@@ -16,7 +16,7 @@ export default function BarraDePesquisa({onSearch}: Props) {
         </span>
         <input
           type="text"
-          placeholder="Digite o Número da Ordem de Serviço que deseja Buscar"
+          placeholder="Digite o Nome do Produto que dejesa Buscar"
           className={styles.searchInput}
           onChange={(e) => onSearch(e.target.value)}
         />

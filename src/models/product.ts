@@ -7,6 +7,7 @@ type Product = {
     observations: string;
     salesUnit: string;
     category:string;
+    quantity: number;
 }
 
 export default Product;

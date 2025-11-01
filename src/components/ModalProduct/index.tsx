@@ -20,6 +20,7 @@ export default function ModalProduct() {
   const [purchasePrice, setPurchasePrice] = useState("");
   const [salePrice, setSalePrice] = useState("");
   const [observations, setObservations] = useState("");
+  const [quantity, setQuantity] = useState("");
 
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
@@ -64,7 +65,7 @@ export default function ModalProduct() {
       purchasePrice,
       salePrice,
       observations,
-      isActive: true,
+      quantity
     };
 
     console.log(body);
@@ -173,6 +174,7 @@ export default function ModalProduct() {
                   </div>
                 </div>
 
+                <TxtField value={quantity} label="Quantidade" type="text" onChange={setQuantity}/>
                 <TxtField value={observations} label="Observações" type="text" fullWidth onChange={setObservations} multiline />
 
               </div>
