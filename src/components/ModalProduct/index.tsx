@@ -151,65 +151,30 @@ export default function ModalProduct() {
             {mensagemAlerta}
 
             <div className={styles.formGroup}>
+
               <Divisao title="PRODUTO" />
+
               <div className={styles.dadosProduto}>
-                <TxtField
-                  value={name}
-                  label="Nome do Produto"
-                  type="text"
-                  fullWidth
-                  onChange={setName}
-                />
-                <TxtField
-                  value={category}
-                  label="Categoria"
-                  type="text"
-                  fullWidth
-                  onChange={setCategory}
-                />
-                <TxtField
-                  value={description}
-                  label="Descrição"
-                  type="text"
-                  fullWidth
-                  onChange={setDescription}
-                  multiline
-                />
-                <TxtField
-                  value={salesUnit}
-                  label="Unidade de venda"
-                  type="text"
-                  fullWidth
-                  onChange={setsalesUnit}
-                />
+                <TxtField value={name} label="Nome do Produto" type="text" fullWidth onChange={setName} />
+                <TxtField value={category} label="Categoria" type="text" fullWidth onChange={setCategory} />
+                <TxtField value={description} label="Descrição" type="text" fullWidth onChange={setDescription} multiline />
+                <TxtField value={salesUnit} label="Unidade de venda" type="text" fullWidth onChange={setsalesUnit} />
+
                 <div className={styles.ProductPrice}>
                   <div className={styles.price}>
-                    <TxtField
-                      value={purchasePrice}
-                      label="Preço de Compra"
-                      onChange={setPurchasePrice}
-                      type="text"
-                      fullWidth
-                    />
+
+                    <TxtField value={purchasePrice} label="Preço de Compra" onChange={setPurchasePrice} type="text" fullWidth />
                   </div>
+
                   <div className={styles.price}>
-                    <TxtField
-                      value={salePrice}
-                      label="Preço de Venda"
-                      onChange={setSalePrice}
-                      type="text"
-                      fullWidth
-                    />
+
+                    <TxtField value={salePrice} label="Preço de Venda" onChange={setSalePrice} type="text" fullWidth />
+
                   </div>
                 </div>
-                <TxtField
-                  value={observations}
-                  label="Observações"
-                  type="text"
-                  fullWidth
-                  onChange={setObservations}
-                  multiline
-                />
+
+                <TxtField value={observations} label="Observações" type="text" fullWidth onChange={setObservations} multiline />
+
               </div>
 
               <div className={styles.dataEquipamento}></div>

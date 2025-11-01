@@ -42,6 +42,7 @@ export default function Home() {
         ? res.data
         : res.data?.success;
 
+    setError(null)
     setSuccess(mensagem);
 
 
@@ -50,13 +51,14 @@ export default function Home() {
       router.push("/login");
     }, 1000);
   }
-  
+
   function falha(error: AxiosError<any>) {
     const mensagem =
-    typeof error.response?.data === "string"
-    ? error.response.data
-    : error.response?.data?.error || "Ocorreu um erro inesperado.";
-    
+      typeof error.response?.data === "string"
+        ? error.response.data
+        : error.response?.data?.error || "Ocorreu um erro inesperado.";
+
+    setSuccess(null)
     setError(mensagem);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
@@ -164,18 +166,8 @@ export default function Home() {
     <>
       <div className={styles.containerp}>
         <div className={styles.sel}>
-          <Selection
-            variant="PF"
-            selected={selection === "PF"}
-            onClick={pfClick}
-            label="Pessoa Física"
-          />
-          <Selection
-            variant="PJ"
-            selected={selection === "PJ"}
-            onClick={pjClick}
-            label="Pessoa Juridica"
-          />
+          <Selection variant="PF" selected={selection === "PF"} onClick={pfClick} label="Pessoa Física"/>
+          <Selection variant="PJ" selected={selection === "PJ"} onClick={pjClick} label="Pessoa Juridica"/>
         </div>
 
         <div className={styles.containers}>
@@ -186,117 +178,39 @@ export default function Home() {
               </h1>
               {mensagemAlerta}
               <div className={styles.dadosp}>
-                <Divisao title="Dados Pessoais" variant="default" />
-                <TxtField
-                  value={name}
-                  label="Nome"
-                  type="text"
-                  onChange={setNome}
-                />
-                <TxtField
-                  value={lastName}
-                  label="Sobrenome"
-                  type="text"
-                  onChange={setLastName}
-                />
-                <TxtField
-                  value={document}
-                  label="CPF"
-                  type="text"
-                  onChange={setDocument}
-                  cpf={true}
-                />
-                <TxtField
-                  value={companyName}
-                  label="Nome da Empresa"
-                  type="text"
-                  onChange={setCompanyName}
-                />
+                <Divisao title="Dados Pessoais" variant="default"/>
+                <TxtField value={name} label="Nome" type="text" onChange={setNome}/>
+                <TxtField value={lastName} label="Sobrenome" type="text" onChange={setLastName}/>
+                <TxtField value={document} label="CPF" type="text" onChange={setDocument} cpf/>
+                <TxtField value={companyName} label="Nome da Empresa" type="text" onChange={setCompanyName}/>
               </div>
 
               <div className={styles.end}>
-                <Divisao title="Endereço" variant="default" />
-                <TxtField
-                  value={cep}
-                  label="CEP"
-                  type="text"
-                  onChange={(valor) => {
+                <Divisao title="Endereço" variant="default"/>
+                <TxtField value={cep} label="CEP" type="text" cep onChange={(valor) => {
                     setCep(valor);
                     if (valor.replace(/\D/g, "").length === 8) {
                       buscarCep(valor);
                     }
-                  }}
-                  cep
-                />
-                <TxtField
-                  value={address}
-                  label="Endereço"
-                  type="text"
-                  onChange={setAddress}
-                />
-                <TxtField
-                  value={number}
-                  label="Número"
-                  type="text"
-                  onChange={setNumber}
-                />
-                <TxtField
-                  value={neighborhood}
-                  label="Bairro"
-                  type="text"
-                  onChange={setNeighborhood}
-                />
-                <TxtField
-                  value={state}
-                  label="Estado"
-                  type="text"
-                  onChange={setState}
-                />
-                <TxtField
-                  value={city}
-                  label="Cidade"
-                  type="text"
-                  onChange={setCity}
-                />
+                  }} />
+                <TxtField value={address} label="Endereço" type="text" onChange={setAddress}/>
+                <TxtField value={number} label="Número" type="text" onChange={setNumber}/>
+                <TxtField value={neighborhood} label="Bairro" type="text" onChange={setNeighborhood}/>
+                <TxtField value={state} label="Estado" type="text" onChange={setState} />
+                <TxtField value={city} label="Cidade" type="text" onChange={setCity}/>
               </div>
 
               <div className={styles.contato}>
-                <Divisao title="Contato" variant="default" />
-                <TxtField
-                  value={phone}
-                  label="Telefone"
-                  type="text"
-                  onChange={setPhone}
-                  phone={true}
-                />
-                <TxtField
-                  value={site}
-                  label="Site"
-                  type="text"
-                  onChange={setSite}
-                />
-                <TxtField
-                  value={emailCont}
-                  label="Email"
-                  type="text"
-                  onChange={setEmailCont}
-                />
+                <Divisao title="Contato" variant="default"/>
+                <TxtField value={phone} label="Telefone" type="text" onChange={setPhone} phone/>
+                <TxtField value={site} label="Site" type="text" onChange={setSite}/>
+                <TxtField value={emailCont} label="Email" type="text" onChange={setEmailCont}/>
               </div>
 
               <div className={styles.cadastro}>
-                <Divisao title="Cadastro" variant="default" />
-                <TxtField
-                  value={emailCad}
-                  label="Email"
-                  type="text"
-                  onChange={setEmailCad}
-                />
-                <TxtField
-                  value={password}
-                  label="Senha"
-                  type="password"
-                  onChange={setPassword}
-                />
+                <Divisao title="Cadastro" variant="default"/>
+                <TxtField value={emailCad} label="Email" type="text" onChange={setEmailCad}/>
+                <TxtField value={password} label="Senha" type="password" onChange={setPassword}/>
                 {/* <TxtField value={} label="Confirmar senha" type="password" onChange={setEmail} /> */}
               </div>
 
@@ -313,127 +227,40 @@ export default function Home() {
 
               <div className={styles.dadosp}>
                 <Divisao title="Dados Pessoais" variant="default" />
-                <TxtField
-                value={name} 
-                label="Nome" 
-                type="text" 
-                onChange={setNome} />
-                <TxtField
-                  value={lastName}
-                  label="Sobrenome"
-                  type="text"
-                  onChange={setLastName}
-                />
-                <TxtField
-                  value={companyName}
-                  label="Nome da Empresa"
-                  type="text"
-                  onChange={setCompanyName}
-                />
-                <TxtField
-                  value={corporateReason}
-                  label="Razão Social"
-                  type="text"
-                  onChange={setCorporateReason}
-                />
-                <TxtField
-                  value={document}
-                  label="CNPJ"
-                  type="text"
-                  onChange={setDocument}
-                  cnpj={true}
-                />
-                <TxtField
-                  value={stateRegistration}
-                  label="Incrisção Estadual"
-                  type="text"
-                  onChange={setStateRegistration}
-                />
+                <TxtField value={name} label="Nome" type="text" onChange={setNome} />
+                <TxtField value={lastName} label="Sobrenome" type="text" onChange={setLastName}/>
+                <TxtField value={document} label="CNPJ" type="text" onChange={setDocument} cnpj />
+                <TxtField value={stateRegistration} label="Incrisção Estadual" type="text" onChange={setStateRegistration}/>
+                <TxtField value={companyName} label="Nome da Empresa" type="text" onChange={setCompanyName}/>
+                <TxtField value={corporateReason} label="Razão Social" type="text" onChange={setCorporateReason}/>
               </div>
 
               <div className={styles.end}>
-                <Divisao title="Endereço" variant="default" />
-                <TxtField
-                  value={cep}
-                  label="CEP"
-                  type="text"
-                  onChange={(valor) => {
+                <Divisao title="Endereço" variant="default"/>
+                <TxtField value={cep} label="CEP" type="text" cep onChange={(valor) => {
                     setCep(valor);
                     if (valor.replace(/\D/g, "").length === 8) {
                       buscarCep(valor);
                     }
-                  }}
-                  cep={true}
-                />
-                <TxtField
-                  value={number}
-                  label="Número"
-                  type="text"
-                  onChange={setNumber}
-                />
-                <TxtField
-                  value={address}
-                  label="Endereço"
-                  type="text"
-                  onChange={setAddress}
-                />
-                <TxtField
-                  value={neighborhood}
-                  label="Bairro"
-                  type="text"
-                  onChange={setNeighborhood}
-                />
-                <TxtField
-                  value={state}
-                  label="Estado"
-                  type="text"
-                  onChange={setState}
-                />
-                <TxtField
-                  value={city}
-                  label="Cidade"
-                  type="text"
-                  onChange={setCity}
-                />
+                  }}/>
+                <TxtField value={number} label="Número" type="text" onChange={setNumber}/>
+                <TxtField value={address} label="Endereço" type="text" onChange={setAddress}/>
+                <TxtField value={neighborhood} label="Bairro" type="text" onChange={setNeighborhood}/>
+                <TxtField value={state} label="Estado" type="text" onChange={setState}/>
+                <TxtField value={city} label="Cidade" type="text" onChange={setCity}/>
               </div>
 
               <div className={styles.contato}>
                 <Divisao title="Contato" variant="default" />
-                <TxtField
-                  value={phone}
-                  label="Telefone"
-                  type="text"
-                  onChange={setPhone}
-                  phone={true}
-                />
-                <TxtField
-                  value={site}
-                  label="Site"
-                  type="text"
-                  onChange={setSite}
-                />
-                <TxtField
-                  value={emailCont}
-                  label="Email"
-                  type="text"
-                  onChange={setEmailCont}
-                />
+                <TxtField value={phone} label="Telefone" type="text" onChange={setPhone} phone/>
+                <TxtField value={site} label="Site" type="text" onChange={setSite}/>
+                <TxtField value={emailCont} label="Email" type="text" onChange={setEmailCont}/>
               </div>
 
               <div className={styles.cadastro}>
                 <Divisao title="Cadastro " variant="default" />
-                <TxtField
-                  value={emailCad}
-                  label="Email"
-                  type="text"
-                  onChange={setEmailCad}
-                />
-                <TxtField
-                  value={password}
-                  label="Senha"
-                  type="password"
-                  onChange={setPassword}
-                />
+                <TxtField value={emailCad} label="Email" type="text" onChange={setEmailCad}/>
+                <TxtField value={password} label="Senha" type="password" onChange={setPassword}/>
                 {/* <TxtField value={} label="Confirmar senha" type="password" onChange={setEmail} /> */}
               </div>
 
