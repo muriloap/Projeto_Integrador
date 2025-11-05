@@ -130,8 +130,7 @@ export default function ModalCliente() {
             number,
             neighborhood,
             state,
-            city,
-            isActive: true,
+            city
         };
 
         console.log(body);

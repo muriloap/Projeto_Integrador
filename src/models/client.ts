@@ -10,7 +10,7 @@ type Client = {
     phone: string;
     email:string;
     address: string;
-    number: string
+    number: string;
     neighborhood: string;
     state: string;
     city: string;

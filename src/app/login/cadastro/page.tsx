@@ -16,7 +16,7 @@ export default function Home() {
   const [emailCad, setEmailCad] = useState("");
   const [password, setPassword] = useState("");
   const [selection, setSelection] = useState("PJ");
-  const [name, setNome] = useState("");
+  const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [document, setDocument] = useState("");
   const [stateRegistration, setStateRegistration] = useState("");
@@ -88,7 +88,7 @@ export default function Home() {
   }
 
   function limpaCampos() {
-    setNome("");
+    setName("");
     setLastName("");
     setDocument("");
     setStateRegistration("");
@@ -179,7 +179,7 @@ export default function Home() {
               {mensagemAlerta}
               <div className={styles.dadosp}>
                 <Divisao title="Dados Pessoais" variant="default"/>
-                <TxtField value={name} label="Nome" type="text" onChange={setNome}/>
+                <TxtField value={name} label="Nome" type="text" onChange={setName}/>
                 <TxtField value={lastName} label="Sobrenome" type="text" onChange={setLastName}/>
                 <TxtField value={document} label="CPF" type="text" onChange={setDocument} cpf/>
                 <TxtField value={companyName} label="Nome da Empresa" type="text" onChange={setCompanyName}/>
@@ -227,7 +227,7 @@ export default function Home() {
 
               <div className={styles.dadosp}>
                 <Divisao title="Dados Pessoais" variant="default" />
-                <TxtField value={name} label="Nome" type="text" onChange={setNome} />
+                <TxtField value={name} label="Nome" type="text" onChange={setName} />
                 <TxtField value={lastName} label="Sobrenome" type="text" onChange={setLastName}/>
                 <TxtField value={document} label="CNPJ" type="text" onChange={setDocument} cnpj />
                 <TxtField value={stateRegistration} label="Incrisção Estadual" type="text" onChange={setStateRegistration}/>

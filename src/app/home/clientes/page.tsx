@@ -22,7 +22,7 @@ export default function PageProdutos() {
 
   function loadSucesso(response: AxiosResponse) {
     setProducts(response.data as Client[]);
-  };
+  }
 
   function loadFalha(error: AxiosError<any>) {
     const mensagem =
@@ -31,15 +31,15 @@ export default function PageProdutos() {
         : error.response?.data?.error || "Ocorreu um erro inesperado.";
 
     setError(mensagem);
-    setIsAlertOpenModal(true)
+    setIsAlertOpenModal(true);
     window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  }
 
   let mensagemAlerta = null;
 
   if (error) {
     mensagemAlerta = <Alert variant="danger">{error}</Alert>;
-  };
+  }
 
   function loadProducts() {
     axios
@@ -51,7 +51,7 @@ export default function PageProdutos() {
       })
       .then(loadSucesso)
       .catch(loadFalha);
-  };
+  }
 
   useEffect(() => {
     loadProducts();
@@ -74,7 +74,10 @@ export default function PageProdutos() {
             className={styles.modalContent}
             onClick={(e) => e.stopPropagation()}
           >
-            <button className={styles.modalClose} onClick={handleAlertCloseModal}>
+            <button
+              className={styles.modalClose}
+              onClick={handleAlertCloseModal}
+            >
               ×
             </button>
 
@@ -84,16 +87,15 @@ export default function PageProdutos() {
               Você Não tem nenhum Cliente cadastrado, feche o aviso e Cadastre.
             </p>
 
-            <div className={styles.alert}>
-              {mensagemAlerta}
-            </div>
+            <div className={styles.alert}>{mensagemAlerta}</div>
 
             <div className={styles.buttonGroup}>
-
-              <button className={styles.buttonPrimary} onClick={handleAlertCloseModal}>
+              <button
+                className={styles.buttonPrimary}
+                onClick={handleAlertCloseModal}
+              >
                 FECHAR
               </button>
-
             </div>
           </div>
         </div>
