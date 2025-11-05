@@ -41,7 +41,7 @@ export default function PageProdutos() {
     mensagemAlerta = <Alert variant="danger">{error}</Alert>;
   };
 
-  function loadProducts() {
+  function loadClient() {
     axios
       .get("http://localhost:3000/Clients", {
         headers: {
@@ -54,7 +54,7 @@ export default function PageProdutos() {
   };
 
   useEffect(() => {
-    loadProducts();
+    loadClient();
   }, []);
 
   const filteredProducts = products.filter((product) =>

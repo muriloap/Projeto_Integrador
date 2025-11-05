@@ -5,8 +5,14 @@ import AddIcon from "@mui/icons-material/Add";
 import styles from "./styles.module.css";
 import Divisao from "../Divisao";
 import TxtField from "../TxtField";
+import SelectClientList from "../SelectClientList";
+import Client from "@/models/client";
 
-export default function ModalOS() {
+type Props = {
+  clients: Client[];
+};
+
+export default function ModalOS(props: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [data, setData] = useState(new Date().toISOString().split("T")[0]);
 
@@ -71,11 +77,9 @@ export default function ModalOS() {
 
             <div className={styles.formGroup}>
 
-              <select className={styles.formSelect}>
-                <option value="">Selecione o Cliente</option>
-                <option value="1">Cliente 1</option>
-                <option value="2">Cliente 2</option>
-              </select>
+              
+
+              <SelectClientList clients={props.clients} />
 
 
               <select className={styles.formSelect}>
