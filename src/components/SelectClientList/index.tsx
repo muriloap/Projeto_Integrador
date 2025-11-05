@@ -8,14 +8,16 @@ type Props = {
 
 export default function SelectClientList({ clients }: Props) {
     return (
-        <div className={styles.tableContainer}>
+        <>
             <select className={styles.formSelect}>
-                {clients.map((client) => (
-                    <SelectClient
-                        key={client.id}
-                        client={client} />
-                ))}
+                <div className={styles.tableContainer}>
+                    {clients.map((client) => (
+                        <SelectClient
+                            key={client.id}
+                            client={client} />
+                    ))}
+                </div >
             </select>
-        </div>
+        </>
     );
 }

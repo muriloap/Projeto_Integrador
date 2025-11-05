@@ -7,9 +7,15 @@ import Divisao from "../Divisao";
 import TxtField from "../TxtField";
 import SelectClientList from "../SelectClientList";
 import Client from "@/models/client";
+import SelectServiceList from "../SelectServiceList";
+import Service from "@/models/service";
+import Product from "@/models/product";
+import SelectProductList from "../SelectProductList";
 
 type Props = {
   clients: Client[];
+  services: Service[];
+  products: Product[];
 };
 
 export default function ModalOS(props: Props) {
@@ -77,21 +83,31 @@ export default function ModalOS(props: Props) {
 
             <div className={styles.formGroup}>
 
-              
-
-              <SelectClientList clients={props.clients} />
 
 
-              <select className={styles.formSelect}>
-                <option value="">Status da OS</option>
-                <option value="1">Em Orçamento</option>
-                <option value="2">Aguardando Material</option>
-                <option value="3">Aprovado</option>
-                <option value="4">Em Progresso</option>
-                <option value="4">Cancelado</option>
-                <option value="5">Finalizado</option>
-                <option value="6">Faturado</option>
-              </select>
+              <div className={styles.campoItem}>
+                <div className={styles.campoSelect}>
+                  <a>Selecione um(a) Cliente:</a>
+                  <SelectClientList clients={props.clients} />
+                </div>
+
+                <div className={styles.campoSelect}>
+                  <a>Status da Ordem de Serviço:</a>
+                  <select className={styles.formSelect}>
+                    <option value="">Status da OS</option>
+                    <option value="1">Em Orçamento</option>
+                    <option value="2">Aguardando Material</option>
+                    <option value="3">Aprovado</option>
+                    <option value="4">Em Progresso</option>
+                    <option value="4">Cancelado</option>
+                    <option value="5">Finalizado</option>
+                    <option value="6">Faturado</option>
+                  </select>
+                </div>
+
+              </div>
+
+
 
               <div className={styles.data}>
                 <a>Data da OS</a>
@@ -105,53 +121,54 @@ export default function ModalOS(props: Props) {
                 />
               </div>
 
-              <Divisao title="ITEMS"/>
+              <Divisao title="ITEMS" />
 
-              <select className={styles.formSelect}>
-                <option value="">Selecione o Serviço</option>
-                <option value="1">Cliente 1</option>
-                <option value="2">Cliente 2</option>
-              </select>
+              <div className={styles.campoItem}>
+                <div className={styles.campoSelect}>
+                  <a>Selecione um Serviço:</a>
+                  <SelectServiceList service={props.services} />
+                </div>
 
-              <select className={styles.formSelect}>
-                <option value="">Selecione o Produto</option>
-                <option value="1">Cliente 1</option>
-                <option value="2">Cliente 2</option>
-              </select>
-
-              <Divisao title="EQUIPAMENTO"/>
-
-              <div className={styles.dataEquipamento}>
-              <div className={styles.data}>
-                <a>Data do Recebimento</a>
-                <input
-                  type="date"
-                  className={styles.formData2}
-                  value={data}
-                  onChange={(e) => setData(e.target.value)}
-                  min="2025-01-01"
-                  max="2070-12-31"
-                  />
+                <div className={styles.campoSelect}>
+                  <a>Selecione um Produto:</a>
+                  <SelectProductList product={props.products} />
+                </div>
               </div>
 
-              <div className={styles.data}>
-                <a>Data de Entrega</a>
-                <input
-                  type="date"
-                  className={styles.formData2}
-                  value={data}
-                  onChange={(e) => setData(e.target.value)}
-                  min="2025-01-01"
-                  max="2070-12-31"
+
+              <Divisao title="EQUIPAMENTO" />
+
+              <div className={styles.dataEquipamento}>
+                <div className={styles.data}>
+                  <a>Data do Recebimento</a>
+                  <input
+                    type="date"
+                    className={styles.formData2}
+                    value={data}
+                    onChange={(e) => setData(e.target.value)}
+                    min="2025-01-01"
+                    max="2070-12-31"
                   />
-                  </div>
+                </div>
+
+                <div className={styles.data}>
+                  <a>Data de Entrega</a>
+                  <input
+                    type="date"
+                    className={styles.formData2}
+                    value={data}
+                    onChange={(e) => setData(e.target.value)}
+                    min="2025-01-01"
+                    max="2070-12-31"
+                  />
+                </div>
               </div>
 
               <div className={styles.dadosEquipamento}>
-              <TxtField label="Equipamento" type="text" fullWidth />
-              <TxtField label="Defeito Relatados" type="text" fullWidth />
-              <TxtField label="Relatório Técnico" type="text" fullWidth />
-              <TxtField label="Garantia" type="text" fullWidth />
+                <TxtField label="Equipamento" type="text" fullWidth />
+                <TxtField label="Defeito Relatados" type="text" fullWidth />
+                <TxtField label="Relatório Técnico" type="text" fullWidth />
+                <TxtField label="Garantia" type="text" fullWidth />
               </div>
 
             </div>

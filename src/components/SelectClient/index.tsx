@@ -7,6 +7,8 @@ type Props = {
 
 export default function SelectClient({ client }: Props) {
   return (
+    <>
     <option value={client.id}>{client.name || client.companyName}</option>
+    </>
   );
 }

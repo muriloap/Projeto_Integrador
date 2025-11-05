@@ -148,10 +148,7 @@ export default function ModalService() {
 
               <Divisao title="Serviço" />
 
-              <div className={styles.dadosProduto}>
-                <TxtField value={nameService} label="Nome do Serviço" type="text" fullWidth onChange={setName} />
-              </div>
-
+              <TxtField value={nameService} label="Nome do Serviço" type="text" onChange={setName} fullWidth />
               <TxtField value={description} label="Descrição" type="text" fullWidth onChange={setDescription} multiline />
               <TxtField value={observations} label="Observações" type="text" fullWidth onChange={setObservations} multiline />
 
@@ -159,7 +156,6 @@ export default function ModalService() {
                 <TxtField value={price} label="Preço do Serviço" onChange={setPrice} type="text" fullWidth />
               </div>
 
-              <div className={styles.dataEquipamento}></div>
             </div>
 
             <div className={styles.buttonGroup}>
