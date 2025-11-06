@@ -5,16 +5,45 @@ import TxtField from "../TxtField";
 import User from "@/models/user";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { Alert } from "react-bootstrap";
+import Divisao from "../Divisao";
 
 type Props = {
   user?: User;
+  
 };
 
 export default function DropDown(props: Props) {
+  function buscarCep(valorCep: string) {
+    const cep = valorCep.replace(/\D/g, "");
+
+    if (cep.length !== 8) return;
+
+    axios
+      .get(`https://viacep.com.br/ws/${cep}/json/`)
+      .then((res) => {
+        if (res.data.erro) {
+          setError("CEP inválido ou não encontrado!");
+          return;
+        }
+
+        setAddress(res.data.logradouro || "");
+        setNeighborhood(res.data.bairro || "");
+        setCity(res.data.localidade || "");
+        setState(res.data.uf || "");
+        setError(null);
+      })
+      .catch(() => {
+        setError("Erro ao buscar o CEP.");
+      });
+  }
+
   const token =
     typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
   const [open, setOpen] = useState(false);
+
+  const [emailCont, setEmailCont] = useState("");
+  const [emailCad, setEmailCad] = useState("");
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [companyName, setCompanyName] = useState("");
@@ -82,141 +111,131 @@ export default function DropDown(props: Props) {
         </button>
 
         <div className={`${styles.dropdownContent} ${open ? styles.open : ""}`}>
-          <div className={styles.section}>
+          <div className={styles.dadosp}>
+            <Divisao title="Dados Pessoais" variant="default" />
             <TxtField
               value={name}
-              type="text"
               label="Nome"
+              type="text"
               onChange={setName}
+              fullWidth
             />
-          </div>
-
-          <div className={styles.section}>
             <TxtField
               value={lastName}
-              type="text"
               label="Sobrenome"
+              type="text"
               onChange={setLastName}
+              fullWidth
             />
-          </div>
-
-          <div className={styles.section}>
             <TxtField
               value={document}
-              type="text"
               label="CPF"
+              type="text"
               onChange={setDocument}
               cpf
+              fullWidth
             />
-          </div>
-
-          <div className={styles.section}>
-            <TxtField
-              value={email}
-              type="email"
-              label="E-mail"
-              onChange={setEmail}
-            />
-          </div>
-
-          <div className={styles.section}>
             <TxtField
               value={companyName}
+              label="Nome da Empresa"
               type="text"
-              label="Nome da empreza"
               onChange={setCompanyName}
+              fullWidth
             />
           </div>
-
-          <div className={styles.section}>
+          <div className={styles.end}>
+            <Divisao title="Endereço" variant="default" />
             <TxtField
               value={cep}
-              type="text"
               label="CEP"
-              onChange={setCep}
+              type="text"
               cep
+              onChange={(valor) => {
+                setCep(valor);
+                if (valor.replace(/\D/g, "").length === 8) {
+                  buscarCep(valor);
+                }
+              }}
+              fullWidth
             />
-          </div>
-
-          <div className={styles.section}>
             <TxtField
               value={address}
-              type="text"
               label="Endereço"
+              type="text"
               onChange={setAddress}
+              fullWidth
             />
-          </div>
-
-          <div className={styles.section}>
             <TxtField
               value={number}
-              type="number"
               label="Número"
+              type="text"
               onChange={setNumber}
+              fullWidth
             />
-          </div>
-
-          <div className={styles.section}>
             <TxtField
               value={neighborhood}
-              type="text"
               label="Bairro"
+              type="text"
               onChange={setNeighborhood}
+              fullWidth
             />
-          </div>
-
-          <div className={styles.section}>
             <TxtField
               value={state}
-              type="text"
               label="Estado"
+              type="text"
               onChange={setState}
+              fullWidth
             />
-          </div>
-
-          <div className={styles.section}>
             <TxtField
               value={city}
-              type="text"
               label="Cidade"
+              type="text"
               onChange={setCity}
+              fullWidth
             />
           </div>
 
-          <div className={styles.section}>
+          <div className={styles.contato}>
+            <Divisao title="Contato" variant="default" />
             <TxtField
               value={phone}
-              type="number"
               label="Telefone"
+              type="text"
               onChange={setPhone}
               phone
+              fullWidth
             />
-          </div>
-
-          <div className={styles.section}>
             <TxtField
               value={site}
-              type="text"
               label="Site"
+              type="text"
               onChange={setSite}
+              fullWidth
             />
-          </div>
-
-          <div className={styles.section}>
             <TxtField
-              value={email}
-              type="email"
-              label="E-mail"
-              onChange={setEmail}
+              value={emailCont}
+              label="Email"
+              type="text"
+              onChange={setEmailCont}
+              fullWidth
             />
           </div>
 
-          <div className={styles.section}>
+          <div className={styles.cadastro}>
+            <Divisao title="Cadastro" variant="default" />
+            <TxtField
+              value={emailCad}
+              label="Email"
+              type="text"
+              onChange={setEmailCad}
+              fullWidth
+            />
             <TxtField
               value={password}
-              type="text"
               label="Senha"
+              type="password"
               onChange={setPassword}
+              fullWidth
             />
           </div>
 
