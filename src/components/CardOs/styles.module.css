@@ -1,0 +1,27 @@
+.containerp{
+    padding: 10px;
+    background: transparent;
+}
+
+.campoDados{
+    background: transparent;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    border: 2px solid black;
+    height: 200px;
+    gap: 20px;
+}
+
+.dados1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: transparent;
+}
+

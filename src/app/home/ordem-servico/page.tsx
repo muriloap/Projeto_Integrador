@@ -1,12 +1,14 @@
 'use client'
 import ModalOS from '@/components/ModalOs'
 import styles from './page.module.css'
-import BarraDePesquisa from '@/components/SearchBarService'
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { useEffect, useState } from 'react';
 import Client from '@/models/client';
 import Service from '@/models/service';
 import Product from '@/models/product';
+import SearchBarOs from '@/components/SearchBarOs';
+import CardOsList from '@/components/CardOsList';
+import Order from '@/models/order';
 
 
 export default function HomeOs() {
@@ -14,6 +16,7 @@ export default function HomeOs() {
     const [clients, setClients] = useState<Client[]>([]);
     const [service, setService] = useState<Service[]>([]);
     const [product, setProduct] = useState<Product[]>([]);
+    const [order, setOrder] = useState<Order[]>([]);
     const [error, setError] = useState<string | null>(null);
     const [IsAlertModal, setIsAlertOpenModal] = useState(false);
 
@@ -30,6 +33,9 @@ export default function HomeOs() {
 
     function loadProductSucesso(response: AxiosResponse) {
         setProduct(response.data as Product[]);
+    };
+    function loadOrderSucesso(response: AxiosResponse) {
+        setOrder(response.data as Order[]);
     };
 
     function loadFalha(error: AxiosError<any>) {
@@ -91,12 +97,29 @@ export default function HomeOs() {
         loadProduct();
       }, []);
 
+    function loadOrder() {
+        axios
+            .get("http://localhost:3000/orders", {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            .then(loadOrderSucesso)
+            .catch(loadFalha);
+    };
+
+     useEffect(() => {
+        loadOrder();
+      }, []);
+
 
     return (
         <>
             <div className={styles.containerp}>
                 <ModalOS clients={clients} services={service} products={product}/>
-                <BarraDePesquisa onSearch={() => { }} />
+                <SearchBarOs onSearch={() => {}}/>
+                    <CardOsList orders={order} />
             </div>
         </>
     )
