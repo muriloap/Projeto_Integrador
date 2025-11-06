@@ -6,6 +6,7 @@ export default function PageConfig() {
         <>
             <div className={styles.container}>
                 <DropDown/>
+                <DropDown/>
             </div>
         </>
     )
