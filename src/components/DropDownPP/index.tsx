@@ -9,10 +9,10 @@ import Divisao from "../Divisao";
 
 type Props = {
   user?: User;
-  
+  label: string;
 };
 
-export default function DropDown(props: Props) {
+export default function DropDownPP(props: Props) {
   function buscarCep(valorCep: string) {
     const cep = valorCep.replace(/\D/g, "");
 
@@ -43,7 +43,6 @@ export default function DropDown(props: Props) {
   const [open, setOpen] = useState(false);
 
   const [emailCont, setEmailCont] = useState("");
-  const [emailCad, setEmailCad] = useState("");
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [companyName, setCompanyName] = useState("");
@@ -58,8 +57,6 @@ export default function DropDown(props: Props) {
   const [city, setCity] = useState("");
   const [site, setSite] = useState("");
   const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
   const [user, setUser] = useState<User[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -107,7 +104,7 @@ export default function DropDown(props: Props) {
           onClick={() => setOpen(!open)}
           className={styles.dropdownButton}
         >
-          <span>Perfil e Preferências Pessoais</span>
+          <span>{props.label}</span>
         </button>
 
         <div className={`${styles.dropdownContent} ${open ? styles.open : ""}`}>
@@ -217,24 +214,6 @@ export default function DropDown(props: Props) {
               label="Email"
               type="text"
               onChange={setEmailCont}
-              fullWidth
-            />
-          </div>
-
-          <div className={styles.cadastro}>
-            <Divisao title="Cadastro" variant="default" />
-            <TxtField
-              value={emailCad}
-              label="Email"
-              type="text"
-              onChange={setEmailCad}
-              fullWidth
-            />
-            <TxtField
-              value={password}
-              label="Senha"
-              type="password"
-              onChange={setPassword}
               fullWidth
             />
           </div>
