@@ -22,14 +22,13 @@ type Props = {
 
 export default function ModalOS(props: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [data, setData] = useState(new Date().toISOString().split("T")[0]);
   const [dateCreate, setDateCreate] = useState(new Date().toISOString().split("T")[0]);
   const [dateRecipt, setDateRecipt] = useState(new Date().toISOString().split("T")[0]);
   const [dateDelivery, setDateDelivery] = useState(new Date().toISOString().split("T")[0]);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [clientId, setClientId] = useState("");
-  const [productData, setProductData] = useState<{ productId: string; quantity: string }>({ productId: "", quantity: "", });
+  const [productData, setProductData] = useState<{ productId: string; quantity: string, salePrice: number}>({ productId: "", quantity: "", salePrice: 0 });
   const [serviceId, setServiceId] = useState("");
   const [equipment, setEquiment] = useState("");
   const [defect, setDefect] = useState("");
@@ -80,7 +79,7 @@ export default function ModalOS(props: Props) {
         {
           productId: productData.productId,
           amount: productData.quantity,
-          salePrice: 0,
+          salePrice: productData.salePrice,
         }
       ]
     };

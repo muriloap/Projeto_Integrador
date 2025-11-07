@@ -5,36 +5,55 @@ import Product from "@/models/product";
 import TxtField from "../TxtField";
 
 type Props = {
-    product: Product[];
-    onChange?(data: { productId: string; quantity: string }): void;
+  product: Product[];
+  onChange?(data: { productId: string; quantity: string; salePrice: number }): void;
 };
 
 export default function SelectProductList({ product, onChange }: Props) {
-    const [selectedProduct, setSelectedProduct] = useState("");
-    const [quantity, setQuantity] = useState("");
+  const [selectedProduct, setSelectedProduct] = useState("");
+  const [quantity, setQuantity] = useState("");
 
-    function handleSelectChange(e: ChangeEvent<HTMLSelectElement>) {
-        const newProduct = e.target.value;
-        setSelectedProduct(newProduct);
-        onChange?.({ productId: newProduct, quantity });
+  function handleSelectChange(e: ChangeEvent<HTMLSelectElement>) {
+    const newProductId = e.target.value;
+    const selected = product.find(p => p.id === Number(newProductId));
+
+    setSelectedProduct(newProductId);
+
+    if (selected) {
+      onChange?.({
+        productId: newProductId,
+        quantity,
+        salePrice: selected.salePrice,
+      });
     }
+  }
 
-    function handleQuantityChange(value: string) {
-        setQuantity(value);
-        onChange?.({ productId: selectedProduct, quantity: value });
-    }
+  function handleQuantityChange(value: string) {
+    setQuantity(value);
+    const selected = product.find(p => p.id === Number(selectedProduct));
 
-    return (
-        <>
-            <select className={styles.formSelect} onChange={handleSelectChange}>
-                <option value="">Selecione um Produto</option>
-                {product.map((product) => (
-                    <SelectProduct key={product.id} product={product} />
-                ))}
-            </select>
+    onChange?.({
+      productId: selectedProduct,
+      quantity: value,
+      salePrice: selected?.salePrice || 0,
+    });
+  }
 
-            <TxtField value={quantity} label="Quantidade" type="text" onChange={handleQuantityChange}
-            />
-        </>
-    );
+  return (
+    <>
+      <select className={styles.formSelect} onChange={handleSelectChange}>
+        <option value="">Selecione um Produto</option>
+        {product.map((product) => (
+          <SelectProduct key={product.id} product={product} />
+        ))}
+      </select>
+
+      <TxtField
+        value={quantity}
+        label="Quantidade"
+        type="text"
+        onChange={handleQuantityChange}
+      />
+    </>
+  );
 }

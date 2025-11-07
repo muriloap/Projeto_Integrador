@@ -7,15 +7,6 @@
   margin-bottom: 20px;
 }
 
-.formInput {
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 14px;
-  transition: border-color 0.2s ease;
-  font-family: "Poppins", sans-serif;
-}
-
 .formData {
   width: 31%;
   padding: 10px;
@@ -61,36 +52,6 @@
   border-color: #304ffe;
 }
 
-.formSelect {
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 14px;
-  background-color: white;
-  cursor: pointer;
-  font-family: "Poppins", sans-serif;
-}
-
-.formSelect:focus {
-  outline: none;
-  border-color: #304ffe;
-}
-
-.formTextarea {
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 14px;
-  resize: vertical;
-  min-height: 80px;
-  font-family: "Poppins", sans-serif;
-}
-
-.formTextarea:focus {
-  outline: none;
-  border-color: #304ffe;
-}
-
 .buttonGroup {
   display: flex;
   gap: 12px;
@@ -112,18 +73,6 @@
 
 .buttonPrimary:hover {
   background-color: #1e40ff;
-}
-
-.buttonSecondary {
-  padding: 12px 24px;
-  background-color: #f5f5f5;
-  color: #333;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 14px;
-  transition: background-color 0.2s ease;
 }
 
 .buttonSecondary:hover {

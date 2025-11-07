@@ -3,6 +3,7 @@ import styles from "./styles.module.css";
 import Divisao from "../Divisao";
 import EditIcon from "@mui/icons-material/Edit";
 import { PictureAsPdf } from "@mui/icons-material";
+import ActionOs from "../ActionOs";
 
 type Props = {
     order: Order;
@@ -21,19 +22,14 @@ export default function CardOs({ order }: Props) {
 
                     <div className={styles.dados1}>
                         <a className={styles.campoDados}># {order.id}</a>
-                        <a className={styles.campoDados}>R$: {order.total.toFixed(2)}</a>
+                        <a className={styles.campoDados}>R$: {order.total}</a>
                     </div>
                     <div className={styles.dados1}>
                         <a className={styles.campoDados}>Status</a>
                         <a className={styles.campoDados}>{order.status}</a>
                     </div>
                     <Divisao />
-                    <div className={styles.actions}>
-                        <div className={styles.icon}>
-                            <EditIcon sx={{ fontSize: "auto", background: "transparent" }} />
-                            <PictureAsPdf />
-                        </div>
-                    </div>
+                    {/* <ActionOs order={order} /> */}
                 </div>
 
             </div>
