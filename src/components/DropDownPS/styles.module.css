@@ -1,0 +1,83 @@
+.container {
+  display: flex;
+  padding: 50px 100px 0px;
+  justify-content: flex-start;
+  align-items: start;
+  background-color: rgb(204, 204, 204);
+}
+
+.card {
+  background-color: #e9e9e9;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 700px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.dropdownButton {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  background-color: #f9fafb;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dropdownButton:hover {
+  background-color: #f0f0f0;
+}
+
+.dropdownContent {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0;
+  transition: all 0.5s ease;
+}
+
+.open {
+  max-height: 600px;
+  opacity: 1;
+  padding: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.cadastro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  width: 100%;
+  padding-top: 20px;
+}
+
+.cadastro > :first-child {
+  grid-column: 1 / -1;
+}
+
+.editButton {
+  display: block;
+  width: 100%;
+  background-color: #2563eb;
+  color: white;
+  font-weight: 600;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.editButton:hover {
+  background-color: #1e4ed8;
+}

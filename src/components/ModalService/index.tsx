@@ -125,7 +125,6 @@ export default function ModalService() {
         Novo Serviço
       </Fab>
 
-      {/* Modal */}
       {isModalOpen && (
         <div className={styles.modalOverlay} onClick={handleCloseModal}>
           <div

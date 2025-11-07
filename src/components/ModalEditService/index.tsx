@@ -6,7 +6,7 @@ import Divisao from "../Divisao";
 import TxtField from "../TxtField";
 import axios from "axios";
 import { Alert } from "react-bootstrap";
-import EditIcon from '@mui/icons-material/Edit';
+import EditIcon from "@mui/icons-material/Edit";
 
 export default function ModalEditProduct() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -72,7 +72,6 @@ export default function ModalEditProduct() {
       )
       .then(cadastroSucesso)
       .catch(cadastroFalha);
-
   }
 
   return (
@@ -91,10 +90,9 @@ export default function ModalEditProduct() {
           textTransform: "none",
         }}
       >
-        <EditIcon sx={{background: "transparent"}}/> Editar
+        <EditIcon sx={{ background: "transparent" }} /> Editar
       </Fab>
 
-      {/* Modal */}
       {isModalOpen && (
         <div className={styles.modalOverlay} onClick={handleCloseModal}>
           <div
@@ -151,11 +149,7 @@ export default function ModalEditProduct() {
                   </div>
                   <div className={styles.price}>
                     <a>Preço de venda</a>
-                    <TxtField
-                      onChange={setSalePrice}
-                      type="text"
-                      fullWidth
-                    />
+                    <TxtField onChange={setSalePrice} type="text" fullWidth />
                   </div>
                 </div>
                 <TxtField
