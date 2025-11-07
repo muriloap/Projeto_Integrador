@@ -1,14 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
 .containerp {
-    font-family: "Poppins", sans-serif;
-    border: 2px solid black;
-    background: transparent;
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start; /* Garante alinhamento no topo */
+    gap: 15px; /* controla o espaço entre os cards */
     width: 96%;
-    height: 83%;
-    position: absolute;
     margin-top: 8rem;
+    font-family: "Poppins", sans-serif;
+    background: transparent;
+    border: 2px solid black;
+    flex-direction: row;
+    position: absolute;
+    height: auto;
 }
 

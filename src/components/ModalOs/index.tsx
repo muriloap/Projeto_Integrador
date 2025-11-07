@@ -11,6 +11,8 @@ import SelectServiceList from "../SelectServiceList";
 import Service from "@/models/service";
 import Product from "@/models/product";
 import SelectProductList from "../SelectProductList";
+import axios, { AxiosError, AxiosResponse } from "axios";
+import SelectStatus from "../SelectStatus";
 
 type Props = {
   clients: Client[];
@@ -21,9 +23,85 @@ type Props = {
 export default function ModalOS(props: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [data, setData] = useState(new Date().toISOString().split("T")[0]);
+  const [dateCreate, setDateCreate] = useState(new Date().toISOString().split("T")[0]);
+  const [dateRecipt, setDateRecipt] = useState(new Date().toISOString().split("T")[0]);
+  const [dateDelivery, setDateDelivery] = useState(new Date().toISOString().split("T")[0]);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
+  const [clientId, setClientId] = useState("");
+  const [productData, setProductData] = useState<{ productId: string; quantity: string }>({ productId: "", quantity: "", });
+  const [serviceId, setServiceId] = useState("");
+  const [equipment, setEquiment] = useState("");
+  const [defect, setDefect] = useState("");
+  const [report, setReport] = useState("");
+  const [guarantee, setGuarantee] = useState("");
+  const [status, setStatus] = useState("");
+
 
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
+
+  const token = localStorage.getItem("token");
+
+  function cadastroSucesso(res: AxiosResponse) {
+
+    const mensagem = res.data?.message
+    setError(null);
+    setSuccess(mensagem);
+    setTimeout(() => {
+      handleCloseModal();
+      window.location.reload();
+    }, 1000);
+  };
+
+  function cadastroFalha(error: AxiosError<any>) {
+    const mensagem =
+      typeof error.response?.data === "string"
+        ? error.response.data
+        : error.response?.data?.error || "Ocorreu um erro inesperado.";
+
+    setError(mensagem);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  function cadastro() {
+    const body = {
+      clientId,
+      serviceId,
+      equipment,
+      defect,
+      report,
+      guarantee,
+      dateCreate,
+      dateRecipt,
+      dateDelivery,
+      status,
+      products: [
+        {
+          productId: productData.productId,
+          amount: productData.quantity,
+          salePrice: 0,
+        }
+      ]
+    };
+
+    console.log(body);
+
+    axios
+      .post(
+        "http://localhost:3000/orders",
+        body,
+
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then(cadastroSucesso)
+      .catch(cadastroFalha);
+  }
 
   return (
     <>
@@ -88,21 +166,12 @@ export default function ModalOS(props: Props) {
               <div className={styles.campoItem}>
                 <div className={styles.campoSelect}>
                   <a>Selecione um(a) Cliente:</a>
-                  <SelectClientList clients={props.clients} />
+                  <SelectClientList clients={props.clients} onChange={setClientId} />
                 </div>
 
                 <div className={styles.campoSelect}>
                   <a>Status da Ordem de Serviço:</a>
-                  <select className={styles.formSelect}>
-                    <option value="">Status da OS</option>
-                    <option value="1">Em Orçamento</option>
-                    <option value="2">Aguardando Material</option>
-                    <option value="3">Aprovado</option>
-                    <option value="4">Em Progresso</option>
-                    <option value="4">Cancelado</option>
-                    <option value="5">Finalizado</option>
-                    <option value="6">Faturado</option>
-                  </select>
+                  <SelectStatus onChange={setStatus} />
                 </div>
 
               </div>
@@ -114,8 +183,8 @@ export default function ModalOS(props: Props) {
                 <input
                   type="date"
                   className={styles.formData}
-                  value={data}
-                  onChange={(e) => setData(e.target.value)}
+                  value={dateCreate}
+                  onChange={(e) => setDateCreate(e.target.value)}
                   min="2025-01-01"
                   max="2070-12-31"
                 />
@@ -126,12 +195,12 @@ export default function ModalOS(props: Props) {
               <div className={styles.campoItem}>
                 <div className={styles.campoSelect}>
                   <a>Selecione um Serviço:</a>
-                  <SelectServiceList service={props.services} />
+                  <SelectServiceList service={props.services} onChange={setServiceId} />
                 </div>
 
                 <div className={styles.campoSelect}>
                   <a>Selecione um Produto:</a>
-                  <SelectProductList product={props.products} />
+                  <SelectProductList product={props.products} onChange={setProductData} />
                 </div>
               </div>
 
@@ -144,8 +213,8 @@ export default function ModalOS(props: Props) {
                   <input
                     type="date"
                     className={styles.formData2}
-                    value={data}
-                    onChange={(e) => setData(e.target.value)}
+                    value={dateRecipt}
+                    onChange={(e) => setDateRecipt(e.target.value)}
                     min="2025-01-01"
                     max="2070-12-31"
                   />
@@ -156,8 +225,8 @@ export default function ModalOS(props: Props) {
                   <input
                     type="date"
                     className={styles.formData2}
-                    value={data}
-                    onChange={(e) => setData(e.target.value)}
+                    value={dateDelivery}
+                    onChange={(e) => setDateDelivery(e.target.value)}
                     min="2025-01-01"
                     max="2070-12-31"
                   />
@@ -165,10 +234,10 @@ export default function ModalOS(props: Props) {
               </div>
 
               <div className={styles.dadosEquipamento}>
-                <TxtField label="Equipamento" type="text" fullWidth />
-                <TxtField label="Defeito Relatados" type="text" fullWidth />
-                <TxtField label="Relatório Técnico" type="text" fullWidth />
-                <TxtField label="Garantia" type="text" fullWidth />
+                <TxtField label="Equipamento" value={equipment} type="text" fullWidth onChange={setEquiment} />
+                <TxtField label="Defeito Relatados" type="text" value={defect} fullWidth onChange={setDefect} />
+                <TxtField label="Relatório Técnico" type="text" value={report} fullWidth onChange={setReport} />
+                <TxtField label="Garantia" type="text" value={guarantee} fullWidth onChange={setGuarantee} />
               </div>
 
             </div>
@@ -182,11 +251,7 @@ export default function ModalOS(props: Props) {
               </button>
               <button
                 className={styles.buttonPrimary}
-                onClick={() => {
-                  // Lógica para salvar a OS
-                  console.log("Salvar OS");
-                  handleCloseModal();
-                }}
+                onClick={cadastro}
               >
                 Criar OS
               </button>

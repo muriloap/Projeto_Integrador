@@ -32,7 +32,7 @@ export default function ModalService() {
       handleCloseModal();
       window.location.reload();
     }, 1000);
-  }
+  };
 
   function cadastroFalha(error: AxiosError<any>) {
     const mensagem =
@@ -42,7 +42,7 @@ export default function ModalService() {
 
     setError(mensagem);
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }
+  };
 
   let mensagemAlerta = null;
 
@@ -77,7 +77,7 @@ export default function ModalService() {
       )
       .then(cadastroSucesso)
       .catch(cadastroFalha);
-  }
+  };
 
   return (
     <>

@@ -10,7 +10,7 @@
 .card{
     display: flex;
     flex-direction: column;
-    width: 600px;
+    width: 500px;
     border: 2px solid black;
     height: 200px;
     gap: 20px;
@@ -23,5 +23,20 @@
     padding-left: 10px;
     padding-right: 10px;
     background-color: transparent;
+}
+
+.actions{
+    height: 100%;
+    display: flex;
+    margin-top: -20px;
+}
+
+.icon{
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    gap: 50px;
+    width: auto;
+    height: auto;
 }
 

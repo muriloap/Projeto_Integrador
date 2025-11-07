@@ -12,7 +12,8 @@ type Order = {
     status: string;
     dateDelivery: string;
     dateRecipt: string;
-
+    total: number;
+    order: string;
     client?: Client;
     service?: Service;
 }

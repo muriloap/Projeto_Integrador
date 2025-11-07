@@ -119,7 +119,7 @@ export default function HomeOs() {
             <div className={styles.containerp}>
                 <ModalOS clients={clients} services={service} products={product}/>
                 <SearchBarOs onSearch={() => {}}/>
-                    <CardOsList orders={order} />
+                <CardOsList orders={order} />
             </div>
         </>
     )
