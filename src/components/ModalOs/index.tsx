@@ -28,7 +28,7 @@ export default function ModalOS(props: Props) {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [clientId, setClientId] = useState("");
-  const [productData, setProductData] = useState<{ productId: string; quantity: string, salePrice: number}>({ productId: "", quantity: "", salePrice: 0 });
+  const [productId, setProductId] = useState("");
   const [serviceId, setServiceId] = useState("");
   const [equipment, setEquiment] = useState("");
   const [defect, setDefect] = useState("");
@@ -77,9 +77,9 @@ export default function ModalOS(props: Props) {
       status,
       products: [
         {
-          productId: productData.productId,
-          amount: productData.quantity,
-          salePrice: productData.salePrice,
+          productId: 1,
+          amount: 0,
+          salePrice: 0,
         }
       ]
     };
@@ -199,7 +199,7 @@ export default function ModalOS(props: Props) {
 
                 <div className={styles.campoSelect}>
                   <a>Selecione um Produto:</a>
-                  <SelectProductList product={props.products} onChange={setProductData} />
+                  <SelectProductList product={props.products} onChange={setProductId} />
                 </div>
               </div>
 

@@ -3,6 +3,7 @@ import styles from "./styles.module.css"
 
 type Props = {
     onChange?(texto: string): void;
+    value?: string;
 };
 
 export default function SelectStatus(props: Props) {
@@ -14,7 +15,7 @@ export default function SelectStatus(props: Props) {
         
     return (
         <>
-            <select className={styles.formSelect} onChange={handleInputChange}>
+            <select className={styles.formSelect} value={props.value} onChange={handleInputChange}>
                     <option value="">Status da OS</option>
                     <option value="Em Orçamento">Em Orçamento</option>
                     <option value="Aguardando Material">Aguardando Material</option>

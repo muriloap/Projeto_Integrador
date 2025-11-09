@@ -21,13 +21,13 @@ export default function HomeOs() {
     const [IsAlertModal, setIsAlertOpenModal] = useState(false);
 
     const token =
-    typeof window !== "undefined" ? localStorage.getItem("token") : null;
+        typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
     function loadClientSucesso(response: AxiosResponse) {
         setClients(response.data as Client[]);
     };
 
-    function loadSercieSucesso(response: AxiosResponse) {
+    function loadServiceSucesso(response: AxiosResponse) {
         setService(response.data as Service[]);
     };
 
@@ -61,10 +61,7 @@ export default function HomeOs() {
             .catch(loadFalha);
     };
 
-     useEffect(() => {
-        loadClient();
-      }, []);
-
+ 
     function loadService() {
         axios
             .get("http://localhost:3000/services", {
@@ -73,14 +70,11 @@ export default function HomeOs() {
                     Authorization: `Bearer ${token}`,
                 },
             })
-            .then(loadSercieSucesso)
+            .then(loadServiceSucesso)
             .catch(loadFalha);
     };
 
-     useEffect(() => {
-        loadService();
-      }, []);
-      
+
     function loadProduct() {
         axios
             .get("http://localhost:3000/products", {
@@ -93,9 +87,6 @@ export default function HomeOs() {
             .catch(loadFalha);
     };
 
-     useEffect(() => {
-        loadProduct();
-      }, []);
 
     function loadOrder() {
         axios
@@ -109,17 +100,20 @@ export default function HomeOs() {
             .catch(loadFalha);
     };
 
-     useEffect(() => {
+    useEffect(() => {
         loadOrder();
-      }, []);
+        loadClient();
+        loadService();
+        loadProduct();
+    }, []);
 
 
     return (
         <>
             <div className={styles.containerp}>
-                <ModalOS clients={clients} services={service} products={product}/>
-                <SearchBarOs onSearch={() => {}}/>
-                <CardOsList orders={order} />
+                <ModalOS clients={clients} services={service} products={product} />
+                <SearchBarOs onSearch={() => { }} />
+                <CardOsList orders={order} clients={clients} products={product} services={service} />
             </div>
         </>
     )

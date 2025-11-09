@@ -10,7 +10,7 @@ import SelectProductList from "../SelectProductList";
 import SelectServiceList from "../SelectServiceList";
 import SelectStatus from "../SelectStatus";
 import SelectClientList from "../SelectClientList";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import Order from "@/models/order";
 
@@ -18,7 +18,7 @@ type Props = {
     clients: Client[];
     services: Service[];
     products: Product[];
-    orders: Order[];
+    order: Order;
 };
 
 export default function ActionOs(props: Props) {
@@ -32,13 +32,29 @@ export default function ActionOs(props: Props) {
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState<string | null>(null);
     const [clientId, setClientId] = useState("");
-    const [productData, setProductData] = useState<{ productId: string; quantity: string, salePrice: number }>({ productId: "", quantity: "", salePrice: 0 });
+    const [productId, setProductId] = useState(Number);
     const [serviceId, setServiceId] = useState("");
-    const [equipment, setEquiment] = useState("");
+    const [equipment, setEquipment] = useState("");
     const [defect, setDefect] = useState("");
     const [report, setReport] = useState("");
     const [guarantee, setGuarantee] = useState("");
     const [status, setStatus] = useState("");
+
+    useEffect(() => {
+        if (isModalOpen && props.order) {
+            setClientId(props.order.clientId?.toString() || "");
+            setServiceId(props.order.serviceId?.toString() || "");
+            setProductId(Number(props.order.shops?.[0]?.productId));
+            setEquipment(props.order.equipment || "");
+            setDefect(props.order.defect || "");
+            setReport(props.order.report || "");
+            setGuarantee(props.order.guarantee || "");
+            setStatus(props.order.status || "");
+            setDateRecipt(props.order.dateRecipt || new Date().toISOString().split("T")[0]);
+            setDateDelivery(props.order.dateDelivery || new Date().toISOString().split("T")[0]);
+            setDateCreate(props.order.dateCreate || new Date().toISOString().split("T")[0]);
+        }
+    }, [isModalOpen, props.order]);
 
     const token = localStorage.getItem("token");
 
@@ -68,6 +84,7 @@ export default function ActionOs(props: Props) {
 
     function teste() {
         alert("teste")
+        console.log(props.order.shops?.[0]?.productId)
     }
 
     function salvar() {
@@ -84,9 +101,9 @@ export default function ActionOs(props: Props) {
             status,
             products: [
                 {
-                    productId: productData.productId,
-                    amount: productData.quantity,
-                    salePrice: productData.salePrice,
+                    productId: Number(productId),
+                    amount: 0,
+                    salePrice: 0,
                 }
             ]
         };
@@ -94,8 +111,8 @@ export default function ActionOs(props: Props) {
         console.log(body);
 
         axios
-            .post(
-                "http://localhost:3000/orders",
+            .put(
+                `http://localhost:3000/orders/${props.order.id}`,
                 body,
 
                 {
@@ -144,12 +161,12 @@ export default function ActionOs(props: Props) {
                             <div className={styles.campoItem}>
                                 <div className={styles.campoSelect}>
                                     <a>Selecione um(a) Cliente:</a>
-                                    <SelectClientList clients={props.clients} onChange={setClientId} />
+                                    <SelectClientList clients={props.clients} onChange={setClientId} value={clientId} />
                                 </div>
 
                                 <div className={styles.campoSelect}>
                                     <a>Status da Ordem de Serviço:</a>
-                                    <SelectStatus onChange={setStatus} />
+                                    <SelectStatus value={status} onChange={setStatus} />
                                 </div>
 
                             </div>
@@ -173,12 +190,12 @@ export default function ActionOs(props: Props) {
                             <div className={styles.campoItem}>
                                 <div className={styles.campoSelect}>
                                     <a>Selecione um Serviço:</a>
-                                    <SelectServiceList service={props.services} onChange={setServiceId} />
+                                    <SelectServiceList service={props.services} value={serviceId} onChange={setServiceId} />
                                 </div>
 
                                 <div className={styles.campoSelect}>
                                     <a>Selecione um Produto:</a>
-                                    <SelectProductList product={props.products} onChange={setProductData} />
+                                    <SelectProductList product={props.products} value={productId} onChange={setProductId.toString} />
                                 </div>
                             </div>
 
@@ -212,7 +229,7 @@ export default function ActionOs(props: Props) {
                             </div>
 
                             <div className={styles.dadosEquipamento}>
-                                <TxtField label="Equipamento" value={equipment} type="text" fullWidth onChange={setEquiment} />
+                                <TxtField label="Equipamento" value={equipment} type="text" fullWidth onChange={setEquipment} />
                                 <TxtField label="Defeito Relatados" type="text" value={defect} fullWidth onChange={setDefect} />
                                 <TxtField label="Relatório Técnico" type="text" value={report} fullWidth onChange={setReport} />
                                 <TxtField label="Garantia" type="text" value={guarantee} fullWidth onChange={setGuarantee} />
