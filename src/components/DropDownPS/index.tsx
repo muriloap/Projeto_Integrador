@@ -70,7 +70,7 @@ export default function DropDownPP(props: Props) {
   function save() {
     const body = {
       emailCad,
-      password
+      password,
     };
 
     console.log(body);
@@ -99,7 +99,7 @@ export default function DropDownPP(props: Props) {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then(loadSucesso)
+      .then(loadSucesso);
   }
 
   useEffect(() => {
@@ -135,7 +135,9 @@ export default function DropDownPP(props: Props) {
             />
           </div>
 
-          <button onClick={save} className={styles.editButton}>Salvar e Sair</button>
+          <button onClick={save} className={styles.editButton}>
+            Salvar e Sair
+          </button>
         </div>
       </div>
     </div>
