@@ -12,38 +12,31 @@ type Props = {
   label: string;
 };
 
-export default function DropDownPP(props: Props) {
-  useEffect(() => {
-    if (props.user) {
-      setEmailCad(props.user.email || "");
-      setPassword(props.user.password || "");
-      setError(null);
-      setSuccess(null);
-    }
-  }, [props.user]);
-
+export default function DropDownPS(props: Props) {
   const [open, setOpen] = useState(false);
-
   const [emailCad, setEmailCad] = useState("");
   const [password, setPassword] = useState("");
 
-  const [user, setUser] = useState<User[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
   const token =
     typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
-  function loadSucesso(response: AxiosResponse) {
-    setUser(response.data as User[]);
-  }
+  useEffect(() => {
+    if (props.user) {
+      setEmailCad(props.user.email || "");
+      setPassword("");
+      setError(null);
+      setSuccess(null);
+    }
+  }, [props.user]);
 
   function salvarSucesso(res: AxiosResponse<any>) {
     const mensagem =
       typeof res.data === "string"
         ? res.data
-        : res.data?.message || res.data?.success;
-
+        : res.data?.message || res.data?.success || "Dados atualizados com sucesso!";
     setSuccess(mensagem);
     setError(null);
   }
@@ -53,58 +46,38 @@ export default function DropDownPP(props: Props) {
       typeof error.response?.data === "string"
         ? error.response.data
         : error.response?.data?.error || "Ocorreu um erro inesperado.";
-
     setSuccess(null);
     setError(mensagem);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  let mensagemAlerta = null;
-
-  if (error) {
-    mensagemAlerta = <Alert variant="danger">{error}</Alert>;
-  } else if (success) {
-    mensagemAlerta = <Alert variant="success">{success}</Alert>;
-  }
-
   function save() {
+    if (!props.user?.id || !token) return;
+
     const body = {
-      emailCad,
+      email: emailCad,
       password,
     };
 
-    console.log(body);
+    console.log("Salvando alterações:", body);
 
     axios
-      .put(
-        `http://localhost:3000/users/${props.user?.id}`,
-        body,
-
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then(salvarSucesso)
-      .catch(salvarFalha);
-  }
-
-  function loadUser() {
-    axios
-      .get("http://localhost:3000/users", {
+      .put(`http://localhost:3000/users/${props.user.id}`, body, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       })
-      .then(loadSucesso);
+      .then(salvarSucesso)
+      .catch(salvarFalha);
   }
 
-  useEffect(() => {
-    loadUser();
-  }, []);
+  let mensagemAlerta = null;
+  if (error) {
+    mensagemAlerta = <Alert variant="danger">{error}</Alert>;
+  } else if (success) {
+    mensagemAlerta = <Alert variant="success">{success}</Alert>;
+  }
 
   return (
     <div className={styles.container}>
@@ -117,15 +90,21 @@ export default function DropDownPP(props: Props) {
         </button>
 
         <div className={`${styles.dropdownContent} ${open ? styles.open : ""}`}>
+          {mensagemAlerta}
+
           <div className={styles.cadastro}>
             <Divisao title="Cadastro" variant="default" />
+
+            {/* Email (já preenchido do backend) */}
             <TxtField
               value={emailCad}
               label="Email"
-              type="text"
+              type="email"
               onChange={setEmailCad}
               fullWidth
             />
+
+            {/* Campo de senha (opcional para troca) */}
             <TxtField
               value={password}
               label="Senha"

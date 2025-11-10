@@ -13,36 +13,28 @@ type Props = {
 };
 
 export default function DropDownPP(props: Props) {
-  function buscarCep(valorCep: string) {
-    const cep = valorCep.replace(/\D/g, "");
+  function getUserIdFromToken(token: string | null): number | null {
+    if (!token) return null;
 
-    if (cep.length !== 8) return;
-
-    axios
-      .get(`https://viacep.com.br/ws/${cep}/json/`)
-      .then((res) => {
-        if (res.data.erro) {
-          setError("CEP inválido ou não encontrado!");
-          return;
-        }
-
-        setAddress(res.data.logradouro || "");
-        setNeighborhood(res.data.bairro || "");
-        setCity(res.data.localidade || "");
-        setState(res.data.uf || "");
-        setError(null);
-      })
-      .catch(() => {
-        setError("Erro ao buscar o CEP.");
-      });
+    try {
+      const payloadBase64 = token.split(".")[1];
+      const payload = JSON.parse(atob(payloadBase64));
+      console.log("🧩 Payload decodificado do token:", payload);
+      return payload.id || payload.userId || payload.sub || null;
+    } catch (error) {
+      console.error("Erro ao decodificar token:", error);
+      return null;
+    }
   }
 
   const token =
     typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
   const [open, setOpen] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
 
-  const [emailCont, setEmailCont] = useState("");
+  const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [companyName, setCompanyName] = useState("");
@@ -58,11 +50,43 @@ export default function DropDownPP(props: Props) {
   const [site, setSite] = useState("");
   const [phone, setPhone] = useState("");
 
-  const [user, setUser] = useState<User[]>([]);
-  const [error, setError] = useState<string | null>(null);
+  function buscarCep(valorCep: string) {
+    const cep = valorCep.replace(/\D/g, "");
+    if (cep.length !== 8) return;
+
+    axios
+      .get(`https://viacep.com.br/ws/${cep}/json/`)
+      .then((res) => {
+        if (res.data.erro) {
+          setError("CEP inválido ou não encontrado!");
+          return;
+        }
+        setAddress(res.data.logradouro || "");
+        setNeighborhood(res.data.bairro || "");
+        setCity(res.data.localidade || "");
+        setState(res.data.uf || "");
+        setError(null);
+      })
+      .catch(() => {
+        setError("Erro ao buscar o CEP.");
+      });
+  }
 
   function loadSucesso(response: AxiosResponse) {
-    setUser(response.data as User[]);
+    const data = response.data;
+
+    setName(data.name || "");
+    setLastName(data.lastName || "");
+    setDocument(data.document || "");
+    setEmail(data.email || "");
+    setCompanyName(data.companyName || "");
+    setPhone(data.phone || "");
+    setSite(data.site || "");
+    setCep(data.cep || "");
+    setAddress(data.address || "");
+    setNeighborhood(data.neighborhood || "");
+    setCity(data.city || "");
+    setState(data.state || "");
   }
 
   function loadFalha(error: AxiosError<any>) {
@@ -75,15 +99,20 @@ export default function DropDownPP(props: Props) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  let mensagemAlerta = null;
-
-  if (error) {
-    mensagemAlerta = <Alert variant="danger">{error}</Alert>;
-  }
-
   function loadUser() {
+    if (!token) {
+      setError("Token não encontrado. Faça login novamente.");
+      return;
+    }
+
+    const userId = getUserIdFromToken(token);
+    if (!userId) {
+      setError("ID do usuário não encontrado no token.");
+      return;
+    }
+
     axios
-      .get("http://localhost:3000/users", {
+      .get(`http://localhost:3000/users/${userId}`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -97,8 +126,69 @@ export default function DropDownPP(props: Props) {
     loadUser();
   }, []);
 
+  function salvarSucesso(res: AxiosResponse<any>) {
+    const mensagem =
+      typeof res.data === "string"
+        ? res.data
+        : res.data?.message ||
+          res.data?.success ||
+          "Dados atualizados com sucesso!";
+    setSuccess(mensagem);
+    setError(null);
+  }
+
+  function salvarFalha(error: AxiosError<any>) {
+    const mensagem =
+      typeof error.response?.data === "string"
+        ? error.response.data
+        : error.response?.data?.error || "Ocorreu um erro inesperado.";
+    setSuccess(null);
+    setError(mensagem);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function save() {
+    if (!props.user?.id || !token) return;
+
+    const body = {
+      email: email,
+      lastName,
+      companyName,
+      document,
+      cep,
+      address,
+      number,
+      neighborhood,
+      state,
+      city,
+      site,
+      phone,
+    };
+
+    console.log("Salvando alterações:", body);
+
+    axios
+      .put(`http://localhost:3000/users/${props.user.id}`, body, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(salvarSucesso)
+      .catch(salvarFalha);
+  }
+
+  let mensagemAlerta = null;
+  if (error) {
+    mensagemAlerta = <Alert variant="danger">{error}</Alert>;
+  } else if (success) {
+    mensagemAlerta = <Alert variant="success">{success}</Alert>;
+  }
+
   return (
     <div className={styles.container}>
+      {error && <Alert variant="danger">{error}</Alert>}
+
       <div className={styles.card}>
         <button
           onClick={() => setOpen(!open)}
@@ -140,6 +230,7 @@ export default function DropDownPP(props: Props) {
               fullWidth
             />
           </div>
+
           <div className={styles.end}>
             <Divisao title="Endereço" variant="default" />
             <TxtField
@@ -210,15 +301,17 @@ export default function DropDownPP(props: Props) {
               fullWidth
             />
             <TxtField
-              value={emailCont}
+              value={email}
               label="Email"
               type="text"
-              onChange={setEmailCont}
+              onChange={setEmail}
               fullWidth
             />
           </div>
 
-          <button className={styles.editButton}>Salvar e Sair</button>
+          <button onClick={save} className={styles.editButton}>
+            Salvar e Sair
+          </button>
         </div>
       </div>
     </div>
