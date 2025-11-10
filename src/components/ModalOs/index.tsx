@@ -76,11 +76,11 @@ export default function ModalOS(props: Props) {
       dateRecipt,
       dateDelivery,
       status,
-      shops: [
+      products: [
         {
           productId: productId,
           amount: quantity,
-          salePrice: 0,
+          salePrice: 300,
         }
       ]
     };

@@ -1,8 +1,6 @@
 import Order from "@/models/order";
 import styles from "./styles.module.css";
 import Divisao from "../Divisao";
-import EditIcon from "@mui/icons-material/Edit";
-import { PictureAsPdf } from "@mui/icons-material";
 import ActionOs from "../ActionOs";
 import Client from "@/models/client";
 import Product from "@/models/product";

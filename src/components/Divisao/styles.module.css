@@ -7,7 +7,7 @@
 .line {
   flex: 1;
   height: 2px;
-  background-color: #ccc;
+  background-color: rgb(204, 204, 204);
 }
 
 .title {

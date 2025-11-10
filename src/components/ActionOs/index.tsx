@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import Order from "@/models/order";
 import { Alert } from "react-bootstrap";
+import jsPDF from "jspdf";
 
 type Props = {
     clients: Client[];
@@ -72,7 +73,7 @@ export default function ActionOs(props: Props) {
 
         };
 
-         axios
+        axios
             .put(
                 `http://localhost:3000/shops/${props.order.shops?.[0].id}`,
                 bodyShop,
@@ -146,6 +147,64 @@ export default function ActionOs(props: Props) {
             .catch(salvarFalha);
     }
 
+    function gerarPdf() {
+
+        const doc = new jsPDF({
+            orientation: "portrait",
+            unit: "mm",
+            format: "a4",
+        });
+
+        const pageWidth = doc.internal.pageSize.getWidth(); // largura total da página
+        const marginRight = 10;
+
+        const alignRight = (text: string, y: number) => {
+            const textWidth = doc.getTextWidth(text);
+            doc.text(text, pageWidth - textWidth - marginRight, y);
+        };
+
+        const x = 10, y = 60, w = 190, h = 46;
+
+        doc.setFontSize(14);
+        doc.text(`Número da OS:`, 130, 10)
+        alignRight(`# ${props.order.id}`, 10);
+
+        doc.text(`Data: `, 130, 20)
+        alignRight(`${new Date(props.order.dateCreate).toLocaleDateString("pt-BR")}`, 20);
+
+        doc.text(`Status: `, 130, 30)
+        alignRight(`${props.order.status}`, 30);
+        
+        doc.line(10, 40, 200, 40);
+        doc.text(`Descrição da Ordem de Serviço`, 105, 50, { align: "center" });
+        
+        doc.rect(x, y, w, h, "S");
+        doc.text(`Cliente: `, x + 5, y + 10)
+        doc.text(`${props.order.client?.name} ${props.order.client?.lastName}`, x + 23, y + 10)
+        doc.text(`Telefone: `, x + 5, y + 20)
+        doc.text(`${props.order.client?.phone}`, x + 27, y + 20)
+        doc.text(`Email: `, x + 5, y + 30)
+        doc.text(`${props.order.client?.email}`, x + 20, y + 30)
+        doc.text(`CPF/CNPJ: `, x + 5, y + 40)
+        doc.text(`${props.order.client?.document}`, x + 33, y + 40)
+        doc.text(`Endereço: `, x + 85, y + 10)
+        doc.text(`${props.order.client?.address}, ${props.order.client?.number}`, x + 109, y + 10)
+        doc.text(`Bairro: `, x + 85, y + 20)
+        doc.text(`${props.order.client?.neighborhood}`, x + 101, y + 20)
+        doc.text(`Cidade: `, x + 85, y + 30)
+        doc.text(`${props.order.client?.city}`, x + 103, y + 30)
+        doc.text(`Estado: `, x + 85, y + 40)
+        doc.text(`${props.order.client?.state}`, x + 103, y + 40)
+        
+        // 💡 Aqui vem a mágica:
+        const blob = doc.output("blob");
+        const url = URL.createObjectURL(blob);
+
+        // Abre em uma nova aba
+        window.open(url);
+
+    }
+
     let mensagemAlerta = null;
 
     if (error) {
@@ -161,7 +220,7 @@ export default function ActionOs(props: Props) {
                 <div className={styles.icon} onClick={handleOpenModal}>
                     <EditIcon sx={{ fontSize: "auto", background: "transparent" }} />
                 </div>
-                <div className={styles.icon}>
+                <div className={styles.icon} onClick={gerarPdf}>
                     <PictureAsPdf sx={{ fontSize: "auto", background: "transparent" }} />
                 </div>
             </div>
