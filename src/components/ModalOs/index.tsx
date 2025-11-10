@@ -22,20 +22,20 @@ type Props = {
 
 export default function ModalOS(props: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [data, setData] = useState(new Date().toISOString().split("T")[0]);
   const [dateCreate, setDateCreate] = useState(new Date().toISOString().split("T")[0]);
   const [dateRecipt, setDateRecipt] = useState(new Date().toISOString().split("T")[0]);
   const [dateDelivery, setDateDelivery] = useState(new Date().toISOString().split("T")[0]);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [clientId, setClientId] = useState("");
-  const [productData, setProductData] = useState<{ productId: string; quantity: string }>({ productId: "", quantity: "", });
+  const [productId, setProductId] = useState("");
   const [serviceId, setServiceId] = useState("");
-  const [equipment, setEquiment] = useState("");
+  const [equipment, setEquipment] = useState("");
   const [defect, setDefect] = useState("");
   const [report, setReport] = useState("");
   const [guarantee, setGuarantee] = useState("");
   const [status, setStatus] = useState("");
+  const [quantity, setQuantity] = useState("");
 
 
   const handleOpenModal = () => setIsModalOpen(true);
@@ -76,10 +76,10 @@ export default function ModalOS(props: Props) {
       dateRecipt,
       dateDelivery,
       status,
-      products: [
+      shops: [
         {
-          productId: productData.productId,
-          amount: productData.quantity,
+          productId: productId,
+          amount: quantity,
           salePrice: 0,
         }
       ]
@@ -200,7 +200,8 @@ export default function ModalOS(props: Props) {
 
                 <div className={styles.campoSelect}>
                   <a>Selecione um Produto:</a>
-                  <SelectProductList product={props.products} onChange={setProductData} />
+                  <SelectProductList product={props.products} onChange={setProductId} />
+                  <TxtField label="Quantidade" value={quantity} type="text" onChange={setQuantity} />
                 </div>
               </div>
 
@@ -234,7 +235,7 @@ export default function ModalOS(props: Props) {
               </div>
 
               <div className={styles.dadosEquipamento}>
-                <TxtField label="Equipamento" value={equipment} type="text" fullWidth onChange={setEquiment} />
+                <TxtField label="Equipamento" value={equipment} type="text" fullWidth onChange={setEquipment} />
                 <TxtField label="Defeito Relatados" type="text" value={defect} fullWidth onChange={setDefect} />
                 <TxtField label="Relatório Técnico" type="text" value={report} fullWidth onChange={setReport} />
                 <TxtField label="Garantia" type="text" value={guarantee} fullWidth onChange={setGuarantee} />

@@ -2,39 +2,28 @@ import { ChangeEvent, useState } from "react";
 import SelectProduct from "../SelectProduct";
 import styles from "./styles.module.css";
 import Product from "@/models/product";
-import TxtField from "../TxtField";
 
 type Props = {
-    product: Product[];
-    onChange?(data: { productId: string; quantity: string }): void;
-};
+  product: Product[];
+  value?: string | number;
+  onChange?(texto: string): void;
+}
 
-export default function SelectProductList({ product, onChange }: Props) {
-    const [selectedProduct, setSelectedProduct] = useState("");
-    const [quantity, setQuantity] = useState("");
+export default function SelectProductList({ product, onChange, value }: Props) {
 
-    function handleSelectChange(e: ChangeEvent<HTMLSelectElement>) {
-        const newProduct = e.target.value;
-        setSelectedProduct(newProduct);
-        onChange?.({ productId: newProduct, quantity });
-    }
+  function handleSelectChange(e: ChangeEvent<HTMLSelectElement>) {
+    onChange?.(e.target.value);
+  }
 
-    function handleQuantityChange(value: string) {
-        setQuantity(value);
-        onChange?.({ productId: selectedProduct, quantity: value });
-    }
+  return (
+    <>
+      <select className={styles.formSelect} value={value} onChange={handleSelectChange}>
+        <option value="">Selecione um Produto</option>
+        {product.map((product) => (
+          <SelectProduct key={product.id} product={product} />
+        ))}
+      </select>
 
-    return (
-        <>
-            <select className={styles.formSelect} onChange={handleSelectChange}>
-                <option value="">Selecione um Produto</option>
-                {product.map((product) => (
-                    <SelectProduct key={product.id} product={product} />
-                ))}
-            </select>
-
-            <TxtField value={quantity} label="Quantidade" type="text" onChange={handleQuantityChange}
-            />
-        </>
-    );
+    </>
+  );
 }

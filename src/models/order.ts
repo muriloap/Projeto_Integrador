@@ -10,12 +10,18 @@ type Order = {
     report: string;
     guarantee: string;
     status: string;
+    dateCreate: string;
     dateDelivery: string;
     dateRecipt: string;
     total: number;
-    order: string;
     client?: Client;
     service?: Service;
+    shops?: {
+        id: number;
+        productId: number;
+        amount: number;
+        salePrice: number;
+    }[];
 }
 
 export default Order;

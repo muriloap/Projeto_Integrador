@@ -119,7 +119,7 @@ export default function ActionClient(props: Props) {
 
     setError(mensagem);
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }
+  };
 
   function deletarSucesso(res: AxiosResponse<any>) {
     const mensagem =
