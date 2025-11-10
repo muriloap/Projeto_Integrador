@@ -13,6 +13,7 @@ import SelectClientList from "../SelectClientList";
 import { useEffect, useState } from "react";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import Order from "@/models/order";
+import { Alert } from "react-bootstrap";
 
 type Props = {
     clients: Client[];
@@ -32,19 +33,20 @@ export default function ActionOs(props: Props) {
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState<string | null>(null);
     const [clientId, setClientId] = useState("");
-    const [productId, setProductId] = useState(Number);
+    const [productId, setProductId] = useState("");
     const [serviceId, setServiceId] = useState("");
     const [equipment, setEquipment] = useState("");
     const [defect, setDefect] = useState("");
     const [report, setReport] = useState("");
     const [guarantee, setGuarantee] = useState("");
     const [status, setStatus] = useState("");
+    const [quantity, setQuantity] = useState("");
 
     useEffect(() => {
         if (isModalOpen && props.order) {
             setClientId(props.order.clientId?.toString() || "");
             setServiceId(props.order.serviceId?.toString() || "");
-            setProductId(Number(props.order.shops?.[0]?.productId));
+            setProductId(props.order.shops?.[0]?.productId.toString() || "");
             setEquipment(props.order.equipment || "");
             setDefect(props.order.defect || "");
             setReport(props.order.report || "");
@@ -53,12 +55,42 @@ export default function ActionOs(props: Props) {
             setDateRecipt(props.order.dateRecipt || new Date().toISOString().split("T")[0]);
             setDateDelivery(props.order.dateDelivery || new Date().toISOString().split("T")[0]);
             setDateCreate(props.order.dateCreate || new Date().toISOString().split("T")[0]);
+            setQuantity(props.order.shops?.[0].amount.toString() || "");
         }
     }, [isModalOpen, props.order]);
 
     const token = localStorage.getItem("token");
 
-    function salvarSucesso(res: AxiosResponse<any>) {
+    function salvarSucesso() {
+
+        const bodyShop = {
+
+            orderId: props.order.id,
+            productId: Number(productId),
+            amount: Number(quantity),
+            salePrice: 0,
+
+        };
+
+         axios
+            .put(
+                `http://localhost:3000/shops/${props.order.shops?.[0].id}`,
+                bodyShop,
+
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
+
+            .then(sucesso)
+            .catch(salvarFalha)
+
+
+    };
+
+    function sucesso(res: AxiosResponse<any>) {
         const mensagem =
             typeof res.data === "string"
                 ? res.data
@@ -70,7 +102,8 @@ export default function ActionOs(props: Props) {
             handleCloseModal();
             window.location.reload();
         }, 1000);
-    };
+
+    }
 
     function salvarFalha(error: AxiosError<any>) {
         const mensagem =
@@ -81,11 +114,6 @@ export default function ActionOs(props: Props) {
         setError(mensagem);
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
-
-    function teste() {
-        alert("teste")
-        console.log(props.order.shops?.[0]?.productId)
-    }
 
     function salvar() {
         const body = {
@@ -99,16 +127,8 @@ export default function ActionOs(props: Props) {
             dateRecipt,
             dateDelivery,
             status,
-            products: [
-                {
-                    productId: Number(productId),
-                    amount: 0,
-                    salePrice: 0,
-                }
-            ]
         };
 
-        console.log(body);
 
         axios
             .put(
@@ -124,6 +144,14 @@ export default function ActionOs(props: Props) {
             )
             .then(salvarSucesso)
             .catch(salvarFalha);
+    }
+
+    let mensagemAlerta = null;
+
+    if (error) {
+        mensagemAlerta = <Alert variant="danger">{error}</Alert>;
+    } else if (success) {
+        mensagemAlerta = <Alert variant="success">{success}</Alert>;
     }
 
     return (
@@ -153,6 +181,8 @@ export default function ActionOs(props: Props) {
                         <p className={styles.modalDescription}>
                             Preencha os dados abaixo para editar uma Ordem de Serviço.
                         </p>
+
+                        {mensagemAlerta}
 
                         <div className={styles.formGroup}>
 
@@ -195,7 +225,8 @@ export default function ActionOs(props: Props) {
 
                                 <div className={styles.campoSelect}>
                                     <a>Selecione um Produto:</a>
-                                    <SelectProductList product={props.products} value={productId} onChange={setProductId.toString} />
+                                    <SelectProductList product={props.products} value={productId} onChange={setProductId} />
+                                    <TxtField label="Quantidade" value={quantity} type="text" onChange={setQuantity} />
                                 </div>
                             </div>
 
@@ -246,7 +277,7 @@ export default function ActionOs(props: Props) {
                             </button>
                             <button
                                 className={styles.buttonPrimary}
-                                onClick={teste}
+                                onClick={salvar}
                             >
                                 Salvar OS
                             </button>

@@ -17,6 +17,7 @@ type Order = {
     client?: Client;
     service?: Service;
     shops?: {
+        id: number;
         productId: number;
         amount: number;
         salePrice: number;
