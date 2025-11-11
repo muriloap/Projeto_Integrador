@@ -1,20 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
 
 .containerp {
-    background-color: rgb(212, 212, 212);
-    padding-top: 5rem;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgb(214, 213, 213);
+    padding-top: 2rem;
     padding-bottom: 2rem;
     font-family: "Poppins", sans-serif;
+    gap: 20px;
 }
 
 .titulo {
     text-align: center;
-    font-size: 2.5rem;
     font-weight: 700;
     color: #1e293b;
-    margin-bottom: 1rem;
-    background-color: rgb(212, 212, 212);
+    background-color: rgb(214, 213, 213);
 }
 
 .titulo::after {
@@ -27,14 +28,76 @@
     border-radius: 2px;
 }
 
+.titulo h2 {
+    font-weight: 700;
+    background-color: rgb(214, 213, 213);
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 2.3rem;
+}
+
 .p {
-    background-color: #084A95;
-    color: #ffffff;
-    font-size: 1.25rem; /* tamanho agradável */
-    line-height: 2.9rem; /* espaçamento entre linhas */
-    text-align: justify; /* texto alinhado dos dois lados */
+    font-family: "Poppins", sans-serif;
+    color: #000000;
+    font-size: 1.3rem; /* tamanho agradável */
+    text-align: center; /* texto alinhado dos dois lados */
     padding: 2rem;
     border-radius: 12px;
     max-width: 1500px;
     margin: 0 auto 2rem auto; /* centralizado e com espaçamento abaixo */
-  }
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #ffffff;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.p:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(12, 116, 232, 0.25);
+}
+
+.featuresGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+    padding: 0 2rem;
+    background: transparent;
+}
+
+.featureCard {
+    text-align: center;
+    padding: 2.5rem 2rem;
+    border-radius: 18px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #ffffff;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    max-width: 900px;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.featureCard:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(12, 116, 232, 0.25);
+}
+
+.featureIcon {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+}
+
+.featureCard h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    color: #0c74e8;
+    font-weight: 600;
+}
+
+.featureCard p {
+    color: #475569;
+    line-height: 1.7;
+    font-size: 1rem;
+}

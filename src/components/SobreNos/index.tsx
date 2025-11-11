@@ -1,16 +1,57 @@
-import styles from './styles.module.css'
+import styles from "./styles.module.css";
 
 export default function SobreNos() {
-    return (
-        <>
-        <div className={styles.containerp}>
-        <h2 id='sobrenos' className={styles.titulo}>SOBRE NÓS</h2>
-        <p className={styles.p}>Na LUMMA, acreditamos que cada serviço deve ser executado com profissionalismo, agilidade e confiança. Nossa missão é simplificar a gestão de ordens de serviços, oferecendo soluções práticas e eficientes para empresas e clientes que buscam qualidade no atendimento. <br />
+  return (
+    <>
+      <div className={styles.titulo}>
+        <h2 id="sobrenos">SOBRE NÓS</h2>
+      </div>
 
-        Com uma equipe dedicada e tecnologia de ponta, ajudamos nossos parceiros a organizar, acompanhar e concluir seus serviços de forma clara e transparente. Nosso objetivo é facilitar processos, reduzir burocracias e garantir a satisfação em cada etapa. <br />
-
-        Mais do que uma empresa, somos parceiros de quem deseja otimizar tempo e alcançar melhores resultados no dia a dia. Estamos comprometidos em transformar cada ordem de serviço em uma experiência positiva, pautada pela responsabilidade, inovação e respeito.</p>
+      <div className={styles.containerp}>
+        <div className={styles.featureCard}>
+          <div className={styles.featureIcon}>❕</div>
+          <h3>INTRODUÇÃO</h3>
+          <p>
+            {" "}
+            Na OS CONTROL, empresas e prestadores de serviços poderão usufruir
+            do nosso sistema para um gerenciamento aprimorado do seu NEGÓCIO.
+            Gerenciamento de produtos, clientes, serviços e Ordens de Serviço em
+            um único sistema.
+          </p>
         </div>
-        </>
-    )
+        <div className={styles.featureCard}>
+          <div className={styles.featureIcon}>🎯</div>
+          <h3>OBJETIVO</h3>
+          <p>
+            {" "}
+            Nosso objetivo é simplificar a rotina empresarial, oferecendo uma
+            plataforma intuitiva, segura e eficiente. Com a OS CONTROL, você tem
+            controle total sobre suas operações, reduz erros manuais e otimiza o
+            tempo de execução das suas atividades.{" "}
+          </p>
+        </div>
+        <div className={styles.featureCard}>
+          <div className={styles.featureIcon}>✅</div>
+          <h3>PRÁTICO</h3>
+          <p>
+            {" "}
+            Desenvolvida pensando na praticidade e na organização, nossa solução
+            permite acompanhar cada etapa do processo — desde o cadastro de
+            clientes até a finalização de uma ordem de serviço — tudo de forma
+            integrada e acessível de qualquer lugar.
+          </p>
+        </div>
+        <div className={styles.featureCard}>
+          <div className={styles.featureIcon}>💭</div>
+          <h3>PENSAMOS EM VOCÊ</h3>
+          <p>
+            {" "}
+            Acreditamos que tecnologia e gestão andam lado a lado. Por isso, a
+            OS CONTROL foi criada para ajudar sua empresa a crescer com mais
+            controle, produtividade e profissionalismo.
+          </p>
+        </div>
+      </div>
+    </>
+  );
 }

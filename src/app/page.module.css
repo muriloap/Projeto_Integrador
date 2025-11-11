@@ -1,14 +1,13 @@
 .assinatura{
     display: flex;
     justify-content: center;
-    background-color: rgb(212, 212, 212);
+    background-color: rgb(233, 233, 233);
 }
 .containerp{
     display: flex;
     flex-direction: column;
-    background-color: rgb(212, 212, 212);
 }
 
 .pi{
-    background-color: rgb(212, 212, 212);
+    background-color: rgb(224, 224, 224);
 }

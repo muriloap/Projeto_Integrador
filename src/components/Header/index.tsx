@@ -6,7 +6,7 @@ export default function Header() {
     return (
         <header className={styles.header}>
             <Logo/>
-            <h1 className={styles.h1}>LUMMA</h1>
+            <h1 className={styles.h1}>OS CONTROL</h1>
             <Menu />
 
         </header>
