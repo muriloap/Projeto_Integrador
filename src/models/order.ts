@@ -19,7 +19,6 @@ type Order = {
     totalService: number;
     client?: Client;
     service?: Service;
-    ordens: number;
     shops?: {
         id: number;
         productId: number;
