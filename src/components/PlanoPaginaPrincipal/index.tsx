@@ -28,8 +28,8 @@ export default function PlanoPaginaPrincipal({ plano, descricao, valor, botao }:
         ))}
       </List>
 
-      <Link href="" className={styles.botao1}>
-        {botao}
+      <Link href="" className={styles.botaol}>
+        {botao} Assinar
       </Link>
     </div>
   );

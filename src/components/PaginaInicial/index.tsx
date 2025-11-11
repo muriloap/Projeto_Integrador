@@ -6,10 +6,10 @@ export default function PaginaInicial() {
   return (
     <>
     
-      <span id='paginainicial' className={styles.featuresSection}>
-
+      <span id='paginainicial' className={styles.paginaInicial}>
         <div className={styles.container}>
-          <h2 className={styles.titulo}>Por que Escolher a LUMMA?</h2>
+
+          <h2 className={styles.titulo}>Por que Escolher OS CONTROL?</h2>
           <div className={styles.featuresGrid}>
             <div className={styles.featureCard}>
               <div className={styles.featureIcon}>⚡</div>

@@ -17,7 +17,7 @@ export default function Contato() {
           <div className={styles.tabelaContatos}>
             <h2>CONTATOS</h2>
             <p>Whatsapp: (16) 99999-8888</p>
-            <p>E-mail: lumma123@gmail.com</p>
+            <p>E-mail: suporteoscontrol@gmail.com</p>
           </div>
         </span>
     </footer>
