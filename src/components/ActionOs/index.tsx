@@ -259,7 +259,7 @@ export default function ActionOs(props: Props) {
             head: [["Dados do Cliente"]],
             body: [
                 ["Cliente: " + `${nome}`],
-                ["Telefone: " + `${phone}`],
+                ["Telefone: " + `${props.order.client?.phone}`],
                 ["Endereço: " + `${props.order.client?.address}, ${props.order.client?.number}, ${props.order.client?.neighborhood}, ${props.order.client?.city} - ${props.order.client?.state}`],
             ],
         });
@@ -282,7 +282,7 @@ export default function ActionOs(props: Props) {
             head: [["Relatório Técnico"]],
             body: [
                 [
-                    `${report}`,
+                    `${props.order.report}`,
                 ],
             ],
         });
@@ -295,7 +295,6 @@ export default function ActionOs(props: Props) {
             head: [["Serviços Prestados", "Quantidade", "Vl. Unitário", "Vl. Total"]],
             body: [
                 [`${props.order.service?.nameService}`, "1", `   R$: ${props.order.service?.price}`, `   R$: ${props.order.totalService}`],
-                ["Defeito Relatado: " + `${defect}`],
             ],
         });
 
@@ -324,8 +323,8 @@ export default function ActionOs(props: Props) {
         const yTotal = (doc as any).lastAutoTable.finalY + 10;
         doc.setFontSize(11);
         alignRight(`SubTotal:`, yTotal - 1);
-        alignRight(`Produtos: R$: ${props.order.totalProducts}`, yTotal + 6);
         alignRight(`Serviços: R$: ${props.order.totalService}`, yTotal + 11);
+        alignRight(`Produtos: R$: ${props.order.totalProducts}`, yTotal + 6);
         doc.setFont("helvetica", "bold");
         alignRight(`Total: R$: ${props.order.total}`, yTotal + 20);
 
@@ -374,6 +373,7 @@ export default function ActionOs(props: Props) {
         setSite(data.site || "");
         setCep(data.cep || "");
         setAddress(data.address || "");
+        setNumber(data.number || "");
         setNeighborhood(data.neighborhood || "");
         setCity(data.city || "");
         setState(data.state || "");
@@ -504,8 +504,8 @@ export default function ActionOs(props: Props) {
 
                             <div className={styles.dadosEquipamento}>
                                 <TxtField label="Equipamento" value={equipment} type="text" fullWidth onChange={setEquipment} />
-                                <TxtField label="Defeito Relatados" type="text" value={defect} fullWidth onChange={setDefect} />
-                                <TxtField label="Relatório Técnico" type="text" value={report} fullWidth onChange={setReport} />
+                                <TxtField label="Defeito Relatados" type="text" value={defect} fullWidth multiline onChange={setDefect} />
+                                <TxtField label="Relatório Técnico" type="text" value={report} fullWidth multiline onChange={setReport} />
                                 <TxtField label="Garantia" type="text" value={guarantee} fullWidth onChange={setGuarantee} />
                             </div>
 

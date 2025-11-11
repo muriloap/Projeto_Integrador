@@ -235,8 +235,8 @@ export default function ModalOS(props: Props) {
               </div>
 
               <div className={styles.dadosEquipamento}>
-                <TxtField label="Equipamento" value={equipment} type="text" fullWidth onChange={setEquipment} />
-                <TxtField label="Defeito Relatados" type="text" value={defect} fullWidth onChange={setDefect} />
+                <TxtField label="Equipamento" value={equipment} type="text" fullWidth multiline onChange={setEquipment} />
+                <TxtField label="Defeito Relatados" type="text" value={defect} fullWidth multiline onChange={setDefect} />
                 <TxtField label="Relatório Técnico" type="text" value={report} fullWidth onChange={setReport} />
                 <TxtField label="Garantia" type="text" value={guarantee} fullWidth onChange={setGuarantee} />
               </div>
