@@ -1,5 +1,6 @@
 import AssinaturasLogado from "@/components/AssinaturasLogado";
 import styles from "./page.module.css";
+import EmDev from "@/components/EmDev";
 
 export default function HomeAssinaturas() {
 
@@ -8,6 +9,7 @@ export default function HomeAssinaturas() {
     <>
     <div className={styles.containerp}>
       <AssinaturasLogado />
+      <EmDev/>
     </div>
     </>
   );

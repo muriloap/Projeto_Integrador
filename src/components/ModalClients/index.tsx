@@ -244,20 +244,20 @@ export default function ModalCliente() {
                                                     label="Nome"
                                                     type="text"
                                                     onChange={setNome}
-                                                    />
+                                                />
                                                 <TxtField
                                                     value={lastName}
                                                     label="Sobrenome"
                                                     type="text"
                                                     onChange={setLastName}
-                                                    />
+                                                />
                                                 <TxtField
                                                     value={document}
                                                     label="CPF"
                                                     type="text"
                                                     onChange={setDocument}
                                                     cpf
-                                                    />
+                                                />
                                             </div>
 
                                             <div className={styles.end}>
@@ -273,37 +273,37 @@ export default function ModalCliente() {
                                                             buscarCep(valor);
                                                         }
                                                     }}
-                                                    />
+                                                />
                                                 <TxtField
                                                     value={address}
                                                     label="Endereço"
                                                     type="text"
                                                     onChange={setAddress}
-                                                    />
+                                                />
                                                 <TxtField
                                                     value={number}
                                                     label="Número"
                                                     type="text"
                                                     onChange={setNumber}
-                                                    />
+                                                />
                                                 <TxtField
                                                     value={neighborhood}
                                                     label="Bairro"
                                                     type="text"
                                                     onChange={setNeighborhood}
-                                                    />
+                                                />
                                                 <TxtField
                                                     value={state}
                                                     label="Estado"
                                                     type="text"
                                                     onChange={setState}
-                                                    />
+                                                />
                                                 <TxtField
                                                     value={city}
                                                     label="Cidade"
                                                     type="text"
                                                     onChange={setCity}
-                                                    />
+                                                />
                                             </div>
 
                                             <div className={styles.contato}>
@@ -314,13 +314,13 @@ export default function ModalCliente() {
                                                     type="text"
                                                     onChange={setPhone}
                                                     phone
-                                                    />
+                                                />
                                                 <TxtField
                                                     value={emailCont}
                                                     label="Email"
                                                     type="text"
                                                     onChange={setEmailCont}
-                                                    />
+                                                />
                                             </div>
                                         </>
                                     ) : (
@@ -328,7 +328,7 @@ export default function ModalCliente() {
                                             <h1 className={styles.textModo}>
                                                 PREENCHA ESSES CAMPOS PARA CLIENTE PESSOA JURÍDICA
                                             </h1>
-                                                {mensagemAlerta}
+                                            {mensagemAlerta}
                                             <div className={styles.dadosp}>
                                                 <Divisao title="Dados Pessoais" variant="default" />
                                                 <TxtField
@@ -336,7 +336,7 @@ export default function ModalCliente() {
                                                     label="Nome da Empresa"
                                                     type="text"
                                                     onChange={setCompanyName}
-                                                    />
+                                                />
                                                 <TxtField
                                                     value={corporateReason}
                                                     label="Razão Social"
@@ -373,16 +373,16 @@ export default function ModalCliente() {
                                                     }}
                                                 />
                                                 <TxtField
-                                                    value={number}
-                                                    label="Número"
-                                                    type="text"
-                                                    onChange={setNumber}
-                                                />
-                                                <TxtField
                                                     value={address}
                                                     label="Endereço"
                                                     type="text"
                                                     onChange={setAddress}
+                                                />
+                                                <TxtField
+                                                    value={number}
+                                                    label="Número"
+                                                    type="text"
+                                                    onChange={setNumber}
                                                 />
                                                 <TxtField
                                                     value={neighborhood}

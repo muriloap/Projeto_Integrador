@@ -9,6 +9,7 @@ import Product from '@/models/product';
 import SearchBarOs from '@/components/SearchBarOs';
 import CardOsList from '@/components/CardOsList';
 import Order from '@/models/order';
+import User from '@/models/user';
 
 
 export default function HomeOs() {
@@ -17,6 +18,7 @@ export default function HomeOs() {
     const [service, setService] = useState<Service[]>([]);
     const [product, setProduct] = useState<Product[]>([]);
     const [order, setOrder] = useState<Order[]>([]);
+    const [user, setUser] = useState<User[]>([]);
     const [error, setError] = useState<string | null>(null);
     const [IsAlertModal, setIsAlertOpenModal] = useState(false);
 
@@ -37,6 +39,7 @@ export default function HomeOs() {
     function loadOrderSucesso(response: AxiosResponse) {
         setOrder(response.data as Order[]);
     };
+  
 
     function loadFalha(error: AxiosError<any>) {
         const mensagem =
@@ -99,7 +102,7 @@ export default function HomeOs() {
             .then(loadOrderSucesso)
             .catch(loadFalha);
     };
-
+    
     useEffect(() => {
         loadOrder();
         loadClient();

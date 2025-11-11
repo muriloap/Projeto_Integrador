@@ -5,6 +5,7 @@ import styles from "./page.module.css";
 import axios, { AxiosResponse } from "axios";
 import User from "@/models/user";
 import { useEffect, useState } from "react";
+import EmDev from "@/components/EmDev";
 
 export default function PageConfig() {
   const [user, setUser] = useState<User | null>(null);
@@ -71,6 +72,7 @@ export default function PageConfig() {
     <div className={styles.container}>
       <DropDownPP label="Perfil e Preferências" user={user} />
       <DropDownPS label="Privacidade e Segurança" user={user} />
+      <EmDev/>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import Client from "./client";
+import Product from "./product";
 import Service from "./service";
 
 type Order = {
@@ -14,14 +15,19 @@ type Order = {
     dateDelivery: string;
     dateRecipt: string;
     total: number;
+    totalProducts: number;
+    totalService: number;
     client?: Client;
     service?: Service;
+    ordens: number;
     shops?: {
         id: number;
         productId: number;
         amount: number;
         salePrice: number;
+        product?: Product;
     }[];
+    
 }
 
 export default Order;

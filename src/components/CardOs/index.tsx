@@ -5,6 +5,7 @@ import ActionOs from "../ActionOs";
 import Client from "@/models/client";
 import Product from "@/models/product";
 import Service from "@/models/service";
+import User from "@/models/user";
 
 type Props = {
     orders: Order;
@@ -33,7 +34,7 @@ export default function CardOs({ orders, clients, products, services }: Props) {
                         <a className={styles.campoDados}>{orders.status}</a>
                     </div>
                     <Divisao />
-                    <ActionOs clients={clients} services={services} products={products} order={orders}  />
+                    <ActionOs clients={clients} services={services} products={products} order={orders} />
                 </div>
 
             </div>

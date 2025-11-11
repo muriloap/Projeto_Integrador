@@ -4,6 +4,7 @@ import Order from "@/models/order";
 import Client from "@/models/client";
 import Product from "@/models/product";
 import Service from "@/models/service";
+import User from "@/models/user";
 
 type Props = {
     orders: Order[];
@@ -12,7 +13,7 @@ type Props = {
     services: Service[];
 };
 
-export default function CardOsList({ orders, clients, products, services }: Props) {
+export default function CardOsList({ orders, clients, products, services}: Props) {
     return (
         <>
             <div className={styles.containerp}>
@@ -22,7 +23,8 @@ export default function CardOsList({ orders, clients, products, services }: Prop
                         orders={order} 
                         clients={clients} 
                         products={products} 
-                        services={services} />
+                        services={services}
+                     />
                 ))}
             </div>
         </>

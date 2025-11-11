@@ -15,6 +15,8 @@ import axios, { AxiosError, AxiosResponse } from "axios";
 import Order from "@/models/order";
 import { Alert } from "react-bootstrap";
 import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
+import User from "@/models/user";
 
 type Props = {
     clients: Client[];
@@ -42,6 +44,22 @@ export default function ActionOs(props: Props) {
     const [guarantee, setGuarantee] = useState("");
     const [status, setStatus] = useState("");
     const [quantity, setQuantity] = useState("");
+
+    const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [companyName, setCompanyName] = useState("");
+    const [document, setDocument] = useState("");
+    const [stateRegistration, setStateRegistration] = useState("");
+    const [corporateReason, setCorporateReason] = useState("");
+    const [cep, setCep] = useState("");
+    const [address, setAddress] = useState("");
+    const [number, setNumber] = useState("");
+    const [neighborhood, setNeighborhood] = useState("");
+    const [state, setState] = useState("");
+    const [city, setCity] = useState("");
+    const [site, setSite] = useState("");
+    const [phone, setPhone] = useState("");
 
     useEffect(() => {
         if (isModalOpen && props.order) {
@@ -147,7 +165,35 @@ export default function ActionOs(props: Props) {
             .catch(salvarFalha);
     }
 
+    function loadUser() {
+        if (!token) {
+            setError("Token não encontrado. Faça login novamente.");
+            return;
+        }
+
+        const userId = getUserIdFromToken(token);
+        if (!userId) {
+            setError("ID do usuário não encontrado no token.");
+            return;
+        }
+
+        axios
+            .get(`http://localhost:3000/users/${userId}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            .then(loadSucesso)
+            .catch(loadFalha);
+    }
+
+    useEffect(() => {
+        loadUser();
+    }, []);
+
     function gerarPdf() {
+
 
         const doc = new jsPDF({
             orientation: "portrait",
@@ -155,47 +201,144 @@ export default function ActionOs(props: Props) {
             format: "a4",
         });
 
-        const pageWidth = doc.internal.pageSize.getWidth(); // largura total da página
-        const marginRight = 10;
+        const pageWidth = doc.internal.pageSize.getWidth();
 
         const alignRight = (text: string, y: number) => {
             const textWidth = doc.getTextWidth(text);
             doc.text(text, pageWidth - textWidth - marginRight, y);
         };
 
-        const x = 10, y = 60, w = 190, h = 46;
+        const marginRight = 10;
 
+        let nome = ""
+
+        if (props.order.client?.document.length === 14) {
+            nome = `${props.order.client.name} ${props.order.client.lastName}`
+        }
+        else if (props.order.client?.document.length === 18) {
+            nome = props.order.client.companyName
+        }
+
+        const alignRight2 = (text: string, y: number) => {
+            const textWidth = doc.getTextWidth(text);
+            doc.text(text, pageWidth - textWidth - marginRight, y);
+        };
+
+        doc.setFont("helvetica", "bold");
         doc.setFontSize(14);
-        doc.text(`Número da OS:`, 130, 10)
-        alignRight(`# ${props.order.id}`, 10);
+        doc.text(companyName, 40, 15);
 
-        doc.text(`Data: `, 130, 20)
-        alignRight(`${new Date(props.order.dateCreate).toLocaleDateString("pt-BR")}`, 20);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(10);
+        doc.text(`${address}, ${number}, ${neighborhood}`, 40, 20);
+        doc.text(`${city} - ${state} ${cep}`, 40, 25);
+        doc.text(`${phone} | ${email}`, 40, 30);
 
-        doc.text(`Status: `, 130, 30)
+        // Dados da OS à direita
+        doc.setFont("helvetica", "bold");
+        doc.text(`Número da OS:`, pageWidth - 57, 20);
+        alignRight(`# ${props.order.id}`, 20);
+        doc.setFont("helvetica", "normal");
+        doc.text(`Data: `, pageWidth - 57, 25);
+        alignRight(`${new Date(props.order.dateCreate).toLocaleDateString("pt-BR")}`, 25);
+        doc.text(`Status: `, pageWidth - 57, 30);
         alignRight(`${props.order.status}`, 30);
-        
-        doc.line(10, 40, 200, 40);
-        doc.text(`Descrição da Ordem de Serviço`, 105, 50, { align: "center" });
-        
-        doc.rect(x, y, w, h, "S");
-        doc.text(`Cliente: `, x + 5, y + 10)
-        doc.text(`${props.order.client?.name} ${props.order.client?.lastName}`, x + 23, y + 10)
-        doc.text(`Telefone: `, x + 5, y + 20)
-        doc.text(`${props.order.client?.phone}`, x + 27, y + 20)
-        doc.text(`Email: `, x + 5, y + 30)
-        doc.text(`${props.order.client?.email}`, x + 20, y + 30)
-        doc.text(`CPF/CNPJ: `, x + 5, y + 40)
-        doc.text(`${props.order.client?.document}`, x + 33, y + 40)
-        doc.text(`Endereço: `, x + 85, y + 10)
-        doc.text(`${props.order.client?.address}, ${props.order.client?.number}`, x + 109, y + 10)
-        doc.text(`Bairro: `, x + 85, y + 20)
-        doc.text(`${props.order.client?.neighborhood}`, x + 101, y + 20)
-        doc.text(`Cidade: `, x + 85, y + 30)
-        doc.text(`${props.order.client?.city}`, x + 103, y + 30)
-        doc.text(`Estado: `, x + 85, y + 40)
-        doc.text(`${props.order.client?.state}`, x + 103, y + 40)
-        
+
+        // Linha divisória
+        doc.line(10, 35, pageWidth - 10, 35);
+
+        // --- Título principal ---
+        doc.setFontSize(13);
+        doc.setFont("helvetica", "bold");
+        doc.text("Ordem de Serviço", pageWidth / 2, 45, { align: "center" });
+
+        // --- Cliente ---
+        autoTable(doc, {
+            startY: 50,
+            styles: { fontSize: 10, cellPadding: 3 },
+            head: [["Dados do Cliente"]],
+            body: [
+                ["Cliente: " + `${nome}`],
+                ["Telefone: " + `${phone}`],
+                ["Endereço: " + `${props.order.client?.address}, ${props.order.client?.number}, ${props.order.client?.neighborhood}, ${props.order.client?.city} - ${props.order.client?.state}`],
+            ],
+        });
+
+        // --- Equipamento ---
+        autoTable(doc, {
+            startY: (doc as any).lastAutoTable.finalY + 10,
+            styles: { fontSize: 10 },
+            head: [["Equipamento"]],
+            body: [
+                ["Equipamento: " + `${equipment}`],
+                ["Defeito Relatado: " + `${defect}`],
+            ],
+        });
+
+        // --- Relatório Técnico ---
+        autoTable(doc, {
+            startY: (doc as any).lastAutoTable.finalY + 10,
+            styles: { fontSize: 10 },
+            head: [["Relatório Técnico"]],
+            body: [
+                [
+                    `${report}`,
+                ],
+            ],
+        });
+
+
+        // --- Serviços ---
+        autoTable(doc, {
+            startY: (doc as any).lastAutoTable.finalY + 10,
+            styles: { fontSize: 10 },
+            head: [["Serviços Prestados", "Quantidade", "Vl. Unitário", "Vl. Total"]],
+            body: [
+                [`${props.order.service?.nameService}`, "1", `   R$: ${props.order.service?.price}`, `   R$: ${props.order.totalService}`],
+                ["Defeito Relatado: " + `${defect}`],
+            ],
+        });
+
+        // --- Produtos ---
+        autoTable(doc, {
+            startY: (doc as any).lastAutoTable.finalY + 10,
+            styles: { fontSize: 10 },
+            head: [["Produtos", "Quantidade", "Vl. Unitário", "Vl. Total"]],
+            body: [
+                [`${props.order.shops?.[0].product?.name}`, `${props.order.shops?.[0].amount}`, `R$: ${props.order.shops?.[0].product?.salePrice}`, `R$: ${props.order.totalProducts}`],
+            ],
+        });
+
+        // --- Garantia ---
+        autoTable(doc, {
+            startY: (doc as any).lastAutoTable.finalY + 10,
+            styles: { fontSize: 10 },
+            body: [
+                [
+                    `Garantia: ${guarantee}`
+                ],
+            ],
+        });
+
+        // --- Totais ---
+        const yTotal = (doc as any).lastAutoTable.finalY + 10;
+        doc.setFontSize(11);
+        alignRight(`SubTotal:`, yTotal - 1);
+        alignRight(`Produtos: R$: ${props.order.totalProducts}`, yTotal + 6);
+        alignRight(`Serviços: R$: ${props.order.totalService}`, yTotal + 11);
+        doc.setFont("helvetica", "bold");
+        alignRight(`Total: R$: ${props.order.total}`, yTotal + 20);
+
+        // --- Assinaturas ---
+        const ySign = yTotal + 40;
+        doc.line(40, ySign, 90, ySign);
+        doc.text("Assinatura do Cliente", 45, ySign + 5);
+
+        doc.line(pageWidth - 90, ySign, pageWidth - 40, ySign);
+        doc.text("Assinatura do Técnico", pageWidth - 85, ySign + 5);
+
+
+
         // 💡 Aqui vem a mágica:
         const blob = doc.output("blob");
         const url = URL.createObjectURL(blob);
@@ -203,6 +346,47 @@ export default function ActionOs(props: Props) {
         // Abre em uma nova aba
         window.open(url);
 
+    }
+
+    function getUserIdFromToken(token: string | null): number | null {
+        if (!token) return null;
+
+        try {
+            const payloadBase64 = token.split(".")[1];
+            const payload = JSON.parse(atob(payloadBase64));
+            console.log("🧩 Payload decodificado do token:", payload);
+            return payload.id || payload.userId || payload.sub || null;
+        } catch (error) {
+            console.error("Erro ao decodificar token:", error);
+            return null;
+        }
+    }
+
+    function loadSucesso(response: AxiosResponse) {
+        const data = response.data;
+
+        setName(data.name || "");
+        setLastName(data.lastName || "");
+        setDocument(data.document || "");
+        setEmail(data.email || "");
+        setCompanyName(data.companyName || "");
+        setPhone(data.phone || "");
+        setSite(data.site || "");
+        setCep(data.cep || "");
+        setAddress(data.address || "");
+        setNeighborhood(data.neighborhood || "");
+        setCity(data.city || "");
+        setState(data.state || "");
+    }
+
+    function loadFalha(error: AxiosError<any>) {
+        const mensagem =
+            typeof error.response?.data === "string"
+                ? error.response.data
+                : error.response?.data?.error || "Ocorreu um erro inesperado.";
+
+        setError(mensagem);
+        window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     let mensagemAlerta = null;
