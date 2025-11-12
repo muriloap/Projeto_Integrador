@@ -11,8 +11,14 @@ export default function TableProduct({ product }: Props) {
     <tr className={styles.row}>
       <td>{product.name}</td>
       <td>{product.quantity}</td>
-      <td>R$: {product.purchasePrice}</td>
-      <td>R$: {product.salePrice}</td>
+      <td> {new Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      }).format(product.purchasePrice)}</td>
+      <td> {new Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      }).format(product.salePrice)}</td>
       <td>
         <ActionProduct product={product} />
       </td>

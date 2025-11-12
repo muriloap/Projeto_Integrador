@@ -15,6 +15,7 @@ type Props = {
   cnpj?: boolean;
   phone?: boolean;
   cep?: boolean;
+  moeda?: boolean;
 };
 
 export default function TxtField(props: Props) {
@@ -55,6 +56,15 @@ export default function TxtField(props: Props) {
     return numbers.replace(/(\d{5})(\d{1,3})$/, "$1-$2");
   };
 
+  const maskMoeda = (value: string): string => {
+    const numbers = value.replace(/\D/g, ""); // remove tudo que não for número
+    const numericValue = (parseInt(numbers, 10) / 100).toFixed(2); // divide por 100 para ter centavos
+    return numericValue
+      .replace(".", ",") // troca ponto por vírgula
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ".") // coloca pontos nos milhares
+      .replace(/^/, "R$ "); // adiciona o símbolo R$
+  };
+
   function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
     let value = e.target.value;
 
@@ -62,8 +72,9 @@ export default function TxtField(props: Props) {
     if (props.cnpj) value = maskCNPJ(value);
     if (props.phone) value = maskTelefone(value);
     if (props.cep) value = maskCEP(value);
-      
-    
+    if (props.moeda) value = maskMoeda(value);
+
+
 
     setTexto(value);
     if (props.onChange) {

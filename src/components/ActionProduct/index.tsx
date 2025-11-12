@@ -33,16 +33,34 @@ export default function ActionProduct(props: Props) {
     const handleDeleteCloseModal = () => setIsDeleteOpenModal(false);
     const handleCloseModal = () => setIsModalOpen(false);
 
+    const unmaskMoeda = (value: string): number => {
+        if (!value) return 0;
+        // Remove "R$ ", pontos e troca vírgula por ponto
+        const numeric = value.replace(/[R$\s.]/g, "").replace(",", ".");
+        return parseFloat(numeric) || 0;
+    };
+
     const token = localStorage.getItem("token");
 
     useEffect(() => {
         if (isModalOpen && props.product) {
+
+            const salePrice = new Intl.NumberFormat("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+            }).format(props.product.salePrice);
+
+            const purchasePrice = new Intl.NumberFormat("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+            }).format(props.product.purchasePrice);
+
             setName(props.product.name || "");
             setCategory(props.product.category || "");
             setDescription(props.product.description || "");
             setsalesUnit(props.product.salesUnit || "");
-            setPurchasePrice(props.product.purchasePrice?.toString() || "");
-            setSalePrice(props.product.salePrice?.toString() || "");
+            setPurchasePrice(purchasePrice);
+            setSalePrice(salePrice);
             setObservations(props.product.observations || "");
             setQuantity(props.product.quantity?.toString() || "");
             setError(null);
@@ -114,8 +132,8 @@ export default function ActionProduct(props: Props) {
             category,
             description,
             salesUnit,
-            purchasePrice,
-            salePrice,
+            purchasePrice: unmaskMoeda(purchasePrice),
+            salePrice: unmaskMoeda(salePrice),
             observations,
             quantity
         };
@@ -192,7 +210,7 @@ export default function ActionProduct(props: Props) {
                         <div className={styles.formGroup}>
                             <Divisao title="PRODUTO" />
                             <div className={styles.dadosProduto}>
-                                <TxtField label="Nome do Produto" type="text" value={name}fullWidth onChange={setName}/>
+                                <TxtField label="Nome do Produto" type="text" value={name} fullWidth onChange={setName} />
                                 <TxtField
                                     label="Categoria"
                                     type="text"
@@ -223,6 +241,7 @@ export default function ActionProduct(props: Props) {
                                             onChange={setPurchasePrice}
                                             type="text"
                                             fullWidth
+                                            moeda
                                         />
                                     </div>
                                     <div className={styles.price}>
@@ -232,11 +251,12 @@ export default function ActionProduct(props: Props) {
                                             onChange={setSalePrice}
                                             type="text"
                                             fullWidth
+                                            moeda
                                         />
                                     </div>
                                 </div>
 
-                                <TxtField value={quantity} label="Quantidade" fullWidth type="text" onChange={setQuantity}/>
+                                <TxtField value={quantity} label="Quantidade" fullWidth type="text" onChange={setQuantity} />
                                 <TxtField
                                     label="Observações"
                                     type="text"

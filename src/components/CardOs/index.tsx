@@ -27,7 +27,10 @@ export default function CardOs({ orders, clients, products, services }: Props) {
 
                     <div className={styles.dados1}>
                         <a className={styles.campoDados}># {orders.id}</a>
-                        <a className={styles.campoDados}>R$: {orders.total}</a>
+                        <a className={styles.campoDados}>{new Intl.NumberFormat("pt-BR", {
+                            style: "currency",
+                            currency: "BRL",
+                        }).format(orders.total)}</a>
                     </div>
                     <div className={styles.dados1}>
                         <a className={styles.campoDados}>Status</a>

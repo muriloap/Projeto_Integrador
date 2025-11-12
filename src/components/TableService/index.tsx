@@ -3,7 +3,7 @@ import ActionService from '../ActionService';
 import styles from "./styles.module.css";
 
 type Props = {
-    service: Service;
+  service: Service;
 };
 
 export default function TableService({
@@ -15,7 +15,10 @@ export default function TableService({
       <td>{service.nameService}</td>
       <td>{service.description}</td>
       <td>{service.observations}</td>
-      <td>R$: {service.price}</td>
+      <td> {new Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      }).format(service.price)}</td>
       <td>
         <ActionService service={service} />
       </td>

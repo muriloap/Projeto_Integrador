@@ -201,33 +201,64 @@ export default function ActionOs(props: Props) {
             format: "a4",
         });
 
-        const pageWidth = doc.internal.pageSize.getWidth();
+        const imgPath = "/images/oslogo.png";
+        const imgWidth = 31; 
+        const imgHeight = 31;
+        const imgX = 8;
+        const imgY = 7;
 
+        
+        const pageWidth = doc.internal.pageSize.getWidth();
+        
         const alignRight = (text: string, y: number) => {
             const textWidth = doc.getTextWidth(text);
             doc.text(text, pageWidth - textWidth - marginRight, y);
         };
-
+        
         const marginRight = 10;
-
+        
         let nome = ""
-
+        
         if (props.order.client?.document.length === 14) {
             nome = `${props.order.client.name} ${props.order.client.lastName}`
         }
         else if (props.order.client?.document.length === 18) {
             nome = props.order.client.companyName
         }
+        
+        const total = new Intl.NumberFormat("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+        }).format(props.order.total)
 
-        const alignRight2 = (text: string, y: number) => {
-            const textWidth = doc.getTextWidth(text);
-            doc.text(text, pageWidth - textWidth - marginRight, y);
-        };
+        const totalProducts = new Intl.NumberFormat("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+        }).format(props.order.totalProducts)
+        
+        const totalService = new Intl.NumberFormat("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+        }).format(props.order.totalService)
+        
+        const Vls = new Intl.NumberFormat("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+        }).format(props.order.service?.price || 0)
+        
+        const Vlp = new Intl.NumberFormat("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+        }).format(props.order.shops?.[0].product?.salePrice || 0)
 
+        
+        
+        doc.addImage(imgPath, "PNG", imgX, imgY, imgWidth, imgHeight);
+        
         doc.setFont("helvetica", "bold");
         doc.setFontSize(14);
         doc.text(companyName, 40, 15);
-
+        
         doc.setFont("helvetica", "normal");
         doc.setFontSize(10);
         doc.text(`${address}, ${number}, ${neighborhood}`, 40, 20);
@@ -270,8 +301,8 @@ export default function ActionOs(props: Props) {
             styles: { fontSize: 10 },
             head: [["Equipamento"]],
             body: [
-                ["Equipamento: " + `${equipment}`],
-                ["Defeito Relatado: " + `${defect}`],
+                ["Equipamento: " + `${props.order.equipment}`],
+                ["Defeito Relatado: " + `${props.order.defect}`],
             ],
         });
 
@@ -294,7 +325,7 @@ export default function ActionOs(props: Props) {
             styles: { fontSize: 10 },
             head: [["Serviços Prestados", "Quantidade", "Vl. Unitário", "Vl. Total"]],
             body: [
-                [`${props.order.service?.nameService}`, "1", `   R$: ${props.order.service?.price}`, `   R$: ${props.order.totalService}`],
+                [`${props.order.service?.nameService}`, "1", `   ${Vls}`, `${totalService}`],
             ],
         });
 
@@ -302,9 +333,9 @@ export default function ActionOs(props: Props) {
         autoTable(doc, {
             startY: (doc as any).lastAutoTable.finalY + 10,
             styles: { fontSize: 10 },
-            head: [["Produtos", "Quantidade", "Vl. Unitário", "Vl. Total"]],
+            head: [["Produtos", "           Quantidade", "Vl. Unitário", "Vl. Total"]],
             body: [
-                [`${props.order.shops?.[0].product?.name}`, `${props.order.shops?.[0].amount}`, `R$: ${props.order.shops?.[0].product?.salePrice}`, `R$: ${props.order.totalProducts}`],
+                [`${props.order.shops?.[0].product?.name}`, `            ${props.order.shops?.[0].amount}`, `${Vlp}`, `${totalProducts}`],
             ],
         });
 
@@ -314,7 +345,7 @@ export default function ActionOs(props: Props) {
             styles: { fontSize: 10 },
             body: [
                 [
-                    `Garantia: ${guarantee}`
+                    `Garantia: ${props.order.guarantee}`
                 ],
             ],
         });
@@ -323,10 +354,10 @@ export default function ActionOs(props: Props) {
         const yTotal = (doc as any).lastAutoTable.finalY + 10;
         doc.setFontSize(11);
         alignRight(`SubTotal:`, yTotal - 1);
-        alignRight(`Serviços: R$: ${props.order.totalService}`, yTotal + 11);
-        alignRight(`Produtos: R$: ${props.order.totalProducts}`, yTotal + 6);
+        alignRight(`Serviços: ${totalService}`, yTotal + 11);
+        alignRight(`Produtos: ${totalProducts}`, yTotal + 6);
         doc.setFont("helvetica", "bold");
-        alignRight(`Total: R$: ${props.order.total}`, yTotal + 20);
+        alignRight(`Total: ${total}`, yTotal + 20);
 
         // --- Assinaturas ---
         const ySign = yTotal + 40;
@@ -344,6 +375,8 @@ export default function ActionOs(props: Props) {
 
         // Abre em uma nova aba
         window.open(url);
+
+        // doc.save(`OS_${props.order.id}_${props.order.client?.name}`)
 
     }
 

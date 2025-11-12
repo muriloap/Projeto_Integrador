@@ -29,10 +29,15 @@ export default function ActionService(props: Props) {
   const handleDeleteCloseModal = () => setIsDeleteOpenModal(false);
   const handleCloseModal = () => setIsModalOpen(false);
 
+  
   useEffect(() => {
     if (isModalOpen && props.service) {
+        const formatted = new Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      }).format(props.service.price);
       setName(props.service.nameService || "");
-      setPrice(props.service.price?.toString() || "");
+      setPrice(formatted);
       setDescription(props.service.description || "");
       setObservations(props.service.observations || "");
       setError(null);
