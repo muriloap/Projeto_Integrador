@@ -25,6 +25,13 @@ export default function ModalProduct() {
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
 
+  const unmaskMoeda = (value: string): number => {
+        if (!value) return 0;
+        // Remove "R$ ", pontos e troca vírgula por ponto
+        const numeric = value.replace(/[R$\s.]/g, "").replace(",", ".");
+        return parseFloat(numeric) || 0;
+    };
+
   const token = localStorage.getItem("token");
 
   function cadastroSucesso(res: AxiosResponse) {
@@ -62,8 +69,8 @@ export default function ModalProduct() {
       category,
       description,
       salesUnit,
-      purchasePrice,
-      salePrice,
+      purchasePrice: unmaskMoeda(purchasePrice),
+      salePrice: unmaskMoeda(salePrice),
       observations,
       quantity
     };

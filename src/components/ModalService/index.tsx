@@ -21,6 +21,13 @@ export default function ModalService() {
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
 
+  const unmaskMoeda = (value: string): number => {
+        if (!value) return 0;
+        // Remove "R$ ", pontos e troca vírgula por ponto
+        const numeric = value.replace(/[R$\s.]/g, "").replace(",", ".");
+        return parseFloat(numeric) || 0;
+    };
+
   const token = localStorage.getItem("token");
 
   function cadastroSucesso(res: AxiosResponse) {
@@ -56,7 +63,7 @@ export default function ModalService() {
     const body = {
       nameService,
       description,
-      price,
+      price: unmaskMoeda(price),
       observations,
       isActive: true,
     };
@@ -152,7 +159,7 @@ export default function ModalService() {
               <TxtField value={observations} label="Observações" type="text" fullWidth onChange={setObservations} multiline />
 
               <div className={styles.price}>
-                <TxtField value={price} label="Preço do Serviço" onChange={setPrice} type="text" fullWidth />
+                <TxtField value={price} label="Preço do Serviço" onChange={setPrice} moeda type="text" fullWidth />
               </div>
 
             </div>

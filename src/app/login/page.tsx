@@ -2,12 +2,9 @@
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 import { useState } from "react";
-import { Login } from "@mui/icons-material";
-import axios from "axios";
 import styles from "./styles.module.css";
 
 import { useRouter } from "next/navigation";
-import Header from "@/components/Header";
 import TxtField from "@/components/TxtField";
 import Btn from "@/components/Btn";
 import Link from "next/link";
