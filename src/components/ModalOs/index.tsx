@@ -13,6 +13,7 @@ import Product from "@/models/product";
 import SelectProductList from "../SelectProductList";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import SelectStatus from "../SelectStatus";
+import { Alert } from "react-bootstrap";
 
 type Props = {
   clients: Client[];
@@ -103,6 +104,14 @@ export default function ModalOS(props: Props) {
       .catch(cadastroFalha);
   }
 
+  let mensagemAlerta = null;
+
+   if (error) {
+    mensagemAlerta = <Alert variant="danger">{error}</Alert>;
+  } else if (success) {
+    mensagemAlerta = <Alert variant="success">{success}</Alert>;
+  }
+
   return (
     <>
       <Fab
@@ -159,9 +168,9 @@ export default function ModalOS(props: Props) {
               Preencha os dados abaixo para criar uma nova Ordem de Serviço.
             </p>
 
+            {}
+
             <div className={styles.formGroup}>
-
-
 
               <div className={styles.campoItem}>
                 <div className={styles.campoSelect}>
@@ -175,8 +184,6 @@ export default function ModalOS(props: Props) {
                 </div>
 
               </div>
-
-
 
               <div className={styles.data}>
                 <a>Data da OS</a>

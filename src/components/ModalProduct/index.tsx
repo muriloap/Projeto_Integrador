@@ -171,12 +171,12 @@ export default function ModalProduct() {
                 <div className={styles.ProductPrice}>
                   <div className={styles.price}>
 
-                    <TxtField value={purchasePrice} label="Preço de Compra" onChange={setPurchasePrice} type="text" fullWidth />
+                    <TxtField value={purchasePrice} label="Preço de Compra" onChange={setPurchasePrice} moeda type="text" fullWidth />
                   </div>
 
                   <div className={styles.price}>
 
-                    <TxtField value={salePrice} label="Preço de Venda" onChange={setSalePrice} type="text" fullWidth />
+                    <TxtField value={salePrice} label="Preço de Venda" onChange={setSalePrice} moeda type="text" fullWidth />
 
                   </div>
                 </div>

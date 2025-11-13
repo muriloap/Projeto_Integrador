@@ -251,7 +251,10 @@ export default function ActionOs(props: Props) {
             currency: "BRL",
         }).format(props.order.shops?.[0].product?.salePrice || 0)
 
-        
+        const addressText = `${address}, ${number}, ${neighborhood}`;
+
+        const addressLines = doc.splitTextToSize(addressText, 150);
+
         
         doc.addImage(imgPath, "PNG", imgX, imgY, imgWidth, imgHeight);
         
@@ -261,7 +264,7 @@ export default function ActionOs(props: Props) {
         
         doc.setFont("helvetica", "normal");
         doc.setFontSize(10);
-        doc.text(`${address}, ${number}, ${neighborhood}`, 40, 20);
+        doc.text(addressLines, 40, 20);
         doc.text(`${city} - ${state} ${cep}`, 40, 25);
         doc.text(`${phone} | ${email}`, 40, 30);
 
@@ -333,9 +336,9 @@ export default function ActionOs(props: Props) {
         autoTable(doc, {
             startY: (doc as any).lastAutoTable.finalY + 10,
             styles: { fontSize: 10 },
-            head: [["Produtos", "           Quantidade", "Vl. Unitário", "Vl. Total"]],
+            head: [["Produtos", " Quantidade", "Vl. Unitário", "Vl. Total"]],
             body: [
-                [`${props.order.shops?.[0].product?.name}`, `            ${props.order.shops?.[0].amount}`, `${Vlp}`, `${totalProducts}`],
+                [`${props.order.shops?.[0].product?.name}`, `${props.order.shops?.[0].amount}`, `${Vlp}`, `${totalProducts}`],
             ],
         });
 
