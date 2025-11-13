@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import Client from "@/models/client";
 import Service from "@/models/service";
 import Product from "@/models/product";
+import OsStatus from "@/components/OsStatus";
 
 
 export default function Home() {
@@ -110,14 +111,23 @@ export default function Home() {
   return (
     <>
       <PrivateRoute>
+        <div className={styles.containerp}>
+          <div className={styles.parteTop}>
 
-        <div className={styles.dashboard}>
-          <Dashboard
-            quantityc={clients.length}
-            quantityp={product.length}
-            quantityos={order.length}
-            quantitys={service.length}
-          />
+            <div className={styles.dashboard}>
+              <Dashboard
+                quantityc={clients.length}
+                quantityp={product.length}
+                quantityos={order.length}
+                quantitys={service.length}
+              />
+            </div>
+
+            <div className={styles.osStatus}>
+              {/* <OsStatus orders={order}/> */}
+            </div>
+
+          </div>
         </div>
 
       </PrivateRoute>
