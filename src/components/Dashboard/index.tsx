@@ -4,6 +4,7 @@ import InventoryIcon from "@mui/icons-material/Inventory";
 import BuildIcon from "@mui/icons-material/Build";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import Link from "next/link";
+import OsStatus from "../OsStatus";
 
 type Props = {
   quantityos: number;

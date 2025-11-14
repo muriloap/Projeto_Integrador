@@ -9,6 +9,7 @@ import Client from "@/models/client";
 import Service from "@/models/service";
 import Product from "@/models/product";
 import OsStatus from "@/components/OsStatus";
+import DashboardOs from "@/components/DashboardOs";
 
 
 export default function Home() {
@@ -124,7 +125,7 @@ export default function Home() {
             </div>
 
             <div className={styles.osStatus}>
-              {/* <OsStatus orders={order}/> */}
+              {/* <DashboardOs quantityos={0} quantitys={0} quantityc={0} quantityp={0}/> */}
             </div>
 
           </div>

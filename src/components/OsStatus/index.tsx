@@ -23,8 +23,8 @@ export default function (props: Props) {
         <>
             <div className={styles.containerp}>
 
-                <div className={styles.title}>
-                    <span className={styles.campoStatus2}>Ordem de Serviço por Status</span>
+                <div className={styles.header}>
+                        <span className={styles.title}>Ordem de Serviço por Status</span>
                 </div>
 
                 <Divisao />
