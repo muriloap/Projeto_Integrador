@@ -116,7 +116,7 @@ export default function Home() {
     <>
       <PrivateRoute>
         <div className={styles.containerp}>
-          <div className={styles.parteTop}>
+          <div className={styles.containers}>
 
             <div className={styles.dashboard}>
               <Dashboard
@@ -132,14 +132,12 @@ export default function Home() {
                 <AtOs clients={clients} services={service} products={product} quantityos={0} />
                 <AtProduct />
               </div>
-
+              
               <div className={styles.atDown}>
                 <AtClient />
                 <AtService />
               </div>
             </div>
-
-
           </div>
         </div>
 
