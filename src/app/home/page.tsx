@@ -8,8 +8,11 @@ import { useEffect, useState } from "react";
 import Client from "@/models/client";
 import Service from "@/models/service";
 import Product from "@/models/product";
-import OsStatus from "@/components/OsStatus";
-import DashboardOs from "@/components/DashboardOs";
+import BtnOs from "@/components/AtOs";
+import AtOs from "@/components/AtOs";
+import AtClient from "@/components/AtClient";
+import AtProduct from "@/components/AtProduct";
+import AtService from "@/components/AtService";
 
 
 export default function Home() {
@@ -125,8 +128,17 @@ export default function Home() {
             </div>
 
             <div className={styles.osStatus}>
-              {/* <DashboardOs quantityos={0} quantitys={0} quantityc={0} quantityp={0}/> */}
+              <div className={styles.atTop}>
+                <AtOs clients={clients} services={service} products={product} quantityos={0} />
+                <AtProduct />
+              </div>
+
+              <div className={styles.atDown}>
+                <AtClient />
+                <AtService />
+              </div>
             </div>
+
 
           </div>
         </div>
