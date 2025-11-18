@@ -201,7 +201,7 @@ export default function ActionOs(props: Props) {
             format: "a4",
         });
 
-        const imgPath = "/images/oslogo.png";
+        const imgPath = "/images/oslogo1.png";
         const imgWidth = 31; 
         const imgHeight = 31;
         const imgX = 8;
