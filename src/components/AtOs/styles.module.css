@@ -14,7 +14,7 @@
     height: 60px;
     display: flex;
     flex-direction: row;
-    gap: 15px;
+    text-align: center;
     font-size: 17px;
     border-radius: 5px;
 }

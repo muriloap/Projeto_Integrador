@@ -1,0 +1,16 @@
+.row td {
+  font-size: 0.95rem;
+  padding: 0.9rem 1rem;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  background-color: #fff;
+}
+
+.row td:first-child {
+  font-weight: 500;
+}
+
+.row:hover td {
+  background-color: #f4f2ff;
+  
+}

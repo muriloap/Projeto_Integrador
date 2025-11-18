@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+.tableContainer {
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  width: 100%;
+  background-color: transparent;
+}
+
+.tableClients {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabeçalho */
+.tableClients thead th {
+  background-color: #0c74e8;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* Corpo */
+.tableClients tbody td {
+  background-color: #ffffff;
+  color: #333;
+  padding: 0.9rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+  transition: background-color 0.2s ease;
+}
+
+/* Hover nas linhas */
+.tableClients tbody tr:hover td {
+  background-color: #dbe3ff;
+}
+
+/* Última coluna (ações) */
+.tableClients tbody td:last-child {
+  text-align: center;
+}
+
+/* Botões de ação, se houver */
+.tableClients button,
+.tableClients svg {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.tableClients button:hover,
+.tableClients svg:hover {
+  transform: scale(1.1);
+}

@@ -1,6 +1,5 @@
 'use client'
 import styles from "./page.module.css";
-import Dashboard from "@/components/Dashboard";
 import PrivateRoute from "@/components/PrivateRouter";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import Order from "@/models/order";
@@ -8,11 +7,17 @@ import { useEffect, useState } from "react";
 import Client from "@/models/client";
 import Service from "@/models/service";
 import Product from "@/models/product";
-import BtnOs from "@/components/AtOs";
 import AtOs from "@/components/AtOs";
 import AtClient from "@/components/AtClient";
 import AtProduct from "@/components/AtProduct";
 import AtService from "@/components/AtService";
+import Divisao from "@/components/Divisao";
+import TableOsAndamentoList from "@/components/TableOsAndamentoList";
+import TableOsAtrasoList from "@/components/TableOsAtrasoList";
+import OsDashboard from "@/components/OsDashboard";
+import ProductDashboard from "@/components/ProductDashboard";
+import ClientDashboard from "@/components/ClientDashboard";
+import ServiceDashboard from "@/components/ServiceDashboard";
 
 
 export default function Home() {
@@ -118,26 +123,67 @@ export default function Home() {
         <div className={styles.containerp}>
           <div className={styles.containers}>
 
-            <div className={styles.dashboard}>
-              <Dashboard
-                quantityc={clients.length}
-                quantityp={product.length}
-                quantityos={order.length}
-                quantitys={service.length}
-              />
+            <div className={styles.osPt1}>
+
+              <div className={styles.teste}>
+
+                <a className={styles.atRapido}>Atalhos Rápidos</a>
+
+                <div className={styles.atalhos}>
+
+
+                  <div className={styles.atTop}>
+                    <AtOs clients={clients} services={service} products={product} quantityos={0} />
+                    <AtProduct />
+                  </div>
+
+                  <div className={styles.atDown}>
+                    <AtClient />
+                    <AtService />
+                  </div>
+
+                </div>
+
+                <Divisao />
+                  <a className={styles.atRapido}>OS Em andamento</a>
+
+                <TableOsAndamentoList orders={order}/>
+              </div>
+
             </div>
 
-            <div className={styles.osStatus}>
-              <div className={styles.atTop}>
-                <AtOs clients={clients} services={service} products={product} quantityos={0} />
-                <AtProduct />
+            <div className={styles.osPt2}>
+
+              <div className={styles.teste}>
+
+                <a className={styles.atRapido}>Visão Geral</a>
+
+                <div className={styles.atalhos}>
+
+
+                  <div className={styles.atTop}>
+                    <OsDashboard quantityos={order.length}/>
+                    <ProductDashboard quantityop={product.length}  />                
+                    </div>
+
+                  <div className={styles.atDown}>
+                    <ClientDashboard quantityc={clients.length}/>
+                    <ServiceDashboard quantitys={service.length}/>
+                  </div>
+
+                </div>
+
+                <Divisao />
+                  <a className={styles.atRapido}>OS Em Atraso</a>
+
+                <TableOsAtrasoList orders={order}/>
               </div>
-              
-              <div className={styles.atDown}>
-                <AtClient />
-                <AtService />
-              </div>
+
             </div>
+
+            
+
+
           </div>
         </div>
 
@@ -145,3 +191,12 @@ export default function Home() {
     </>
   );
 }
+
+{/* <div className={styles.dashboard}>
+  <Dashboard
+    quantityc={clients.length}
+    quantityp={product.length}
+    quantityos={order.length}
+    quantitys={service.length}
+  />
+</div> */}

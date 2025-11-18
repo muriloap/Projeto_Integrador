@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import BuildIcon from "@mui/icons-material/Build";
 import styles from "./styles.module.css";
 import Divisao from "../Divisao";
 import TxtField from "../TxtField";

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
 .dashboard {
     display: flex;
     align-items: center;
@@ -14,6 +16,12 @@
     background: transparent;
     display: flex;
     border: 2px solid red;
+    font-family: "Poppins", sans-serif;
+}
+
+.atRapido{
+    font-size: 25px;
+    margin-top: 20px;
 }
 
 .atTop{
@@ -43,20 +51,47 @@
     border: 2px solid black;
 }
 
-.osStatus{
+.osPt1{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: end;
     background: transparent;
     padding: 1.3rem;
-    justify-content: center;
     width: 60%;
     gap: 15px;
     border: 2px solid blue;
 }
 
-.atalhos{
-    width: 500px;
-    height: 140px;
-    border: 2px solid black;
+.osPt2{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    background: transparent;
+    padding: 1.3rem;
+    width: 60%;
+    gap: 15px;
+    border: 2px solid blue;
 }
+
+.teste{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100%;
+    padding: 1rem;
+    padding-top: 0rem;
+    border: 2px solid violet;
+}
+
+.atalhos{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    padding-left: 0rem;
+    gap: 15px;
+}
+
+.osEa{
+    margin-top: 20px;
+}
+
