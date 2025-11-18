@@ -11,14 +11,14 @@
     width: calc(100% - 250px);
     height: 100%;
     background: transparent;
-    background-color: rgb(204, 204, 204);
+    background-color: rgb(255, 255, 255);
     transition: var(--tran-04);
 }
 
 .page.close {
     transition: var(--tran-04);
     background: transparent;
-    background-color: rgb(204, 204, 204);
+    background-color: rgb(255, 255, 255);
     width: calc(100% - 80px);
 }
 

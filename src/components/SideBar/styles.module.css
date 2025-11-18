@@ -109,6 +109,7 @@
   overflow-y: auto;
   scrollbar-width: none;
   transition: var(--tran-04);
+  border-right: 1px solid gray;
 }
 
 .sidebar.close {
