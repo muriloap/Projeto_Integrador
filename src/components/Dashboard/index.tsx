@@ -1,19 +1,18 @@
+import Order from "@/models/order";
 import styles from "./styles.module.css";
-import GroupIcon from "@mui/icons-material/Group";
-import InventoryIcon from "@mui/icons-material/Inventory";
-import BuildIcon from "@mui/icons-material/Build";
-import AssignmentIcon from "@mui/icons-material/Assignment";
 import Link from "next/link";
-import OsStatus from "../OsStatus";
 
 type Props = {
-  quantityos: number;
-  quantitys: number;
-  quantityc: number;
+  osAb: number;
+  osFi: number;
+  mesTotal: number;
   quantityp: number;
+  osAt: number;
 };
 
 export default function Dashboard(props: Props) {
+
+  
   return (
     <>
       <span className={styles.containerp}>
@@ -21,12 +20,9 @@ export default function Dashboard(props: Props) {
           <Link href="/home/ordem-servico" className={styles.campos}>
             <div className={styles.serviceOrder}>
               <div className={styles.icon}>
-                <AssignmentIcon sx={{ fontSize: 50 }} />
                 <div className={styles.quantity}>
-                  <h2>{props.quantityos}</h2>
-                  <div className={styles.name}>
-                    <p>Ordem de Serviço</p>
-                  </div>
+                  <p className={styles.name}>OS abertas</p>
+                  <h2>{props.osAb}</h2>
                 </div>
               </div>
             </div>
@@ -35,12 +31,9 @@ export default function Dashboard(props: Props) {
           <Link href="/home/servicos" className={styles.campos}>
             <div className={styles.services}>
               <div className={styles.icon}>
-                <BuildIcon sx={{ fontSize: 50 }} />
                 <div className={styles.quantity}>
-                  <h2>{props.quantitys}</h2>
-                  <div className={styles.name}>
-                    <p>Serviços</p>
-                  </div>
+                  <p className={styles.name}>OS finalizadas</p>
+                  <h2>{props.osFi}</h2>
                 </div>
               </div>
             </div>
@@ -51,12 +44,9 @@ export default function Dashboard(props: Props) {
           <Link href="/home/clientes" className={styles.campos}>
             <div className={styles.services}>
               <div className={styles.icon}>
-                <GroupIcon sx={{ fontSize: 50 }} />
                 <div className={styles.quantity}>
-                  <h2>{props.quantityc}</h2>
-                  <div className={styles.name}>
-                    <p>Clientes</p>
-                  </div>
+                  <p className={styles.name}>OS atrasadas</p>
+                  <h2>{props.osAt}</h2>
                 </div>
               </div>
             </div>
@@ -65,12 +55,12 @@ export default function Dashboard(props: Props) {
           <Link href="/home/produtos" className={styles.campos}>
             <div className={styles.services}>
               <div className={styles.icon}>
-                <InventoryIcon sx={{ fontSize: 50 }} />
                 <div className={styles.quantity}>
-                  <h2>{props.quantityp}</h2>
-                  <div className={styles.name}>
-                    <p>Produtos</p>
-                  </div>
+                  <p className={styles.name}>Total mensal</p>
+                  <h2>{new Intl.NumberFormat("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  }).format(props.mesTotal)}</h2>
                 </div>
               </div>
             </div>
