@@ -252,7 +252,7 @@ export default function PageRelatorios() {
                                         title: {
                                             display: true,
                                             align: "start",
-                                            text: 'Controle de Ordem de Serviço',
+                                            text: 'Fluxo de Entrada Mensal',
                                             font: {
                                                 size: 20
                                             }
@@ -314,7 +314,7 @@ export default function PageRelatorios() {
                                             display: true,
                                             padding: 5,
                                             position: "top",
-                                            text: 'Controle de Ordem de Serviço',
+                                            text: 'Fluxo de Entrada Mensal',
                                             font: {
                                                 size: 20
                                             },

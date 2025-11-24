@@ -20,13 +20,6 @@
     border: 2px solid gray;
 }
 
-.campos:hover {
-    transform: scale(1.05);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
-    cursor: pointer;
-    transition: var(--tran-03);
-}
-
 .icon{
     margin-left: 15px;
     display: flex;

@@ -41,11 +41,13 @@ export default function ModalCliente() {
     function cadastroSucesso(res: AxiosResponse) {
         
         const mensagem = res.data?.message
+
+        modalRef.current?.scrollTo({ top: 0, behavior: "smooth" })
         setError(null);
         setSuccess(mensagem);
         setTimeout(() => {
             handleCloseModal();
-            modalRef.current?.scrollTo({ top: 0, behavior: "smooth" })
+            window.location.reload();
         }, 1000);
     };
     
@@ -56,6 +58,7 @@ export default function ModalCliente() {
         : error.response?.data?.error || "Ocorreu um erro inesperado.";
         
         setError(mensagem);
+        setSuccess(null)
         modalRef.current?.scrollTo({ top: 0, behavior: "smooth" })
     };
     

@@ -17,7 +17,7 @@ export default function Dashboard(props: Props) {
     <>
       <span className={styles.containerp}>
         <div className={styles.tabela1}>
-          <Link href="/home/ordem-servico" className={styles.campos}>
+          <div className={styles.campos}>
             <div className={styles.serviceOrder}>
               <div className={styles.icon}>
                 <div className={styles.quantity}>
@@ -26,9 +26,9 @@ export default function Dashboard(props: Props) {
                 </div>
               </div>
             </div>
-          </Link>
+          </div>
 
-          <Link href="/home/servicos" className={styles.campos}>
+          <div className={styles.campos}>
             <div className={styles.services}>
               <div className={styles.icon}>
                 <div className={styles.quantity}>
@@ -37,11 +37,11 @@ export default function Dashboard(props: Props) {
                 </div>
               </div>
             </div>
-          </Link>
+          </div>
         </div>
 
         <div className={styles.tabela2}>
-          <Link href="/home/clientes" className={styles.campos}>
+          <div className={styles.campos}>
             <div className={styles.services}>
               <div className={styles.icon}>
                 <div className={styles.quantity}>
@@ -50,9 +50,9 @@ export default function Dashboard(props: Props) {
                 </div>
               </div>
             </div>
-          </Link>
+          </div>
 
-          <Link href="/home/produtos" className={styles.campos}>
+          <div className={styles.campos}>
             <div className={styles.services}>
               <div className={styles.icon}>
                 <div className={styles.quantity}>
@@ -64,7 +64,7 @@ export default function Dashboard(props: Props) {
                 </div>
               </div>
             </div>
-          </Link>
+          </div>
         </div>
       </span>
     </>
