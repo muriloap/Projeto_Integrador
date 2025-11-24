@@ -226,6 +226,7 @@ export default function PageRelatorios() {
         <>
             <div className={styles.containerp}>
                 <div className={styles.containers}>
+                    <h2 className={styles.title}>Relatório de Ordens de Serviço</h2>
                     <Dashboard
                         osAb={filteredOrdersAndamento.length}
                         osFi={filteredOrdersFinalizado.length}
@@ -279,7 +280,7 @@ export default function PageRelatorios() {
                                 labels: labels,
                                 datasets: [
                                     {
-                                        data: [order.length],
+                                        data: [0],
                                         backgroundColor: [
                                             'rgba(255, 99, 132, 0.2)',
                                             'rgba(255, 159, 64, 0.2)',

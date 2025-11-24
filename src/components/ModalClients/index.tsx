@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import styles from "./styles.module.css";
@@ -34,29 +34,31 @@ export default function ModalCliente() {
     const [city, setCity] = useState("");
     const [phone, setPhone] = useState("");
 
+    const modalRef = useRef<HTMLDivElement>(null);
+    
     const token = localStorage.getItem("token");
-
+    
     function cadastroSucesso(res: AxiosResponse) {
-
+        
         const mensagem = res.data?.message
         setError(null);
         setSuccess(mensagem);
         setTimeout(() => {
             handleCloseModal();
-            window.location.reload();
+            modalRef.current?.scrollTo({ top: 0, behavior: "smooth" })
         }, 1000);
     };
-
+    
     function cadastroFalha(error: AxiosError<any>) {
         const mensagem =
-            typeof error.response?.data === "string"
-                ? error.response.data
-                : error.response?.data?.error || "Ocorreu um erro inesperado.";
-
+        typeof error.response?.data === "string"
+        ? error.response.data
+        : error.response?.data?.error || "Ocorreu um erro inesperado.";
+        
         setError(mensagem);
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        modalRef.current?.scrollTo({ top: 0, behavior: "smooth" })
     };
-
+    
     function limparCampos() {
         setNome("");
         setLastName("");
@@ -73,49 +75,49 @@ export default function ModalCliente() {
         setPhone("");
         setEmailCont("");
     }
-
+    
     function pfClick() {
         limparCampos();
         setSelection("PF");
     }
-
+    
     function pjClick() {
         limparCampos();
         setSelection("PJ");
     }
-
+    
     function buscarCep(valorCep: string) {
         const cep = valorCep.replace(/\D/g, "");
-
+        
         if (cep.length !== 8) return;
-
+        
         axios
-            .get(`https://viacep.com.br/ws/${cep}/json/`)
-            .then((res) => {
-                if (res.data.erro) {
-                    setError("CEP inválido ou não encontrado!");
-                    return;
-                }
-
-                setAddress(res.data.logradouro || "");
-                setNeighborhood(res.data.bairro || "");
-                setCity(res.data.localidade || "");
-                setState(res.data.uf || "");
-                setError(null);
-            })
-            .catch(() => {
-                setError("Erro ao buscar o CEP.");
-            });
+        .get(`https://viacep.com.br/ws/${cep}/json/`)
+        .then((res) => {
+            if (res.data.erro) {
+                setError("CEP inválido ou não encontrado!");
+                return;
+            }
+            
+            setAddress(res.data.logradouro || "");
+            setNeighborhood(res.data.bairro || "");
+            setCity(res.data.localidade || "");
+            setState(res.data.uf || "");
+            setError(null);
+        })
+        .catch(() => {
+            setError("Erro ao buscar o CEP.");
+        });
     }
-
+    
     let mensagemAlerta = null;
-
+    
     if (error) {
         mensagemAlerta = <Alert variant="danger">{error}</Alert>;
     } else if (success) {
         mensagemAlerta = <Alert variant="success">{success}</Alert>;
     }
-
+    
     function cadastro() {
         const body = {
             name,
@@ -132,25 +134,25 @@ export default function ModalCliente() {
             state,
             city
         };
-
+        
         console.log(body);
-
+        
         axios
-            .post(
-                "http://localhost:3000/clients",
-                body,
-
-                {
-                    headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-                },
-
-
-
-            )
-            .then(cadastroSucesso)
-            .catch(cadastroFalha);
+        .post(
+            "http://localhost:3000/clients",
+            body,
+            
+            {
+                headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+            },
+            
+            
+            
+        )
+        .then(cadastroSucesso)
+        .catch(cadastroFalha);
     }
-
+    
     return (
         <>
             <Fab
@@ -185,7 +187,7 @@ export default function ModalCliente() {
                         backgroundColor: "#304FFE !important",
                     },
                 }}
-            >
+                >
                 <AddIcon
                     sx={{
                         fontSize: "20px",
@@ -193,7 +195,7 @@ export default function ModalCliente() {
                         color: "white",
                         backgroundColor: "#304FFE",
                     }}
-                />
+                    />
                 Novo Cliente
             </Fab>
 
@@ -203,6 +205,7 @@ export default function ModalCliente() {
                     <div
                         className={styles.modalContent}
                         onClick={(e) => e.stopPropagation()}
+                        ref = { modalRef }
                     >
                         <button className={styles.modalClose} onClick={handleCloseModal}>
                             ×
