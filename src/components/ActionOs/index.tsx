@@ -378,14 +378,7 @@ export default function ActionOs(props: Props) {
         
         
         
-        // 💡 Aqui vem a mágica:
-        const blob = doc.output("blob");
-        const url = URL.createObjectURL(blob);
-        
-        // Abre em uma nova aba
-        window.open(url);
-        
-        // doc.save(`OS_${props.order.id}_${props.order.client?.name}`)
+        doc.save(`OS_${props.order.id}_${props.order.client?.name}`)
         
     }
     
