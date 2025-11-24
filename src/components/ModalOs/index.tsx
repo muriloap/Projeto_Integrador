@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import styles from "./styles.module.css";
@@ -42,11 +42,15 @@ export default function ModalOS(props: Props) {
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
 
+  const modalRef = useRef<HTMLDivElement>(null);
+
   const token = localStorage.getItem("token");
 
   function cadastroSucesso(res: AxiosResponse) {
 
     const mensagem = res.data?.message
+
+    modalRef.current?.scrollTo({ top: 0, behavior: "smooth" });
     setError(null);
     setSuccess(mensagem);
     setTimeout(() => {
@@ -61,8 +65,8 @@ export default function ModalOS(props: Props) {
         ? error.response.data
         : error.response?.data?.error || "Ocorreu um erro inesperado.";
 
+    modalRef.current?.scrollTo({ top: 0, behavior: "smooth" });
     setError(mensagem);
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   function cadastro() {
@@ -106,7 +110,7 @@ export default function ModalOS(props: Props) {
 
   let mensagemAlerta = null;
 
-   if (error) {
+  if (error) {
     mensagemAlerta = <Alert variant="danger">{error}</Alert>;
   } else if (success) {
     mensagemAlerta = <Alert variant="success">{success}</Alert>;
@@ -157,6 +161,7 @@ export default function ModalOS(props: Props) {
           <div
             className={styles.modalContent}
             onClick={(e) => e.stopPropagation()}
+            ref={modalRef}
           >
             <button className={styles.modalClose} onClick={handleCloseModal}>
               ×
@@ -168,7 +173,7 @@ export default function ModalOS(props: Props) {
               Preencha os dados abaixo para criar uma nova Ordem de Serviço.
             </p>
 
-            {}
+            {mensagemAlerta}
 
             <div className={styles.formGroup}>
 

@@ -15,6 +15,7 @@ export default function TableOsAtrasoList({ orders }: Props) {
 
         return (
             order.status !== "Finalizado" && 
+            order.status !== "Cancelado" && 
             dataEntrega < hoje                 
         );
 

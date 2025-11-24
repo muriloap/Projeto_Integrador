@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import styles from "./styles.module.css";
@@ -22,21 +22,27 @@ export default function ModalProduct() {
   const [observations, setObservations] = useState("");
   const [quantity, setQuantity] = useState("");
 
+  const modalRef = useRef<HTMLDivElement>(null);
+  
+
+
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
 
   const unmaskMoeda = (value: string): number => {
-        if (!value) return 0;
-        // Remove "R$ ", pontos e troca vírgula por ponto
-        const numeric = value.replace(/[R$\s.]/g, "").replace(",", ".");
-        return parseFloat(numeric) || 0;
-    };
+    if (!value) return 0;
+    // Remove "R$ ", pontos e troca vírgula por ponto
+    const numeric = value.replace(/[R$\s.]/g, "").replace(",", ".");
+    return parseFloat(numeric) || 0;
+  };
 
   const token = localStorage.getItem("token");
 
   function cadastroSucesso(res: AxiosResponse) {
 
     const mensagem = res.data?.message
+
+    modalRef.current?.scrollTo({ top: 0, behavior: "smooth" });
     setError(null);
     setSuccess(mensagem);
     setTimeout(() => {
@@ -51,8 +57,8 @@ export default function ModalProduct() {
         ? error.response.data
         : error.response?.data?.error || "Ocorreu um erro inesperado.";
 
+    modalRef.current?.scrollTo({ top: 0, behavior: "smooth" });
     setError(mensagem);
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   let mensagemAlerta = null;
@@ -145,6 +151,7 @@ export default function ModalProduct() {
           <div
             className={styles.modalContent}
             onClick={(e) => e.stopPropagation()}
+            ref={modalRef}
           >
             <button className={styles.modalClose} onClick={handleCloseModal}>
               ×
@@ -181,7 +188,7 @@ export default function ModalProduct() {
                   </div>
                 </div>
 
-                <TxtField value={quantity} label="Quantidade" type="text" onChange={setQuantity}/>
+                <TxtField value={quantity} label="Quantidade" type="text" onChange={setQuantity} />
                 <TxtField value={observations} label="Observações" type="text" fullWidth onChange={setObservations} multiline />
 
               </div>

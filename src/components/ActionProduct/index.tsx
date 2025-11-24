@@ -2,7 +2,7 @@
 import styles from "./styles.module.css";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import TxtField from "../TxtField";
 import Divisao from "../Divisao";
 import axios, { AxiosError, AxiosResponse } from "axios";
@@ -33,9 +33,11 @@ export default function ActionProduct(props: Props) {
     const handleDeleteCloseModal = () => setIsDeleteOpenModal(false);
     const handleCloseModal = () => setIsModalOpen(false);
 
+    const modalRef = useRef<HTMLDivElement>(null);
+
+
     const unmaskMoeda = (value: string): number => {
         if (!value) return 0;
-        // Remove "R$ ", pontos e troca vírgula por ponto
         const numeric = value.replace(/[R$\s.]/g, "").replace(",", ".");
         return parseFloat(numeric) || 0;
     };
@@ -74,6 +76,8 @@ export default function ActionProduct(props: Props) {
                 ? res.data
                 : res.data?.message || res.data?.success;
 
+
+        modalRef.current?.scrollTo({ top: 0, behavior: "smooth" })
         setError(null)
         setSuccess(mensagem);
         setTimeout(() => {
@@ -88,9 +92,10 @@ export default function ActionProduct(props: Props) {
                 ? error.response.data
                 : error.response?.data?.error || "Ocorreu um erro inesperado.";
 
+        modalRef.current?.scrollTo({ top: 0, behavior: "smooth" })
         setSuccess(null)
         setError(mensagem);
-        window.scrollTo({ top: 0, behavior: "smooth" });
+
     };
 
     function deletarSucesso(res: AxiosResponse<any>) {
@@ -99,6 +104,7 @@ export default function ActionProduct(props: Props) {
                 ? res.data
                 : res.data?.message || res.data?.success;
 
+        modalRef.current?.scrollTo({ top: 0, behavior: "smooth" })
         setError(null)
         setSuccess(mensagem);
         setTimeout(() => {
@@ -113,9 +119,10 @@ export default function ActionProduct(props: Props) {
                 ? error.response.data
                 : error.response?.data?.error || "Ocorreu um erro inesperado.";
 
+        modalRef.current?.scrollTo({ top: 0, behavior: "smooth" })
         setSuccess(null)
         setError(mensagem);
-        window.scrollTo({ top: 0, behavior: "smooth" });
+
     };
 
     let mensagemAlerta = null;
@@ -194,6 +201,7 @@ export default function ActionProduct(props: Props) {
                     <div
                         className={styles.modalContent}
                         onClick={(e) => e.stopPropagation()}
+                        ref={modalRef}
                     >
                         <button className={styles.modalClose} onClick={handleCloseModal}>
                             ×

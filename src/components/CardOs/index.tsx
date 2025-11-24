@@ -39,7 +39,7 @@ export default function CardOs({ orders, clients, products, services }: Props) {
 
                         <div className={styles.dados1}>
                             <a className={styles.campoDados}>{orders.client?.name || orders.client?.companyName}</a>
-                            <a className={styles.campoDados}>{new Date(orders.dateRecipt).toLocaleDateString("pt-BR")}</a>
+                            <a className={styles.campoDados}>{orders.dateCreate.split("-").reverse().join("/")}</a>
                         </div>
 
                         <div className={styles.dados1}>

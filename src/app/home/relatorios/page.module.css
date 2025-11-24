@@ -1,3 +1,47 @@
-.containerp{
-   
+.containerp {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+}
+
+.containers {
+    width: 95%;
+    height: 90%;
+    gap: 2.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3.3rem;
+    margin-top: 3.3rem;
+    background: transparent;
+}
+
+.graphic{
+    width: 90%;
+    height: 60%;
+    display: flex;
+    flex-direction: row;
+    padding: 1.5rem;
+    background: transparent;
+}
+
+.pizza{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    background: transparent;
+}
+
+.barra{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    background: transparent;
 }

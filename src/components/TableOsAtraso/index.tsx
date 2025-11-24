@@ -11,7 +11,7 @@ export default function TableOsAtraso({ order }: Props) {
             <td>{order.id}</td>
             <td>{order.client?.name || order.client?.companyName}</td>
             <td>{order.status}</td>
-            <td>{new Date(order.dateDelivery).toLocaleDateString("pt-BR")}</td>
+            <td>{order.dateDelivery.split("-").reverse().join("/")}</td>
             <td>
                 
             </td>

@@ -38,7 +38,6 @@ export default function TableOsAndamentoList({ orders }: Props) {
                         <TableOsAndameto
                             key={order.id}
                             order={order}
-
                         />
                     ))}
                 </tbody>

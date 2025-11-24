@@ -10,7 +10,7 @@ import SelectProductList from "../SelectProductList";
 import SelectServiceList from "../SelectServiceList";
 import SelectStatus from "../SelectStatus";
 import SelectClientList from "../SelectClientList";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import Order from "@/models/order";
 import { Alert } from "react-bootstrap";
@@ -60,7 +60,10 @@ export default function ActionOs(props: Props) {
     const [city, setCity] = useState("");
     const [site, setSite] = useState("");
     const [phone, setPhone] = useState("");
-
+    
+    const modalRef = useRef<HTMLDivElement>(null);
+    
+    
     useEffect(() => {
         if (isModalOpen && props.order) {
             setClientId(props.order.clientId?.toString() || "");
@@ -77,63 +80,66 @@ export default function ActionOs(props: Props) {
             setQuantity(props.order.shops?.[0].amount.toString() || "");
         }
     }, [isModalOpen, props.order]);
-
+    
     const token = localStorage.getItem("token");
-
+    
     function salvarSucesso() {
-
+        
         const bodyShop = {
-
+            
             orderId: props.order.id,
             productId: Number(productId),
             amount: Number(quantity),
             salePrice: 0,
-
+            
         };
-
+        
         axios
-            .put(
-                `http://localhost:3000/shops/${props.order.shops?.[0].id}`,
-                bodyShop,
-
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                }
-            )
-
-            .then(sucesso)
-            .catch(salvarFalha)
-
-
+        .put(
+            `http://localhost:3000/shops/${props.order.shops?.[0].id}`,
+            bodyShop,
+            
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        )
+        
+        .then(sucesso)
+        .catch(salvarFalha)
+        
+        
     };
-
+    
     function sucesso(res: AxiosResponse<any>) {
         const mensagem =
-            typeof res.data === "string"
-                ? res.data
-                : res.data?.message || res.data?.success;
-
+        typeof res.data === "string"
+        ? res.data
+        : res.data?.message || res.data?.success;
+        
+        modalRef.current?.scrollTo({ top: 0, behavior: "smooth" })
         setSuccess(mensagem);
-
+        setError(null)
         setTimeout(() => {
             handleCloseModal();
             window.location.reload();
         }, 1000);
-
+        
     }
-
+    
     function salvarFalha(error: AxiosError<any>) {
         const mensagem =
-            typeof error.response?.data === "string"
-                ? error.response.data
-                : error.response?.data?.error || "Ocorreu um erro inesperado.";
-
+        typeof error.response?.data === "string"
+        ? error.response.data
+        : error.response?.data?.error || "Ocorreu um erro inesperado.";
+        
+        
+        modalRef.current?.scrollTo({ top: 0, behavior: "smooth" })
+        setSuccess(null)
         setError(mensagem);
-        window.scrollTo({ top: 0, behavior: "smooth" });
     };
-
+    
     function salvar() {
         const body = {
             clientId,
@@ -147,54 +153,54 @@ export default function ActionOs(props: Props) {
             dateDelivery,
             status,
         };
-
-
+        
+        
         axios
-            .put(
-                `http://localhost:3000/orders/${props.order.id}`,
-                body,
-
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            )
-            .then(salvarSucesso)
-            .catch(salvarFalha);
+        .put(
+            `http://localhost:3000/orders/${props.order.id}`,
+            body,
+            
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        )
+        .then(salvarSucesso)
+        .catch(salvarFalha);
     }
-
+    
     function loadUser() {
         if (!token) {
             setError("Token não encontrado. Faça login novamente.");
             return;
         }
-
+        
         const userId = getUserIdFromToken(token);
         if (!userId) {
             setError("ID do usuário não encontrado no token.");
             return;
         }
-
+        
         axios
-            .get(`http://localhost:3000/users/${userId}`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-            .then(loadSucesso)
-            .catch(loadFalha);
+        .get(`http://localhost:3000/users/${userId}`, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        })
+        .then(loadSucesso)
+        .catch(loadFalha);
     }
-
+    
     useEffect(() => {
         loadUser();
     }, []);
-
+    
     function gerarPdf() {
-
-
+        
+        
         const doc = new jsPDF({
             orientation: "portrait",
             unit: "mm",
@@ -206,7 +212,7 @@ export default function ActionOs(props: Props) {
         const imgHeight = 31;
         const imgX = 8;
         const imgY = 7;
-
+        
         
         const pageWidth = doc.internal.pageSize.getWidth();
         
@@ -230,7 +236,7 @@ export default function ActionOs(props: Props) {
             style: "currency",
             currency: "BRL",
         }).format(props.order.total)
-
+        
         const totalProducts = new Intl.NumberFormat("pt-BR", {
             style: "currency",
             currency: "BRL",
@@ -250,11 +256,11 @@ export default function ActionOs(props: Props) {
             style: "currency",
             currency: "BRL",
         }).format(props.order.shops?.[0].product?.salePrice || 0)
-
+        
         const addressText = `${address}, ${number}, ${neighborhood}`;
-
+        
         const addressLines = doc.splitTextToSize(addressText, 150);
-
+        
         
         doc.addImage(imgPath, "PNG", imgX, imgY, imgWidth, imgHeight);
         
@@ -267,7 +273,7 @@ export default function ActionOs(props: Props) {
         doc.text(addressLines, 40, 20);
         doc.text(`${city} - ${state} ${cep}`, 40, 25);
         doc.text(`${phone} | ${email}`, 40, 30);
-
+        
         // Dados da OS à direita
         doc.setFont("helvetica", "bold");
         doc.text(`Número da OS:`, pageWidth - 57, 20);
@@ -277,15 +283,15 @@ export default function ActionOs(props: Props) {
         alignRight(`${new Date(props.order.dateCreate).toLocaleDateString("pt-BR")}`, 25);
         doc.text(`Status: `, pageWidth - 57, 30);
         alignRight(`${props.order.status}`, 30);
-
+        
         // Linha divisória
         doc.line(10, 35, pageWidth - 10, 35);
-
+        
         // --- Título principal ---
         doc.setFontSize(13);
         doc.setFont("helvetica", "bold");
         doc.text("Ordem de Serviço", pageWidth / 2, 45, { align: "center" });
-
+        
         // --- Cliente ---
         autoTable(doc, {
             startY: 50,
@@ -297,7 +303,7 @@ export default function ActionOs(props: Props) {
                 ["Endereço: " + `${props.order.client?.address}, ${props.order.client?.number}, ${props.order.client?.neighborhood}, ${props.order.client?.city} - ${props.order.client?.state}`],
             ],
         });
-
+        
         // --- Equipamento ---
         autoTable(doc, {
             startY: (doc as any).lastAutoTable.finalY + 10,
@@ -308,7 +314,7 @@ export default function ActionOs(props: Props) {
                 ["Defeito Relatado: " + `${props.order.defect}`],
             ],
         });
-
+        
         // --- Relatório Técnico ---
         autoTable(doc, {
             startY: (doc as any).lastAutoTable.finalY + 10,
@@ -320,8 +326,8 @@ export default function ActionOs(props: Props) {
                 ],
             ],
         });
-
-
+        
+        
         // --- Serviços ---
         autoTable(doc, {
             startY: (doc as any).lastAutoTable.finalY + 10,
@@ -331,7 +337,7 @@ export default function ActionOs(props: Props) {
                 [`${props.order.service?.nameService}`, "1", `   ${Vls}`, `${totalService}`],
             ],
         });
-
+        
         // --- Produtos ---
         autoTable(doc, {
             startY: (doc as any).lastAutoTable.finalY + 10,
@@ -341,7 +347,7 @@ export default function ActionOs(props: Props) {
                 [`${props.order.shops?.[0].product?.name}`, `${props.order.shops?.[0].amount}`, `${Vlp}`, `${totalProducts}`],
             ],
         });
-
+        
         // --- Garantia ---
         autoTable(doc, {
             startY: (doc as any).lastAutoTable.finalY + 10,
@@ -352,7 +358,7 @@ export default function ActionOs(props: Props) {
                 ],
             ],
         });
-
+        
         // --- Totais ---
         const yTotal = (doc as any).lastAutoTable.finalY + 10;
         doc.setFontSize(11);
@@ -361,31 +367,31 @@ export default function ActionOs(props: Props) {
         alignRight(`Produtos: ${totalProducts}`, yTotal + 6);
         doc.setFont("helvetica", "bold");
         alignRight(`Total: ${total}`, yTotal + 20);
-
+        
         // --- Assinaturas ---
         const ySign = yTotal + 40;
         doc.line(40, ySign, 90, ySign);
         doc.text("Assinatura do Cliente", 45, ySign + 5);
-
+        
         doc.line(pageWidth - 90, ySign, pageWidth - 40, ySign);
         doc.text("Assinatura do Técnico", pageWidth - 85, ySign + 5);
-
-
-
+        
+        
+        
         // 💡 Aqui vem a mágica:
         const blob = doc.output("blob");
         const url = URL.createObjectURL(blob);
-
+        
         // Abre em uma nova aba
         window.open(url);
-
+        
         // doc.save(`OS_${props.order.id}_${props.order.client?.name}`)
-
+        
     }
-
+    
     function getUserIdFromToken(token: string | null): number | null {
         if (!token) return null;
-
+        
         try {
             const payloadBase64 = token.split(".")[1];
             const payload = JSON.parse(atob(payloadBase64));
@@ -396,10 +402,10 @@ export default function ActionOs(props: Props) {
             return null;
         }
     }
-
+    
     function loadSucesso(response: AxiosResponse) {
         const data = response.data;
-
+        
         setName(data.name || "");
         setLastName(data.lastName || "");
         setDocument(data.document || "");
@@ -414,25 +420,25 @@ export default function ActionOs(props: Props) {
         setCity(data.city || "");
         setState(data.state || "");
     }
-
+    
     function loadFalha(error: AxiosError<any>) {
         const mensagem =
-            typeof error.response?.data === "string"
-                ? error.response.data
-                : error.response?.data?.error || "Ocorreu um erro inesperado.";
-
+        typeof error.response?.data === "string"
+        ? error.response.data
+        : error.response?.data?.error || "Ocorreu um erro inesperado.";
+        
         setError(mensagem);
         window.scrollTo({ top: 0, behavior: "smooth" });
     }
-
+    
     let mensagemAlerta = null;
-
+    
     if (error) {
         mensagemAlerta = <Alert variant="danger">{error}</Alert>;
     } else if (success) {
         mensagemAlerta = <Alert variant="success">{success}</Alert>;
     }
-
+    
     return (
         <>
 
@@ -450,6 +456,7 @@ export default function ActionOs(props: Props) {
                     <div
                         className={styles.modalContent}
                         onClick={(e) => e.stopPropagation()}
+                        ref={modalRef}
                     >
                         <button className={styles.modalClose} onClick={handleCloseModal}>
                             ×
