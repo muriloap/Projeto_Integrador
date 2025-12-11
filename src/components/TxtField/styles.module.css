@@ -9,75 +9,57 @@
 .mdInput {
   position: relative;
   display: inline-block;
-  width: 350px;   /* ajuste conforme quiser */
+  width: 350px;
+  max-width: 100%;     /* 🔥 permite responsividade */
 }
 
-/* input */
+/* INPUT */
 .input {
-  padding: 14px 12px;
+  padding: 14px 45px 14px 12px; /* 🔥 espaço extra à direita para o olho */
   width: 100%;
   font-size: 16px;
   border: 1.5px solid rgba(0,0,0,0.38);
   border-radius: 6px;
   outline: none;
-  background: #fff;       /* fundo claro */
+  background: #fff;
   color: #000;
   box-sizing: border-box;
 }
 
-.name{
+.name {
   width: 100%;
   display: flex;
   text-align: start;
   flex-direction: column;
   gap: 7px;
-  color:rgba(0,0,0,0.70);
+  color: rgba(0,0,0,0.70);
 }
 
-/* efeito hover/focus */
+/* hover + focus */
 .input:hover {
   border-color: rgba(0,0,0,0.6);
 }
+
 .mdInput:focus-within .input {
   border-color: #1976d2;
   box-shadow: 0 0 0 3px rgba(25,118,210,0.15);
-}
-
-/* label flutuante */
-.label {
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 16px;
-  color: rgba(0,0,0,0.6);
-  pointer-events: none;
-  background: #fff; /* igual ao fundo, pra "cortar" a borda */
-  padding: 0 4px;
-  transition: all 0.2s ease;
-}
-
-/* quando tem foco ou valor digitado, o label sobe */
-.input:focus + .label,
-.input:not(:placeholder-shown) + .label {
-  top: -6px;
-  font-size: 12px;
-  color: #1976d2;
-  transform: none;
 }
 
 /* botão olho */
 .toggle {
   position: absolute;
   top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
+  right: 12px;
+  transform: translateY(-50%);    /* 🔥 CENTRALIZADO NO MEIO */
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 18px;
-  color: rgba(0,0,0,0.6); /* ajuste se for dark mode */
-  outline: none;
+  font-size: 22px;
+  color: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
 }
 
 .toggle:hover {
@@ -85,7 +67,7 @@
 }
 
 .fullWidth {
-  width: 100%
+  width: 100%;
 }
 
 .inputWrapper {
@@ -94,10 +76,23 @@
   position: relative;
 }
 
-.prefix {
-  position: absolute;
-  left: 10px;
-  color: #555;
-  font-weight: 500;
-  pointer-events: none;
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+  .mdInput {
+    width: 100%;   /* 🔥 ocupa largura total */
+  }
+
+  .input {
+    font-size: 15px;
+    padding: 13px 45px 13px 10px;
+  }
+
+  .toggle {
+    right: 10px;
+    font-size: 20px;
+  }
+
+  .name {
+    font-size: 15px;
+  }
 }

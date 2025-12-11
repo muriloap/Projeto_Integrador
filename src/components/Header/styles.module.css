@@ -1,17 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+.imagem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+}
 
 .header {
-    gap: 30px;
     background-color: #0c74e8;
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    padding: 1rem 2rem;
     font-family: "Poppins", sans-serif;
 }
 
 .h1 {
-    font-size: 35px;
-    margin-left: -700px;
-    background-color: #0c74e8;
+    font-size: 1.8rem;
+    color: white;
+    background-color: transparent;
+}
+
+/* 🔥 Responsivo */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .h1 {
+        margin: 0;
+        font-size: 1.6rem;
+        text-align: center;
+    }
 }

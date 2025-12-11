@@ -2,36 +2,51 @@
 
 .root {
     background-color: #084A95;
-    padding: 1px;
+    padding: 2rem 1rem;
 }
 
 .h2contato {
     text-align: center;
     color: white;
-    font-size: 40px;
-    background-color: #084A95;
-    padding: 1rem;
+    background-color: transparent;
+    font-size: 2.2rem;
+    padding: 1rem 0;
     border-bottom: 2px solid #5095ac;
     border-radius: 5px;
     font-family: "Poppins", sans-serif;
-
 }
 
+.tabela {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    background-color: #084A95;
+    padding-top: 3rem;
+    flex-wrap: wrap;
+}
+
+/* 🔹 CARD: FALE CONOSCO */
 .tabelaFaleConosco {
-    color: #000000;
-    font-size: 1.2rem;
-    line-height: 1.9; /* espaçamento entre linhas */
-    text-align: justify; /* texto alinhado dos dois lados */
+    background-color: white;
     padding: 2rem;
     border-radius: 12px;
     max-width: 350px;
-    margin: 15px;
+    width: 100%;
     text-align: center;
     font-family: "Poppins", sans-serif;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
+.faleConosco {
+    font-size: 1.8rem;
+    border-bottom: 2px solid black;
+    padding-bottom: .5rem;
+    margin-bottom: 1rem;
+}
+
+/* 🔹 BOTÃO */
 .button {
-    margin-top: auto;
+    margin-top: 1rem;
     background-color: #000000;
     color: white;
     border: none;
@@ -48,50 +63,56 @@
     transform: scale(1.05);
 }
 
-.faleConosco {
-    font-size: 30px;
-    color: rgb(0, 0, 0);
-    border-bottom: 2px solid black;
-    font-family: "Poppins", sans-serif;
-}
-
-.p {
-    padding: 5px;
-    margin-top: 15px;
-}
-
-.divContatos h2 {
-    background-color: #000000;
-}
-
-.tabela {
-    display: flex;
-    justify-content: space-around;
-    background-color: #084A95;
-}
-
+/* 🔹 CARD: CONTATOS */
 .tabelaContatos {
-    padding-top: 7rem;
-    justify-content: center;
+    padding: 2rem;
+    max-width: 350px;
+    width: 100%;
     text-align: center;
     background-color: #084A95;
-    color: rgb(255, 255, 255);
-    
+    color: white;
+    font-family: "Poppins", sans-serif;
 }
 
 .tabelaContatos h2 {
-    font-size: 30px;
-    color: rgb(255, 255, 255);
-    border-bottom: 2px solid rgb(255, 255, 255);
-    background-color: #084A95;
+    font-size: 1.8rem;
+    background-color: transparent;
+    border-bottom: 2px solid white;
     padding-bottom: 10px;
-    font-family: "Poppins", sans-serif;
+    margin-bottom: 1rem;
 }
 
 .tabelaContatos p {
-    padding-top: 5px;
-    background-color: #084A95;
-    font-size: 23px;
-    font-family: "Poppins", sans-serif;
+    font-size: 1.2rem;
+    margin-top: .5rem;
+    background-color: transparent;
+}
 
+/* 🔥 RESPONSIVO */
+@media (max-width: 768px) {
+    .h2contato {
+        font-size: 1.8rem;
+    }
+
+    .tabela {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        padding-top: 2rem;
+    }
+
+    .tabelaFaleConosco,
+    .tabelaContatos {
+        max-width: 90%;
+        padding: 1.5rem;
+    }
+
+    .faleConosco,
+    .tabelaContatos h2 {
+        font-size: 1.6rem;
+    }
+
+    .tabelaContatos p {
+        font-size: 1.1rem;
+    }
 }

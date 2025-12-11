@@ -3,12 +3,13 @@
 .containerp {
     display: flex;
     align-items: center;
-    gap: 30px;
     background-color: #0c74e8;
     padding: 0 2rem;
     font-family: "Poppins", sans-serif;
+    flex-wrap: wrap;
 }
 
+/* Links */
 .link {
     font-size: 1.1rem;
     color: #000000;
@@ -24,26 +25,26 @@
     transform: translateY(-2px);
 }
 
+/* Login */
 .button {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    transition: 0.3s;
     border-radius: 50%;
     background-color: #0c74e8;
 }
 
 .button:hover {
     transform: scale(1.1);
-    background-color: #0c74e8;
 }
 
 .span {
     font-size: 0.9rem;
-    color: rgb(255, 255, 255);
+    color: white;
     margin-top: 4px;
-    background-color: #0c74e8;
+    background-color: transparent;
 }
 
 .icon {
@@ -54,4 +55,30 @@
 .containers {
     margin-left: 1rem;
     background-color: #0c74e8;
+}
+
+/* 📱 RESPONSIVO */
+@media (max-width: 768px) {
+    .containerp {
+        justify-content: center;
+        padding: 1rem;
+        gap: 21px;
+    }
+
+    .link {
+        font-size: 1rem;
+        padding: 8px 12px;
+    }
+
+    .containers {
+        margin-left: 0;
+    }
+
+    .button .icon {
+        font-size: 45px !important;
+    }
+
+    .span {
+        font-size: 0.8rem;
+    }
 }

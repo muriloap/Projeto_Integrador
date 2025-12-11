@@ -1,10 +1,12 @@
-.containerp{
+.containerp {
     display: flex;
     flex-direction: column;
     gap: 40px;
 }
-.containers{
-    width: 800px;
+
+.containers {
+    width: 100%;
+    max-width: 900px;
     display: flex;
     gap: px;
     border: 2px solid #888;
@@ -28,14 +30,14 @@
 }
 
 
-.sel{
+.sel {
     margin-top: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.dadosp{
+.dadosp {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
@@ -44,16 +46,7 @@
     /* padding-top: 20px; */
 }
 
-.contato{
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    padding-top: 20px;  
-}
-
-.cadastro{
+.contato {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
@@ -62,7 +55,16 @@
     padding-top: 20px;
 }
 
-.end{
+.cadastro {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.end {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
@@ -74,9 +76,8 @@
 .btn {
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin-left: 37rem;
-    margin-top: 2.3rem;
+    margin-top: 2rem;
+    width: 100%;
 }
 
 .link {
@@ -92,9 +93,27 @@
     display: flex;
     justify-content: center;
     letter-spacing: 3px;
-  }
+}
 
-  .link:hover {
+.link:hover {
     background-color: #1a33ff;
     color: white;
-  }
+}
+
+@media (max-width: 768px) {
+    .containerp {
+        padding: 0 1.5rem;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .dadosp,
+    .end,
+    .contato,
+    .cadastro {
+        gap: 15px;
+    }
+
+    
+}

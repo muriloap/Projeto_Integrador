@@ -5,8 +5,10 @@ import styles from './styles.module.css'
 export default function Header() {
     return (
         <header className={styles.header}>
-            <Logo/>
-            <h1 className={styles.h1}>OS CONTROL</h1>
+            <div className={styles.imagem}>
+                <Logo />
+                <h1 className={styles.h1}>OS CONTROL</h1>
+            </div>
             <Menu />
 
         </header>

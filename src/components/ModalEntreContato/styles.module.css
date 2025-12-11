@@ -1,15 +1,58 @@
+/* Fundo do modal */
 :global(.modal-backdrop.show) {
   opacity: 0.5 !important;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-:global(.transparent-modal .modal-content) {
-    background-color: white;
-    border: none;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-  }
-
-:global(.modal-dialog.transparent-modal) {
+/* Wrapper do modal */
+:global(.transparent-modal.modal-dialog) {
   background: transparent;
+  margin: 0 auto;
+  width: 95%;                /* MOBILE FIRST */
+  max-width: 500px;          /* limite em telas grandes */
+}
+
+/* Conteúdo do modal */
+:global(.transparent-modal .modal-content) {
+  background: #ffffff;
+  border-radius: 14px;
+  border: none;
+  padding: 0.5rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  max-height: 90vh;         /* evita cortar em telas pequenas */
+  overflow-y: auto;
+}
+
+/* Título */
+:global(.modal-title) {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+/* Inputs */
+:global(.modal-content .form-control) {
+  font-size: 1rem;
+}
+
+/* Botões do footer */
+:global(.modal-footer button) {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 8px;
+}
+
+/* Breakpoint para notebook (entre mobile e desktop) */
+@media (min-width: 768px) {
+  :global(.transparent-modal.modal-dialog) {
+    width: 85%;
+    max-width: 600px;  /* modal maior em notebook */
+  }
+}
+
+/* Breakpoint para desktop */
+@media (min-width: 1200px) {
+  :global(.transparent-modal.modal-dialog) {
+    width: 70%;
+    max-width: 650px;
+  }
 }

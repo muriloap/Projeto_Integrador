@@ -5,9 +5,8 @@
     display: flex;
     flex-wrap: wrap;
     background-color: rgb(214, 213, 213);
-    padding-top: 2rem;
-    padding-bottom: 2rem;
     font-family: "Poppins", sans-serif;
+    padding: 2.5rem;
     gap: 20px;
 }
 
@@ -34,26 +33,6 @@
     text-align: center;
     margin-top: 1rem;
     font-size: 2.3rem;
-}
-
-.p {
-    font-family: "Poppins", sans-serif;
-    color: #000000;
-    font-size: 1.3rem; /* tamanho agradável */
-    text-align: center; /* texto alinhado dos dois lados */
-    padding: 2rem;
-    border-radius: 12px;
-    max-width: 1500px;
-    margin: 0 auto 2rem auto; /* centralizado e com espaçamento abaixo */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background-color: #ffffff;
-    border: none;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-}
-
-.p:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 25px rgba(12, 116, 232, 0.25);
 }
 
 .featuresGrid {
@@ -100,4 +79,21 @@
     color: #475569;
     line-height: 1.7;
     font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+    .containerp {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 15px;
+    }
+
+    .featureCard {
+        max-width: 100%;
+        padding: 2rem 1.5rem;
+    }
+
+    .titulo h2 {
+        font-size: 1.8rem;
+    }
 }

@@ -71,3 +71,20 @@
     margin: 12px auto;
     border-radius: 4px;
 }
+
+/* 🔥 RESPONSIVIDADE */
+@media (max-width: 768px) {
+    .titulo {
+        font-size: 1.8rem;
+        margin-top: 4rem;
+    }
+
+    .featuresGrid {
+        padding: 0 1rem;
+        gap: 1.5rem;
+    }
+
+    .featureCard {
+        padding: 2rem 1.5rem;
+    }
+}
