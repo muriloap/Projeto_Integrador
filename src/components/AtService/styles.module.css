@@ -219,3 +219,13 @@
     opacity: 1;
   }
 }
+
+@media (max-width: 768px) {
+
+  .atBtnService{
+    width: 200px;
+    font-size: 15px;
+    gap: 2px;
+}
+
+}

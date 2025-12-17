@@ -10,15 +10,11 @@
     overflow-y: auto;
     width: calc(100% - 250px);
     height: 100%;
-    background: transparent;
-    background-color: rgb(255, 255, 255);
-    transition: var(--tran-04);
+    transition: all 0.3s ease;
 }
 
 .page.close {
     transition: var(--tran-04);
-    background: transparent;
-    background-color: rgb(255, 255, 255);
     width: calc(100% - 80px);
 }
 
@@ -26,4 +22,19 @@
     height: 100vh;
     display: flex;
     justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+
+  .containerp {
+    height: auto;
+  }
+
+  .page,
+  .page.close {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow-y: visible;
+  }
 }

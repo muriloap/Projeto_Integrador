@@ -14,3 +14,13 @@
   background-color: #f4f2ff;
   
 }
+
+@media (max-width: 768px) {
+  .osId {
+    display: none;
+  }
+
+  .osAcao {
+    display: none;
+  }
+}

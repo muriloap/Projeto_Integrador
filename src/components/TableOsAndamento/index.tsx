@@ -8,13 +8,10 @@ type Props = {
 export default function TableOsAndameto({ order }: Props) {
     return (
         <tr className={styles.row}>
-            <td>{order.id}</td>
-            <td>{order.client?.name || order.client?.companyName}</td>
-            <td>{order.status}</td>
-            <td>{order.dateCreate.split("-").reverse().join("/")}</td>
-            <td>
-                
-            </td>
+            <td className={styles.osId}>{order.id}</td>
+            <td className={styles.osClient}>{order.client?.name || order.client?.companyName}</td>
+            <td className={styles.osStatus}>{order.status}</td>
+            <td className={styles.osEntrega}>{order.dateCreate.split("-").reverse().join("/")}</td>
         </tr>
     );
 }

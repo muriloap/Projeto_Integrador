@@ -27,8 +27,8 @@ type Props = {
 
 
 export default function Sidebar(props: Props) {
-    const auth = useAuth();
-    const router = useRouter();
+  const auth = useAuth();
+  const router = useRouter();
 
   const [isOpen, setIsOpen] = useState(true);
 
@@ -44,17 +44,18 @@ export default function Sidebar(props: Props) {
     <>
       <div className={styles.containerp}>
         <div
-          className={`${styles.sidebarWrapper} ${
-            isOpen ? styles.open : styles.close
-          }`}
+          className={`${styles.sidebarWrapper} ${isOpen ? styles.open : styles.close
+            }`}
         >
-          <nav className={`${styles.sidebar} ${isOpen ? "" : styles.close}`}>
+          <nav
+            className={`${styles.sidebar} ${isOpen ? styles.open : styles.close
+              }`}
+          >
             <header>
               <div className={styles.cont}>
                 <div
-                  className={`${styles.imagetext} ${
-                    isOpen ? "" : styles.close
-                  }`}
+                  className={`${styles.imagetext} ${isOpen ? "" : styles.close
+                    }`}
                 >
                   <div className={styles.textheadertext}>
                     <span className={styles.name}>OS Control</span>
@@ -151,9 +152,8 @@ export default function Sidebar(props: Props) {
           <div onClick={props.onClick}>
             <div className={styles.toggleFixed} onClick={toggleSidebar}>
               <ChevronRightIcon
-                className={`${styles.toggleIcon} ${
-                  isOpen ? styles.rotated : ""
-                }`}
+                className={`${styles.toggleIcon} ${isOpen ? styles.rotated : ""
+                  }`}
                 sx={{ fontSize: 25, cursor: "pointer" }}
               />
             </div>

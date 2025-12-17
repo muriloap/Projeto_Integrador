@@ -26,11 +26,11 @@ export default function TableOsAtrasoList({ orders }: Props) {
             <table className={styles.tableClients}>
                 <thead>
                     <tr>
-                        <th>Nº OS</th>
-                        <th>Cliente</th>
-                        <th>Status</th>
-                        <th>Previsão de Entrega</th>
-                        <th>Ação</th>
+                        <th className={styles.osId}>Nº OS</th>
+                        <th className={styles.osClient}>Cliente</th>
+                        <th className={styles.osStatus}>Status</th>
+                        <th className={styles.osEntrega}>Previsão de Entrega</th>
+                        <th className={styles.osAcao}>Ação</th>
                     </tr>
                 </thead>
 

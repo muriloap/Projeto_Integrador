@@ -59,3 +59,13 @@
 .tableClients svg:hover {
   transform: scale(1.1);
 }
+
+@media (max-width: 768px) {
+  .osId {
+    display: none;
+  }
+
+  .osAcao {
+    display: none;
+  }
+}

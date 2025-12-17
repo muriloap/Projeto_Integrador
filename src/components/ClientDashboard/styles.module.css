@@ -55,3 +55,21 @@
     color: white;
     background: transparent;
 }
+
+@media (max-width: 768px) {
+
+  .atBtnClient{
+    width: 200px;
+    font-size: 15px;
+    gap: 5px;
+}
+
+.nameClient{
+    gap: 15px;
+}
+
+.number{
+    font-size: 23px;
+}
+
+}

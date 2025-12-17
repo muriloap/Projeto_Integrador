@@ -380,3 +380,13 @@
     opacity: 1;
   }
 }
+
+@media (max-width: 768px) {
+
+  .atBtnProduct{
+    width: 200px;
+    font-size: 15px;
+    gap: 20px;
+}
+
+}

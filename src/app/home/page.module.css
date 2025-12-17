@@ -91,3 +91,43 @@
     margin-top: 20px;
 }
 
+@media (max-width: 768px) {
+
+  .containers {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .osPt1,
+  .osPt2 {
+    width: 100%;
+    align-items: stretch;
+    padding: 0.8rem;
+  }
+
+  .teste {
+    width: 100%;
+    height: auto;
+  }
+
+  .atalhos {
+    width: 100%;
+    padding: 0;
+  }
+
+  .atTop,
+  .atDown {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .atTop > *,
+  .atDown > * {
+    width: 100%;
+  }
+}
+
+
+
+
+

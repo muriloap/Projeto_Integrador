@@ -201,7 +201,7 @@
   border-radius: 50%;
   color: var(--sidebar-color);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
-  z-index: 999; /* acima da sidebar e do conteúdo */
+  z-index: 10000;
   transition: left 0.28s ease, transform 0.2s ease;
 }
 
@@ -240,4 +240,34 @@
 .logout{
   cursor: pointer;
   margin-left: 22px;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    height: 100vh;
+    width: 250px;
+    z-index: 9999;
+    background: white;
+    transition: left 0.3s ease;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .sidebar.close {
+    left: -250px;
+    width: 250px; /* importante */
+  }
+
+  .sidebarWrapper.open .toggleFixed {
+    left: 235px; /* acompanha a sidebar aberta */
+  }
+
+  .sidebarWrapper.close .toggleFixed {
+    left: 15px; /* botão visível quando fechada */
+  }
 }

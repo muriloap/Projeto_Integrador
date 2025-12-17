@@ -8,14 +8,14 @@ type Props = {
 
 export default function TableOsAndamentoList({ orders }: Props) {
 
-    const hoje = new Date().toISOString().split("T")[0]; 
+    const hoje = new Date().toISOString().split("T")[0];
 
     const filteredOrders = orders.filter((order) => {
-        const dataEntrega = order.dateDelivery; 
+        const dataEntrega = order.dateDelivery;
 
         return (
-            order.status !== "Finalizado" && 
-            dataEntrega >= hoje                 
+            order.status !== "Finalizado" &&
+            dataEntrega >= hoje
         );
 
     });
@@ -25,11 +25,11 @@ export default function TableOsAndamentoList({ orders }: Props) {
             <table className={styles.tableClients}>
                 <thead>
                     <tr>
-                        <th>Nº OS</th>
-                        <th>Cliente</th>
-                        <th>Status</th>
-                        <th>Previsão de Entrega</th>
-                        <th>Ação</th>
+                        <th className={styles.osId}>Nº OS</th>
+                        <th className={styles.osClient}>Cliente</th>
+                        <th className={styles.osStatus}>Status</th>
+                        <th className={styles.osEntrega}>Previsão de Entrega</th>
+                        <th className={styles.osAcao}>Ação</th>
                     </tr>
                 </thead>
 

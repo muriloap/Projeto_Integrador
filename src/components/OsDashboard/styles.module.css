@@ -56,3 +56,20 @@
     color: white;
     background: transparent;
 }
+
+@media (max-width: 768px) {
+
+  .atBtnOs{
+    width: 200px;
+    font-size: 14px;
+    gap: 12px;
+}
+
+.nameOs{
+}
+
+.number{
+    font-size: 23px;
+}
+
+}
