@@ -12,11 +12,11 @@ export default function TableClientList({ clients }: Props) {
       <table className={styles.tableClients}>
         <thead>
           <tr>
-            <th>Nome do Cliente</th>
-            <th>CPFJ/CNPJ</th>
-            <th>Endereço</th>
-            <th>Telefone</th>
-            <th>Ação</th>
+            <th className={styles.clientName}>Nome do Cliente</th>
+            <th className={styles.clientDocument}>CPFJ/CNPJ</th>
+            <th className={styles.clientAddress}>Endereço</th>
+            <th className={styles.clientPhone}>Telefone</th>
+            <th className={styles.clientAction}>Ação</th>
           </tr>
         </thead>
 

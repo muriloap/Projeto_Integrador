@@ -9,11 +9,14 @@ type Props = {
 export default function TableClient({ client }: Props) {
   return (
     <tr className={styles.row}>
-      <td>{client.name || client.companyName}</td>
-      <td>{client.document}</td>
-      <td>{client.address}</td>
-      <td>{client.phone}</td>
-      <td>
+      <td className={styles.clientName}>{client.name
+    ? `${client.name} ${client.lastName}`
+    : client.companyName}
+</td>
+      <td className={styles.clientDocument}>{client.document}</td>
+      <td className={styles.clientAddress}>{client.address}</td>
+      <td className={styles.clientPhone}>{client.phone}</td>
+      <td className={styles.clientPhone}>
         <ActionClient client={client} />
       </td>                                                                                                     
     </tr>

@@ -13,3 +13,13 @@
 .row:hover td {
   background-color: #f4f2ff;
 }
+
+@media (max-width: 768px) {
+  .description {
+    display: none;
+  }
+
+  .observations {
+    display: none;
+  }
+}

@@ -12,11 +12,11 @@ export default function TableServiceList({ services }: Props) {
       <table className={styles.tableServices}>
         <thead>
           <tr>
-            <th>Nome do Serviço</th>
-            <th>Descrição</th>
-            <th>Observações</th>
-            <th>Preço</th>
-            <th>Editar/Deletar</th>
+            <th className={styles.name}>Nome do Serviço</th>
+            <th className={styles.description}>Descrição</th>
+            <th className={styles.observations}>Observações</th>
+            <th className={styles.price}>Preço</th>
+            <th className={styles.actions}>Editar/Deletar</th>
           </tr>
         </thead>
 

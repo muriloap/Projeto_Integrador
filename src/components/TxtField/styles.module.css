@@ -79,7 +79,8 @@
 /* RESPONSIVIDADE */
 @media (max-width: 768px) {
   .mdInput {
-    width: 100%;   /* 🔥 ocupa largura total */
+    width: 100%;
+    flex-wrap: wrap;
   }
 
   .input {

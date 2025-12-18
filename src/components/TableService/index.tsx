@@ -12,14 +12,14 @@ export default function TableService({
 
   return (
     <tr className={styles.row}>
-      <td>{service.nameService}</td>
-      <td>{service.description}</td>
-      <td>{service.observations}</td>
-      <td> {new Intl.NumberFormat("pt-BR", {
+      <td className={styles.name}>{service.nameService}</td>
+      <td className={styles.description}>{service.description}</td>
+      <td className={styles.observations}>{service.observations}</td>
+      <td className={styles.price}> {new Intl.NumberFormat("pt-BR", {
         style: "currency",
         currency: "BRL",
       }).format(service.price)}</td>
-      <td>
+      <td className={styles.actions}>
         <ActionService service={service} />
       </td>
     </tr>
