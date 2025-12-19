@@ -6,7 +6,7 @@ type Props = {
     orders: Order[];
 };
 
-export default function (props: Props) {
+export default function OsStatus(props: Props) {
 
     const statusCount = {
         "Em Orçamento": props.orders.filter(orders => orders.status === "Em Orçamento").length,
