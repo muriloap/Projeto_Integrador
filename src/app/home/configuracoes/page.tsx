@@ -72,7 +72,6 @@ export default function PageConfig() {
     <div className={styles.container}>
       <DropDownPP label="Perfil e Preferências" user={user} />
       <DropDownPS label="Privacidade e Segurança" user={user} />
-      <EmDev/>
     </div>
   );
 }
