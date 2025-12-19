@@ -17,7 +17,7 @@ export default function Home() {
         <div className={styles.assinatura}>
           <Assinaturas />
         </div>
-        <Contato />
+        <Contato/>
       </div>
     </>
   );
