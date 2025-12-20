@@ -222,7 +222,7 @@ export default function ModalOS(props: Props) {
 
               <div className={styles.dataEquipamento}>
                 <div className={styles.data}>
-                  <a>Data do Recebimento</a>
+                  <a>Data do Recebimento:</a>
                   <input
                     type="date"
                     className={styles.formData2}
@@ -234,7 +234,7 @@ export default function ModalOS(props: Props) {
                 </div>
 
                 <div className={styles.data}>
-                  <a>Data de Entrega</a>
+                  <a>Data de Entrega:</a>
                   <input
                     type="date"
                     className={styles.formData2}

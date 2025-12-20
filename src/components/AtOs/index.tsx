@@ -106,7 +106,7 @@ export default function AtOs(props: Props) {
 
   let mensagemAlerta = null;
 
-   if (error) {
+  if (error) {
     mensagemAlerta = <Alert variant="danger">{error}</Alert>;
   } else if (success) {
     mensagemAlerta = <Alert variant="success">{success}</Alert>;
@@ -114,13 +114,13 @@ export default function AtOs(props: Props) {
 
   return (
     <>
-      
-        <div className={styles.atBtnOs} onClick={handleOpenModal}> 
-            <AssignmentIcon className={styles.icon} sx={{ fontSize: 35 }} />
-            <div className={styles.nameOs}>
-                Nova Ordem de Serviço
-            </div>
+
+      <div className={styles.atBtnOs} onClick={handleOpenModal}>
+        <AssignmentIcon className={styles.icon} sx={{ fontSize: 35 }} />
+        <div className={styles.nameOs}>
+          Nova Ordem de Serviço
         </div>
+      </div>
 
       {/* Modal */}
       {isModalOpen && (
@@ -139,7 +139,7 @@ export default function AtOs(props: Props) {
               Preencha os dados abaixo para criar uma nova Ordem de Serviço.
             </p>
 
-            {}
+            {mensagemAlerta}
 
             <div className={styles.formGroup}>
 
@@ -179,7 +179,7 @@ export default function AtOs(props: Props) {
                 <div className={styles.campoSelect}>
                   <a>Selecione um Produto:</a>
                   <SelectProductList product={props.products} onChange={setProductId} />
-                  <TxtField label="Quantidade" value={quantity} type="text" onChange={setQuantity} />
+                    <TxtField label="Quantidade" value={quantity} type="text" onChange={setQuantity} />
                 </div>
               </div>
 

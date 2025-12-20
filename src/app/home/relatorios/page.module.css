@@ -6,7 +6,6 @@
 
 .containers {
     width: 95%;
-    height: 90%;
     gap: 2.9rem;
     display: flex;
     align-items: center;
@@ -19,29 +18,48 @@
     background: transparent;
 }
 
-.graphic{
+.graphic {
     width: 90%;
-    height: 60%;
+    height: 600px;
     display: flex;
     flex-direction: row;
-    padding: 1.5rem;
     background: transparent;
 }
 
-.pizza{
+.pizza {
     width: 50%;
+    height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: auto;
     background: transparent;
+    flex-direction: column;
 }
 
-.barra{
+
+.barra {
     width: 50%;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: auto;
     background: transparent;
+    flex-direction: column;
+}
+
+@media (max-width: 768px) {
+
+    .containers {
+        gap: 5rem;
+    }
+
+    .graphic {
+        flex-direction: column;
+    }
+
+    .barra,
+    .pizza {
+        width: 100%;
+    }
+
 }

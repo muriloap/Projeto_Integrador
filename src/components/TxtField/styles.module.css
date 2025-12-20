@@ -15,15 +15,15 @@
 
 /* INPUT */
 .input {
-  padding: 14px 45px 14px 12px; /* 🔥 espaço extra à direita para o olho */
+  padding: 14px 16px; /* 🔥 espaço extra à direita para o olho */
   width: 100%;
-  font-size: 16px;
   border: 1.5px solid rgba(0,0,0,0.38);
   border-radius: 6px;
   outline: none;
   background: #fff;
   color: #000;
   box-sizing: border-box;
+  line-height: 1.2;
 }
 
 .name {
@@ -83,17 +83,13 @@
     flex-wrap: wrap;
   }
 
-  .input {
-    font-size: 15px;
-    padding: 13px 45px 13px 10px;
-  }
-
+  
   .toggle {
     right: 10px;
     font-size: 20px;
   }
 
   .name {
-    font-size: 15px;
+    
   }
 }

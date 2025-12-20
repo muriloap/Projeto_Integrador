@@ -14,11 +14,11 @@ export default function TableProductList({ products }: Props) {
       <table className={styles.tableProducts}>
         <thead>
           <tr>
-            <th>Nome do Produto</th>
-            <th>Quantidade</th>
-            <th>Preço de Compra</th>
-            <th>Preço de Venda</th>
-            <th>Editar/Excluir</th>
+            <th className={styles.name}>Nome do Produto</th>
+            <th className={styles.quantity}>Quantidade</th>
+            <th className={styles.purchasePrice}>Preço de Compra</th>
+            <th className={styles.salePrice}>Preço de Venda</th>
+            <th className={styles.action}>Editar/Excluir</th>
           </tr>
         </thead>
 

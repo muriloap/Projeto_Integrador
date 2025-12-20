@@ -256,3 +256,28 @@
     opacity: 1;
   }
 }
+
+@media (max-width: 768px) {
+
+  .atBtnOs{
+    width: 200px;
+    font-size: 15px;
+    gap: 2px;
+}
+
+.formData{
+  width: 45%;
+}
+
+.formData2{
+  width: 85%;
+}
+
+.dataEquipamento{
+  gap: 23px;
+  align-items: end;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+}

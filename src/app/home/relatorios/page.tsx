@@ -163,6 +163,46 @@ export default function PageRelatorios() {
 
     });
 
+    const filteredOrdersFaturado = order.filter((order) => {
+
+        return (
+            order.status === "Faturado"
+        );
+
+    });
+
+    const filteredOrdersProgresso = order.filter((order) => {
+
+        return (
+            order.status === "Em Progresso"
+        );
+
+    });
+
+    const filteredOrdersAprovado = order.filter((order) => {
+
+        return (
+            order.status === "Aprovado"
+        );
+
+    });
+
+    const filteredOrdersMaterial = order.filter((order) => {
+
+        return (
+            order.status === "Aguardando Material"
+        );
+
+    });
+
+    const filteredOrdersOrcamento = order.filter((order) => {
+
+        return (
+            order.status === "Em Orçamento"
+        );
+
+    });
+
     const labels = getNextMonths(7);
 
     defaults.maintainAspectRatio = true;
@@ -171,55 +211,6 @@ export default function PageRelatorios() {
     ChartJS.defaults.plugins.title.display = true;
     ChartJS.defaults.plugins.title.align = "center";
     ChartJS.defaults.plugins.title.color = "black";
-
-
-
-    const dataBar = {
-        labels: labels,
-        datasets: [
-            {
-                data: [order.length],
-                label: 'Fluxo de entrada',
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(255, 205, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(201, 203, 207, 0.2)'
-                ],
-                borderColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 159, 64)',
-                    'rgb(255, 205, 86)',
-                    'rgb(75, 192, 192)',
-                    'rgb(54, 162, 235)',
-                    'rgb(153, 102, 255)',
-                    'rgb(201, 203, 207)'
-                ],
-                borderWidth: 1
-            }
-
-        ],
-        options: {
-            plugins: {
-                title: {
-                    text: 'Custom Chart Title'
-                }
-            }
-        }
-    };
-
-    const optionsBar = {
-        plugins: {
-            title: {
-                text: 'Fluxo de Entrada Mensal'
-            }
-        }
-    };
-
-
 
 
     return (
@@ -234,38 +225,58 @@ export default function PageRelatorios() {
                         mesTotal={0}
                         osAt={filteredOrdersAtrasdo.length}
                     />
+
                     <div className={styles.graphic}>
 
                         <div className={styles.pizza}>
+
+                            <h3>Ordens de Serviços emitidas</h3>
+
                             <Doughnut data={{
-                                labels: ["Total de Os", "Cancelados", "Finalizadas"],
+                                labels: [
+                                    "Total de Os",
+                                    "Em Orçamento",
+                                    "Aguardando Material",
+                                    "Aprovado",
+                                    "Em Progresso",
+                                    "Cancelado",
+                                    "Finalizado",
+                                    "Faturado"],
                                 datasets: [
                                     {
-                                        data: [order.length, filteredOrdersCancelados.length, filteredOrdersCancelados.length],
-                                        backgroundColor: ["rgba(0, 89, 255, 0.8)", "rgba(255, 0, 0, 0.8)", "rgba(0, 255, 13, 0.8)"],
-                                        borderRadius: 5,
+                                        data: [
+                                            order.length,
+                                            filteredOrdersOrcamento.length,
+                                            filteredOrdersMaterial.length,
+                                            filteredOrdersAprovado.length,
+                                            filteredOrdersProgresso.length,
+                                            filteredOrdersCancelados.length,
+                                            filteredOrdersFinalizado.length,
+                                            filteredOrdersFaturado.length],
+                                        backgroundColor: [
+                                            "rgba(0, 89, 255, 0.8)",
+                                            "rgb(250, 204, 21)",
+                                            "rgb(251, 146, 60)",
+                                            "rgb(34, 197, 94)",
+                                            "rgb(59, 130, 246)",
+                                            "rgb(239, 68, 68)",
+                                            "rgb(21, 128, 61)",
+                                            "rgb(139, 92, 246)"],
+                                        borderRadius: 2,
                                     },
                                 ],
                             }}
                                 options={{
+                                    responsive: true,
+                                    maintainAspectRatio: true,
                                     plugins: {
-                                        title: {
-                                            display: true,
-                                            align: "start",
-                                            text: 'Fluxo de Entrada Mensal',
-                                            font: {
-                                                size: 20
-                                            }
-                                        },
-
                                         legend: {
                                             display: true,
                                             position: "right",
-                                            align: "end",
                                             textDirection: "left",
                                             labels: {
                                                 font: {
-                                                    size: 14
+                                                    size:14
                                                 },
                                             },
                                         },
@@ -274,7 +285,10 @@ export default function PageRelatorios() {
                             />
                         </div>
 
+
                         <div className={styles.barra}>
+
+                            <h3>Fluxo de Entradas</h3>
 
                             <Bar data={{
                                 labels: labels,
@@ -305,22 +319,11 @@ export default function PageRelatorios() {
                             }}
                                 options={{
                                     layout: {
-                                        padding:{
+                                        padding: {
                                             bottom: 0
                                         },
                                     },
                                     plugins: {
-                                        title: {
-                                            display: true,
-                                            padding: 5,
-                                            position: "top",
-                                            text: 'Fluxo de Entrada Mensal',
-                                            font: {
-                                                size: 20
-                                            },
-                                            
-                                        },
-
                                         legend: {
                                             display: false,
                                             labels: {
@@ -331,7 +334,7 @@ export default function PageRelatorios() {
                                         },
                                     },
                                 }}
-                            
+
                             />
 
                         </div>
