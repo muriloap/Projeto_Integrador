@@ -14,6 +14,7 @@ type User = {
   id: string;
   name: string;
   email: string;
+  groups: string[];
 };
 
 type AuthContextType = {
@@ -35,46 +36,54 @@ export function AuthProvider(props: Props) {
   const [user, setUser] = useState<User | null>(null);
 
   function login(email: string, password: string): Promise<void> {
-    return new Promise<void>(function (resolve, reject) {
-      api
-        .post("/users/login", { email, senha: password })
-        .then(function (res) {
-          const token = res.data.token;
-          localStorage.setItem("token", token);
-          const decoded = jwtDecode<JwtPayload>(token);
-          setUser({
-            id: decoded.sub,
-            name: decoded.name,
-            email: decoded.email,
-          });
-          resolve();
-        })
-        .catch(function (error) {
-          reject(error + " Credenciais inválidas.");
+    return new Promise(async (resolve, reject) => {
+      try {
+        const res = await api.post("/users/login", {
+          email,
+          senha: password,
         });
+
+        const token = res.data.token;
+        localStorage.setItem("token", token);
+
+        const me = await api.get("/users/me", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        setUser(me.data);
+        resolve();
+      } catch (error) {
+        reject(error);
+      }
     });
   }
+
 
   function logout(): void {
     localStorage.removeItem("token");
     setUser(null);
   }
 
-  useEffect(function restoreSession() {
+  useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token) {
-      try {
-        const decoded = jwtDecode<JwtPayload>(token);
-        setUser({
-          id: decoded.sub,
-          name: decoded.name,
-          email: decoded.email,
-        });
-      } catch {
+    if (!token) return;
+
+    api
+      .get("/users/me", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(res => setUser(res.data))
+      .catch(() => {
         localStorage.removeItem("token");
-      }
-    }
+        setUser(null);
+      });
   }, []);
+
+  
 
   return (
     <AuthContext.Provider

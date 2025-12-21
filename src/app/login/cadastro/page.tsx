@@ -3,7 +3,7 @@ import Selection from "@/components/Selection";
 import { useState } from "react";
 import axios, { AxiosError, AxiosResponse } from "axios";
 
-import styles from "./styles.module.css";
+import styles from "./page.module.css";
 
 import Divisao from "@/components/Divisao";
 import TxtField from "@/components/TxtField";
@@ -265,11 +265,13 @@ export default function Home() {
               </div>
 
               <div className={styles.btn}>
-                <Btn variant="outline" onClick={cadastro} label="ENVIAR" />
+                <Btn variant="outline" onClick={cadastro} label="PROXIMO" />
               </div>
             </>
           )}
         </div>
+
+        
       </div>
     </>
   );

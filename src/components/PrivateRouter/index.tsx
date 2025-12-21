@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
-import styles from './styles.module.css';
 
 type Props = {
   children: React.ReactNode;

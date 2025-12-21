@@ -1,5 +1,5 @@
 'use client'
-import EmDev from '@/components/EmDev'
+import {RequiredGroup} from "@/components/RequiredGroup";
 import styles from './page.module.css'
 import Dashboard from '@/components/Dashboard'
 import { useEffect, useState } from 'react';
@@ -215,133 +215,135 @@ export default function PageRelatorios() {
 
     return (
         <>
-            <div className={styles.containerp}>
-                <div className={styles.containers}>
-                    <h2 className={styles.title}>Relatório de Ordens de Serviço</h2>
-                    <Dashboard
-                        osAb={filteredOrdersAndamento.length}
-                        osFi={filteredOrdersFinalizado.length}
-                        quantityp={0}
-                        mesTotal={0}
-                        osAt={filteredOrdersAtrasdo.length}
-                    />
+            <RequiredGroup allowed={["Premium", "Admin"]}>
+                <div className={styles.containerp}>
+                    <div className={styles.containers}>
+                        <h2 className={styles.title}>Relatório de Ordens de Serviço</h2>
+                        <Dashboard
+                            osAb={filteredOrdersAndamento.length}
+                            osFi={filteredOrdersFinalizado.length}
+                            quantityp={0}
+                            mesTotal={0}
+                            osAt={filteredOrdersAtrasdo.length}
+                        />
 
-                    <div className={styles.graphic}>
+                        <div className={styles.graphic}>
 
-                        <div className={styles.pizza}>
+                            <div className={styles.pizza}>
 
-                            <h3>Ordens de Serviços emitidas</h3>
+                                <h3>Ordens de Serviços emitidas</h3>
 
-                            <Doughnut data={{
-                                labels: [
-                                    "Total de Os",
-                                    "Em Orçamento",
-                                    "Aguardando Material",
-                                    "Aprovado",
-                                    "Em Progresso",
-                                    "Cancelado",
-                                    "Finalizado",
-                                    "Faturado"],
-                                datasets: [
-                                    {
-                                        data: [
-                                            order.length,
-                                            filteredOrdersOrcamento.length,
-                                            filteredOrdersMaterial.length,
-                                            filteredOrdersAprovado.length,
-                                            filteredOrdersProgresso.length,
-                                            filteredOrdersCancelados.length,
-                                            filteredOrdersFinalizado.length,
-                                            filteredOrdersFaturado.length],
-                                        backgroundColor: [
-                                            "rgba(0, 89, 255, 0.8)",
-                                            "rgb(250, 204, 21)",
-                                            "rgb(251, 146, 60)",
-                                            "rgb(34, 197, 94)",
-                                            "rgb(59, 130, 246)",
-                                            "rgb(239, 68, 68)",
-                                            "rgb(21, 128, 61)",
-                                            "rgb(139, 92, 246)"],
-                                        borderRadius: 2,
-                                    },
-                                ],
-                            }}
-                                options={{
-                                    responsive: true,
-                                    maintainAspectRatio: true,
-                                    plugins: {
-                                        legend: {
-                                            display: true,
-                                            position: "right",
-                                            textDirection: "left",
-                                            labels: {
-                                                font: {
-                                                    size:14
+                                <Doughnut data={{
+                                    labels: [
+                                        "Total de Os",
+                                        "Em Orçamento",
+                                        "Aguardando Material",
+                                        "Aprovado",
+                                        "Em Progresso",
+                                        "Cancelado",
+                                        "Finalizado",
+                                        "Faturado"],
+                                    datasets: [
+                                        {
+                                            data: [
+                                                order.length,
+                                                filteredOrdersOrcamento.length,
+                                                filteredOrdersMaterial.length,
+                                                filteredOrdersAprovado.length,
+                                                filteredOrdersProgresso.length,
+                                                filteredOrdersCancelados.length,
+                                                filteredOrdersFinalizado.length,
+                                                filteredOrdersFaturado.length],
+                                            backgroundColor: [
+                                                "rgba(0, 89, 255, 0.8)",
+                                                "rgb(250, 204, 21)",
+                                                "rgb(251, 146, 60)",
+                                                "rgb(34, 197, 94)",
+                                                "rgb(59, 130, 246)",
+                                                "rgb(239, 68, 68)",
+                                                "rgb(21, 128, 61)",
+                                                "rgb(139, 92, 246)"],
+                                            borderRadius: 2,
+                                        },
+                                    ],
+                                }}
+                                    options={{
+                                        responsive: true,
+                                        maintainAspectRatio: true,
+                                        plugins: {
+                                            legend: {
+                                                display: true,
+                                                position: "right",
+                                                textDirection: "left",
+                                                labels: {
+                                                    font: {
+                                                        size: 14
+                                                    },
                                                 },
                                             },
                                         },
-                                    },
+                                    }}
+                                />
+                            </div>
+
+
+                            <div className={styles.barra}>
+
+                                <h3>Fluxo de Entradas</h3>
+
+                                <Bar data={{
+                                    labels: labels,
+                                    datasets: [
+                                        {
+                                            data: [0],
+                                            backgroundColor: [
+                                                'rgba(255, 99, 132, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 205, 86, 0.2)',
+                                                'rgba(75, 192, 192, 0.2)',
+                                                'rgba(54, 162, 235, 0.2)',
+                                                'rgba(153, 102, 255, 0.2)',
+                                                'rgba(201, 203, 207, 0.2)'
+                                            ],
+                                            borderColor: [
+                                                'rgb(255, 99, 132)',
+                                                'rgb(255, 159, 64)',
+                                                'rgb(255, 205, 86)',
+                                                'rgb(75, 192, 192)',
+                                                'rgb(54, 162, 235)',
+                                                'rgb(153, 102, 255)',
+                                                'rgb(201, 203, 207)'
+                                            ],
+                                            borderWidth: 1
+                                        }
+                                    ],
                                 }}
-                            />
-                        </div>
-
-
-                        <div className={styles.barra}>
-
-                            <h3>Fluxo de Entradas</h3>
-
-                            <Bar data={{
-                                labels: labels,
-                                datasets: [
-                                    {
-                                        data: [0],
-                                        backgroundColor: [
-                                            'rgba(255, 99, 132, 0.2)',
-                                            'rgba(255, 159, 64, 0.2)',
-                                            'rgba(255, 205, 86, 0.2)',
-                                            'rgba(75, 192, 192, 0.2)',
-                                            'rgba(54, 162, 235, 0.2)',
-                                            'rgba(153, 102, 255, 0.2)',
-                                            'rgba(201, 203, 207, 0.2)'
-                                        ],
-                                        borderColor: [
-                                            'rgb(255, 99, 132)',
-                                            'rgb(255, 159, 64)',
-                                            'rgb(255, 205, 86)',
-                                            'rgb(75, 192, 192)',
-                                            'rgb(54, 162, 235)',
-                                            'rgb(153, 102, 255)',
-                                            'rgb(201, 203, 207)'
-                                        ],
-                                        borderWidth: 1
-                                    }
-                                ],
-                            }}
-                                options={{
-                                    layout: {
-                                        padding: {
-                                            bottom: 0
+                                    options={{
+                                        layout: {
+                                            padding: {
+                                                bottom: 0
+                                            },
                                         },
-                                    },
-                                    plugins: {
-                                        legend: {
-                                            display: false,
-                                            labels: {
-                                                font: {
-                                                    size: 14
+                                        plugins: {
+                                            legend: {
+                                                display: false,
+                                                labels: {
+                                                    font: {
+                                                        size: 14
+                                                    },
                                                 },
                                             },
                                         },
-                                    },
-                                }}
+                                    }}
 
-                            />
+                                />
+
+                            </div>
 
                         </div>
-
                     </div>
                 </div>
-            </div>
+            </RequiredGroup>
         </>
     )
 }

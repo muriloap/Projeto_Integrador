@@ -145,9 +145,9 @@ export default function Home() {
                 </div>
 
                 <Divisao />
-                  <a className={styles.atRapido}>OS Em andamento</a>
+                <a className={styles.atRapido}>OS Em andamento</a>
 
-                <TableOsAndamentoList orders={order}/>
+                <TableOsAndamentoList orders={order} />
               </div>
 
             </div>
@@ -162,26 +162,26 @@ export default function Home() {
 
 
                   <div className={styles.atTop}>
-                    <OsDashboard quantityos={order.length}/>
-                    <ProductDashboard quantityop={product.length}  />                
-                    </div>
+                    <OsDashboard quantityos={order.length} />
+                    <ProductDashboard quantityop={product.length} />
+                  </div>
 
                   <div className={styles.atDown}>
-                    <ClientDashboard quantityc={clients.length}/>
-                    <ServiceDashboard quantitys={service.length}/>
+                    <ClientDashboard quantityc={clients.length} />
+                    <ServiceDashboard quantitys={service.length} />
                   </div>
 
                 </div>
 
                 <Divisao />
-                  <a className={styles.atRapido}>OS Em Atraso</a>
+                <a className={styles.atRapido}>OS Em Atraso</a>
 
-                <TableOsAtrasoList orders={order}/>
+                <TableOsAtrasoList orders={order} />
               </div>
 
             </div>
 
-            
+
 
 
           </div>
