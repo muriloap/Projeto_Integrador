@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
 .card {
     background-color: #084A95;
     color: white;
@@ -11,22 +13,23 @@
     flex-direction: column;
     justify-content: space-between;
     font-family: "Poppins", sans-serif;
-  
+
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-    
+
 .card:hover {
-    transform: translateY(-10px) scale(1.05); /* sobe e aumenta levemente */
+    transform: translateY(-10px) scale(1.05);
+    /* sobe e aumenta levemente */
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
 }
-  
+
 .tituloPlano {
     font-size: 1.75rem;
     margin-bottom: 12px;
     background-color: #084A95;
     font-family: "Poppins", sans-serif;
 }
-  
+
 .valor {
     color: lightgreen;
     font-size: 1.5rem;
@@ -35,20 +38,21 @@
     border-radius: 15px;
     font-family: "Poppins", sans-serif;
 }
-  
+
 .lista {
-    list-style: none; /* remove bolinhas do ul */
+    list-style: none;
+    /* remove bolinhas do ul */
     padding: 0;
     margin: 0 0 24px 0;
     background-color: #084A95;
 }
-  
+
 .listaItem {
     margin-bottom: 12px;
     background-color: #084A95;
-   
-  }
-  
+
+}
+
 .botao {
     margin-top: auto;
     background-color: #45a049;
@@ -58,7 +62,7 @@
     border-radius: 12px;
     cursor: pointer;
     font-weight: bold;
-    font-size:   1.3rem;
+    font-size: 1.3rem;
     transition: all 0.3s ease;
 }
 
@@ -66,4 +70,315 @@
     background-color: #45a049;
     transform: scale(1.05);
 }
-  
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modalContent {
+    background: white;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    max-width: 800px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    animation: slideIn 0.3s ease-out;
+}
+
+.modalClose {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.modalClose:hover {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.buttonPrimary {
+    padding: 12px 24px;
+    background-color: #304ffe;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+.buttonSecondary {
+    padding: 12px 24px;
+    background-color: #f5f5f5;
+    color: #333;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+.formGroup {
+    width: 100%;
+    height: 59vh;
+    display: flex;
+    flex-direction: row;
+    background-color: #e0e0e0;
+    font-family: "Poppins", sans-serif;
+}
+
+.descriptionAss {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background: rgb(55, 50, 73);
+    ;
+    gap: 10px;
+}
+
+.nameProduct {
+    font-size: 15px;
+    background: transparent;
+    color: white;
+}
+
+.productImage {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    background: transparent;
+}
+
+.image {
+    background: transparent;
+}
+
+.logo {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+}
+
+.priceAss {
+    padding: 5px;
+    width: 100%;
+    height: 14%;
+    background: transparent;
+    display: flex;
+
+    flex-direction: column;
+    gap: 5px;
+}
+
+.subPrice {
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+}
+
+.subTotal {
+    font-size: 15px;
+    background: transparent;
+    color: white;
+}
+
+.total {
+    font-size: 21px;
+    background: transparent;
+    color: white;
+}
+
+
+.price {
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+}
+
+.descriptionCc {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    perspective: 1000px;
+    background: rgb(44, 38, 64);;
+}
+
+.credtCard {
+    width: 100%;
+    height: 200px;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cCard {
+    width: 310px;
+    height: 170px;
+    border-radius: 5%;
+    background: rgb(83, 108, 128);
+    display: flex;
+    flex-direction: column;
+    transition: transform .4s ease;
+    transform-style: preserve-3d;
+}
+
+.flipped {
+    transform: rotateY(180deg);
+}
+
+.cardBack {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    backface-visibility: hidden;
+    background: transparent;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: flex-end;
+    transform: rotateY(180deg);
+}
+
+.faixa{
+    width: 100%;
+    height: 40%;
+    display: flex;
+    background: black;
+}
+
+.cardBlackCvv{
+    display: flex;
+    flex-direction: row;
+    background-color: transparent;
+    gap: 10px;
+}
+
+.cvv {
+    width: 80%;
+    margin-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.cvvNumber{
+    background: transparent;
+    color: rgb(0, 0, 0);
+}
+
+.cvvName{
+    background: transparent;
+    color: rgb(0, 0, 0);
+}
+
+.cardFront{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    backface-visibility: hidden;
+    background: transparent;
+}
+
+.ptChip{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    background: transparent;
+}
+
+.chip {
+    width: 45px;
+    height: 45px;
+    background: transparent;
+}
+
+.logoChip{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+}
+
+.numberCard {
+    width: 200px;
+    height: 27px;
+    border-radius: 3%;
+    background: rgb(38, 50, 62);
+    color: white;
+    opacity: 90%;
+    padding: px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ptDate{
+    display: flex;
+    padding-right: 20px;
+    justify-content: flex-end;
+    background: transparent;
+}
+
+.dateExpiration {
+    background: transparent;
+    color: white;
+}
+
+.ptName{
+    display: flex;
+    padding-left: 30px;
+    justify-content: flex-start;
+    background: transparent;
+}
+
+.name {
+    background: transparent;
+    color: white;
+}
+
+.number {
+    background: transparent;
+    color: white;
+}

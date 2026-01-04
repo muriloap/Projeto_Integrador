@@ -1,3 +1,4 @@
+'use client'
 import PlanoFreeHome from "../PlanoFreeHome";
 import PlanoPremiumHome from "../PlanoPremiumHome";
 import styles from "./styles.module.css";
