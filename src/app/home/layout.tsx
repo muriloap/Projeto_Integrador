@@ -3,6 +3,7 @@ import Sidebar from "@/components/SideBar";
 import { ReactNode, useState } from "react"
 import styles from './layout.module.css'
 import PrivateRoute from "@/components/PrivateRouter";
+import { usePathname } from "next/navigation";
 
 
 type Props = {
@@ -17,6 +18,16 @@ export default function HomeLayout(props: Props) {
 
     function Mudarcss() {
         setIsOpen(!open);
+    }
+
+    const pathname = usePathname();
+
+    // rotas que NÃO devem usar o layout do menu
+    const hideLayout =
+        pathname?.startsWith("/home/assinaturas/sucesso");
+
+    if (hideLayout) {
+        return <>{props.children}</>;
     }
 
     return (
